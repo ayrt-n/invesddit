@@ -1,5 +1,5 @@
 import React from 'react';
-import MainFeed from './components/MainFeed';
+import FrontpageFeed from './components/FrontpageFeed';
 import Navbar from './components/navbar/Navbar';
 import { Routes, Route } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ function App() {
         <Route
           path="/"
           element={
-            <MainFeed />
+            <FrontpageFeed />
           }
         />
       </Routes>
