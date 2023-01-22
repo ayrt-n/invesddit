@@ -1,9 +1,12 @@
 import React from 'react';
+import MainFeed from './components/MainFeed';
+import Navbar from './components/navbar/Navbar';
 
 function App() {
   return (
-    <div>
-      
+    <div className="bg-canvas min-h-screen">
+      <Navbar />
+      <MainFeed />
     </div>
   );
 }
