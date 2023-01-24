@@ -1,8 +1,9 @@
 import React from 'react';
+import PillButton from './PillButton';
 
 function FeedSidebarWelcome() {
   return (
-    <div className="bg-canvas-light p-[12px] rounded-[4px]">
+    <div className="bg-canvas-light p-[12px] rounded-[4px] border-[1px] border-post-border">
       <div className="text-[16px] font-semibold leading-[20px] mb-[8px]">
         Home
       </div>
@@ -11,14 +12,14 @@ function FeedSidebarWelcome() {
       </div>
       <hr className="h-[1px] my-[16px]" />
       <div>
-        <a className="rounded-full bg-button text-canvas-light font-bold min-h-[32px]">
+        <PillButton as="a">
           Create Post
-        </a>
+        </PillButton>
       </div>
-      <div>
-        <button>
+      <div className="mt-[12px]">
+        <PillButton as="a">
           Create Community
-        </button>
+        </PillButton>
       </div>
     </div>
   );
