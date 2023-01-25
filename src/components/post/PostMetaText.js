@@ -32,7 +32,7 @@ function PostMetaText({ community, account, createdAt }) {
             {`u/${account.username}`}
           </span>
           { accountMenuOpen &&
-            <AccountTooltip community={community} />
+            <AccountTooltip account={account} />
           }
         </div>
         <span className="mr-[3px] text-meta-text">
