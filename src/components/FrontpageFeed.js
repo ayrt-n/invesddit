@@ -3,6 +3,7 @@ import FeedSidebarWelcome from './FeedSidebarWelcome';
 import Post from './post/Post';
 import FeedController from './FeedController';
 import { getPostFeed } from '../services/feedService';
+import FeedSidebarFooter from './FeedSidebarFooter';
 
 function MainFeed() {
   const [posts, setPosts] = useState([])
@@ -26,6 +27,7 @@ function MainFeed() {
         {/* Feed Sidebar */}
         <div className="w-[312px] ml-[24px]">
           <FeedSidebarWelcome />
+          <FeedSidebarFooter />
         </div>
       </div>
     </div>
