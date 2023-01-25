@@ -69,7 +69,7 @@ function MainFeed() {
           <FeedController />
 
           {posts.map((post) => (
-              <Post post={post} />
+              <Post post={post} key={post.id} />
           ))}
         </div>
 
