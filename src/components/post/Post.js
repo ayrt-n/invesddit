@@ -5,7 +5,7 @@ import PostSidebar from './PostSidebar';
 
 function Post({ post }) {
   return (
-    <div className="bg-canvas-light border-[1px] border-post-border mb-[10px] flex overflow-hidden rounded-[4px] hover:border-post-border-hover cursor-pointer">
+    <div className="bg-canvas-light border-[1px] border-post-border mb-[10px] flex rounded-[4px] hover:border-post-border-hover cursor-pointer">
       <PostSidebar />
       
       <div>
