@@ -1,5 +1,6 @@
 import React from 'react';
 import PillButton from './PillButton';
+import { Link } from 'react-router-dom';
 
 function FeedSidebarWelcome() {
   return (
@@ -12,12 +13,12 @@ function FeedSidebarWelcome() {
       </div>
       <hr className="h-[1px] my-[16px]" />
       <div>
-        <PillButton as="a" variant="primary">
+        <PillButton as={Link} to="/submit" variant="primary">
           Create Post
         </PillButton>
       </div>
       <div className="mt-[12px]">
-        <PillButton as="a" variant="inverted">
+        <PillButton as={Link} to="/communities/new" variant="inverted">
           Create Community
         </PillButton>
       </div>
