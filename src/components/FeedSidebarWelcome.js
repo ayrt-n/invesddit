@@ -12,12 +12,12 @@ function FeedSidebarWelcome() {
       </div>
       <hr className="h-[1px] my-[16px]" />
       <div>
-        <PillButton as="a">
+        <PillButton as="a" variant="primary">
           Create Post
         </PillButton>
       </div>
       <div className="mt-[12px]">
-        <PillButton as="a">
+        <PillButton as="a" variant="inverted">
           Create Community
         </PillButton>
       </div>
