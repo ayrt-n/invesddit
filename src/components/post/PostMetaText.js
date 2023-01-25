@@ -41,7 +41,7 @@ function PostMetaText({ community, account, createdAt }) {
                       {community.description}
                     </div>
                   }
-                  <PillButton as="Link">
+                  <PillButton as={Link} to={`/c/${community.sub_dir}`}>
                     View Community
                   </PillButton>
                 </div>
