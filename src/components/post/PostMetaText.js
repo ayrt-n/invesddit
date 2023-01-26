@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import CommunityTooltip from './communityTooltip';
 import AccountTooltip from './accountTooltip';
+import { Link } from 'react-router-dom';
 
 function PostMetaText({ community, account, createdAt }) {
   const createdAtDate = Date.parse(createdAt);
@@ -35,9 +36,11 @@ function PostMetaText({ community, account, createdAt }) {
     <div className="py-[8px] grow">
       <div className="text-[12px] leading-[16px] mx-[8px] mb-[8px] flex">
         <div className="relative" onMouseOver={() => handleMouseEnter(setCommunityMenuOpen)} onMouseLeave={() => handleMouseLeave(setCommunityMenuOpen)}>
-          <span className="font-bold hover:underline">
-            {`c/${community.sub_dir}`}
-          </span>
+          <Link to={`c/${community.sub_dir}`}>
+            <span className="font-bold hover:underline">
+              {`c/${community.sub_dir}`}
+            </span>
+          </Link>
           { communityMenuOpen &&
             <CommunityTooltip community={community} />
           }
