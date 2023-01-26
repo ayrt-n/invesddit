@@ -49,5 +49,6 @@ function createAccount(email, username, password, passwordConfirmation) {
 
 export {
   login,
+  logout,
   createAccount,
 }
