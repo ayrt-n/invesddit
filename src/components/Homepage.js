@@ -5,7 +5,7 @@ import FeedController from './FeedController';
 import { getPostFeed } from '../services/feedService';
 import FeedSidebarFooter from './FeedSidebarFooter';
 
-function MainFeed() {
+function Homepage() {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
@@ -34,4 +34,4 @@ function MainFeed() {
   );
 }
 
-export default MainFeed;
+export default Homepage;

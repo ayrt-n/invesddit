@@ -1,6 +1,7 @@
 import React from 'react';
-import FrontpageFeed from './components/FrontpageFeed';
 import Navbar from './components/navbar/Navbar';
+import Homepage from './components/Homepage';
+import CommunityHomepage from './components/community/CommunityHomepage';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -12,8 +13,12 @@ function App() {
           <Route
             path="/"
             element={
-              <FrontpageFeed />
+              <Homepage />
             }
+          />
+          <Route
+            path="/c/:sub_dir"
+            element={CommunityHomepage}
           />
         </Routes>
       </div>
