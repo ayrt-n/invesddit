@@ -10,7 +10,7 @@ function Navbar() {
         <img src={logo} className="w-[32px] h-[32px]" alt="invesddit logo"/>
       </Link>
       <div className="flex items-center">
-        <PillButton as={Link} to="/register" variant="inverted" additionalClasses="ml-[4px] text-[14px] whitespace-nowrap">
+        <PillButton as={Link} to="/signup" variant="inverted" additionalClasses="ml-[4px] text-[14px] whitespace-nowrap">
           Sign up
         </PillButton>
         <PillButton as={Link} to="/login" additionalClasses="ml-[4px] text-[14px]">
