@@ -7,14 +7,16 @@ function App() {
   return (
     <div className="bg-canvas min-h-screen">
       <Navbar />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <FrontpageFeed />
-          }
-        />
-      </Routes>
+      <div className="pt-[48px]">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <FrontpageFeed />
+            }
+          />
+        </Routes>
+      </div>
     </div>
   );
 }
