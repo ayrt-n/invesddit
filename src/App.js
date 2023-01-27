@@ -17,8 +17,8 @@ function App() {
             }
           />
           <Route
-            path="/c/:sub_dir"
-            element={CommunityHomepage}
+            path="/c/:id"
+            element={<CommunityHomepage />}
           />
         </Routes>
       </div>
