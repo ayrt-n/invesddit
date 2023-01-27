@@ -3,7 +3,7 @@ import PostActions from './PostActions';
 import PostMetaText from './PostMetaText';
 import PostSidebar from './PostSidebar';
 
-function Post({ post }) {
+function PostPreview({ post }) {
   return (
     <div className="bg-canvas-light border-[1px] border-post-border mb-[10px] flex rounded-[4px] hover:border-post-border-hover cursor-pointer">
       <PostSidebar id={post.id} score={post.score} />
@@ -28,4 +28,4 @@ function Post({ post }) {
   );
 }
 
-export default Post;
+export default PostPreview;

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import FeedSidebarWelcome from './FeedSidebarWelcome';
-import Post from './post/Post';
 import FeedController from './FeedController';
 import { getPostFeed } from '../services/feedService';
 import FeedSidebarFooter from './FeedSidebarFooter';
 import BackToTopWidget from './BackToTopWidget';
+import PostPreview from './post/PostPreview';
 
 function Homepage() {
   const [posts, setPosts] = useState([])
@@ -21,7 +21,7 @@ function Homepage() {
           <FeedController />
 
           {posts.map((post) => (
-              <Post post={post} key={post.id} />
+              <PostPreview post={post} key={post.id} />
           ))}
         </div>
 
