@@ -35,19 +35,23 @@ function PostMetaText({ community, account, createdAt }) {
   return (
     <div className="py-[8px] grow">
       <div className="text-[12px] leading-[16px] mx-[8px] mb-[8px] flex">
-        <div className="relative" onMouseOver={() => handleMouseEnter(setCommunityMenuOpen)} onMouseLeave={() => handleMouseLeave(setCommunityMenuOpen)}>
-          <Link to={`c/${community.sub_dir}`}>
-            <span className="font-bold hover:underline">
-              {`c/${community.sub_dir}`}
+        {community &&
+          <>
+            <div className="relative" onMouseOver={() => handleMouseEnter(setCommunityMenuOpen)} onMouseLeave={() => handleMouseLeave(setCommunityMenuOpen)}>
+              <Link to={`c/${community.sub_dir}`}>
+                <span className="font-bold hover:underline">
+                  {`c/${community.sub_dir}`}
+                </span>
+              </Link>
+              { communityMenuOpen &&
+                <CommunityTooltip community={community} />
+              }
+            </div>
+            <span className="mx-[4px] text-meta-text">
+            •
             </span>
-          </Link>
-          { communityMenuOpen &&
-            <CommunityTooltip community={community} />
-          }
-        </div>
-        <span className="mx-[4px] text-meta-text">
-        •
-        </span>
+          </>
+        }
         <span className="mr-[3px] text-meta-text">
           Posted by
         </span>
