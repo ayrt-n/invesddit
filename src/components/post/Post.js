@@ -6,7 +6,7 @@ import PostSidebar from './PostSidebar';
 function Post({ post }) {
   return (
     <div className="bg-canvas-light border-[1px] border-post-border mb-[10px] flex rounded-[4px] hover:border-post-border-hover cursor-pointer">
-      <PostSidebar post={post} />
+      <PostSidebar id={post.id} score={post.score} />
       
       <div>
         <PostMetaText community={post.community} account={post.account} createdAt={post.created_at} />
@@ -22,7 +22,7 @@ function Post({ post }) {
           </div>
         </div>
 
-        <PostActions comments={post.comments} />
+        <PostActions commentCount={post.comments_count} />
       </div>
     </div>
   );
