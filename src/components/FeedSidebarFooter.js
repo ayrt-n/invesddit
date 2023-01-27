@@ -2,7 +2,7 @@ import React from 'react';
 
 function FeedSidebarFooter() {
   return (
-    <div className="mt-[16px] bg-canvas-light p-[12px] rounded-[4px] border-[1px] border-post-border sticky top-[68px]">
+    <div className="mt-[16px] bg-canvas-light p-[12px] rounded-[4px] border-[1px] border-post-border">
       <div className="text-[14px] leading-[21px] flex items-center">
         Made with
         <span className="text-red-500 mx-[3px]">♥</span>
