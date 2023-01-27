@@ -4,6 +4,7 @@ import Post from './post/Post';
 import FeedController from './FeedController';
 import { getPostFeed } from '../services/feedService';
 import FeedSidebarFooter from './FeedSidebarFooter';
+import BackToTopWidget from './BackToTopWidget';
 
 function Homepage() {
   const [posts, setPosts] = useState([])
@@ -27,7 +28,10 @@ function Homepage() {
         {/* Feed Sidebar */}
         <div className="w-[312px] ml-[24px]">
           <FeedSidebarWelcome />
-          <FeedSidebarFooter />
+          <div className="sticky top-[68px]">
+            <FeedSidebarFooter />
+            <BackToTopWidget />
+          </div>
         </div>
       </div>
     </div>
