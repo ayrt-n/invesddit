@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './components/navbar/Navbar';
 import Homepage from './components/Homepage';
-import CommunityHomepage from './components/community/CommunityHomepage';
+import CommunityDashboard from './components/community/CommunityDashboard';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
           />
           <Route
             path="/c/:id"
-            element={<CommunityHomepage />}
+            element={<CommunityDashboard />}
           />
         </Routes>
       </div>
