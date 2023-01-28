@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import FeedController from '../FeedController';
 import CommunityHeader from './CommunityHeader';
 import AboutCommunityWidget from './AboutCommunityWidget';
 import { getCommunity } from '../../services/communityService';
-import PostPreview from '../post/PostPreview';
+import CommunityFeed from './CommunityFeed';
 
 function CommunityHomepage() {
   let { id } = useParams();
@@ -27,9 +26,7 @@ function CommunityHomepage() {
         <div className="mx-auto max-w-min flex">
           {/* Main Post Feed */}
           <div className="w-[640px]">
-            <FeedController />
-
-            {community.posts.map((post) => (<PostPreview post={post} key={post.id} />))}
+            <CommunityFeed community={id} />
           </div>
 
           {/* Feed Sidebar */}
