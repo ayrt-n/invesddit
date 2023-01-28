@@ -6,7 +6,7 @@ import PostSidebar from './PostSidebar';
 function PostPreview({ post }) {
   return (
     <div className="bg-canvas-light border-[1px] border-post-border mb-[10px] flex rounded-[4px] hover:border-post-border-hover cursor-pointer">
-      <PostSidebar id={post.id} score={post.score} />
+      <PostSidebar id={post.id} score={post.score} preview />
       
       <div>
         <PostMetaText community={post.community} account={post.account} createdAt={post.created_at} />
