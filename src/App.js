@@ -4,6 +4,7 @@ import Homepage from './components/Homepage';
 import CommunityDashboard from './components/community/CommunityDashboard';
 import { Routes, Route } from 'react-router-dom';
 import CommunityFeed from './components/community/CommunityFeed';
+import Post from './components/post/Post';
 
 function App() {
   return (
@@ -12,13 +13,14 @@ function App() {
       <div className="pt-[48px]">
         <Routes>
           <Route
-            path="/"
+            index
             element={
               <Homepage />
             }
           />
-          <Route path="/c/:id" element={<CommunityDashboard />}>
-            <Route path="" element={<CommunityFeed />} />
+          <Route path="c/:community_id" element={<CommunityDashboard />}>
+            <Route index element={<CommunityFeed />} />
+            <Route path="posts/:post_id" element={<Post />} />
           </Route>
         </Routes>
       </div>

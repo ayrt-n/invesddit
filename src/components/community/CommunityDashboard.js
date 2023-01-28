@@ -5,21 +5,21 @@ import AboutCommunityWidget from './AboutCommunityWidget';
 import { getCommunity } from '../../services/communityService';
 
 function CommunityHomepage() {
-  let { id } = useParams();
+  let { community_id } = useParams();
 
   const [community, setCommunity] = useState(null);
   useEffect(() => {
-    getCommunity(id).then(data => setCommunity(data));
-  }, [id]);
+    getCommunity(community_id).then(data => setCommunity(data));
+  }, [community_id]);
 
   if (!community) return null;
 
   return (
     <div>
-      <Link to={`/c/${id}`}>
+      <Link to={`/c/${community_id}`}>
         <div className="h-[64px] bg-blue-300" />
       </Link>
-      <CommunityHeader title={community.title || community.sub_dir} id={id} />
+      <CommunityHeader title={community.title || community.sub_dir} id={community_id} />
 
       <div className="py-[20px] px-[24px]">
         <div className="mx-auto max-w-min flex">
