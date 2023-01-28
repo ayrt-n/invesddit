@@ -1,9 +1,11 @@
 import React from 'react';
 import { upvotePost, downvotePost } from '../../services/postService';
 
-function PostSidebar({ id, score }) {
+function PostSidebar({ id, score, preview }) {
+  const bgColor = preview ? 'bg-post-sidebar' : 'bg-canvas-light'
+
   return (
-    <div className="min-w-[40px] bg-post-sidebar flex flex-col items-center py-[8px] rounded-tl-[4px] rounded-bl-[4px]">
+    <div className={`${bgColor} min-w-[40px] flex flex-col items-center py-[8px] rounded-tl-[4px] rounded-bl-[4px]`}>
       <button onClick={() => upvotePost(id)} className="flex items-center justify-items-center">
         <svg className="w-[24px] h-[24px] rounded-[2px] hover:text-upvote hover:bg-icon-hover" viewBox="0 0 24 24">
           <path fill="currentColor" d="M16,13V21H8V13H2L12,3L22,13H16M7,11H10V19H14V11H17L12,6L7,11Z" />
