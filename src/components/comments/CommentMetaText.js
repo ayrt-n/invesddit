@@ -31,11 +31,11 @@ function CommentMetaText({ account, createdAt }) {
   }
 
   return (
-    <div className="py-[8px] grow">
-      <div className="text-[12px] leading-[16px] mx-[8px] mb-[8px] flex">
+    <div className="mt-[10px] mb-[6px] min-h-[18px]">
+      <div className="text-[12px] leading-[16px] flex">
         <div className="relative" onMouseOver={() => handleMouseEnter(setAccountMenuOpen)} onMouseLeave={() => handleMouseLeave(setAccountMenuOpen)}>
           <span className="mr-[3px] font-medium hover:underline">
-            {`u/${account.username}`}
+            {`${account.username}`}
           </span>
           { accountMenuOpen &&
             <AccountTooltip account={account} />
