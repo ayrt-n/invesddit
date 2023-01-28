@@ -30,7 +30,7 @@ function CommentForm() {
                 className="w-full !outline-none align-top h-[106px] py-[8px] px-[16px] text-[14px] leading-[21px]"
               />
               <div className="flex justify-end py-[4px] px-[8px]">
-                <PillButton additionalClasses="w-auto text-[12px] leading-[16px]" disabled={!formik.isValid}>
+                <PillButton additionalClasses="w-auto text-[12px] leading-[16px]" disabled={!formik.isValid || !formik.dirty} type="submit" >
                   Comment
                 </PillButton>
               </div>
