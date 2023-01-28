@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 import CommunityHeader from './CommunityHeader';
 import AboutCommunityWidget from './AboutCommunityWidget';
 import { getCommunity } from '../../services/communityService';
-import CommunityFeed from './CommunityFeed';
 
 function CommunityHomepage() {
   let { id } = useParams();
@@ -26,7 +25,7 @@ function CommunityHomepage() {
         <div className="mx-auto max-w-min flex">
           {/* Main Post Feed */}
           <div className="w-[640px]">
-            <CommunityFeed community={id} />
+            <Outlet />
           </div>
 
           {/* Feed Sidebar */}
