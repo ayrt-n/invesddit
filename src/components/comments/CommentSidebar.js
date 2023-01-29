@@ -9,7 +9,7 @@ function CommentSidebar({ account, toggleCollapse }) {
       <Link to="/user" className="my-[6px] min-h-[28px] min-w-[28px]">
         <img src={logo} alt="account avatar" className="rounded-full" />
       </Link>
-      <div onClick={toggleCollapse} className="w-[2px] mx-5 h-full bg-canvas cursor-pointer hover:bg-primary-500" />
+      <div onClick={toggleCollapse} className="w-full mx-5 h-full cursor-pointer bg-gradient-to-t from-canvas to-canvas bg-no-repeat bg-center hover:from-primary-500 hover:to-primary-500" style={{'background-size': '2px 100%'}} />
     </div>
   );
 }
