@@ -4,24 +4,15 @@ import PostMetaText from './PostMetaText';
 import PostSidebar from './PostSidebar';
 import PostActions from './PostActions';
 import CommentSection from '../comments/CommentSection';
+import { getPost } from '../../services/postService';
 
 function Post() {
   const { post_id } = useParams();
 
-  const post = {
-    "id": 2,
-    "title": "New post",
-    "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    "created_at": "2023-01-27T13:32:05.257Z",
-    "comments_count": 0,
-    "score": 1,
-    "account": {
-        "id": 1,
-        "username": "finance_dude",
-        "created_at": "2023-01-27T13:32:04.743Z"
-    },
-    "comments": []
-  }
+  const [post, setPost] = useState(null);
+  useEffect(() => {
+    getPost(post_id).then(data => setPost(data.data))
+  }, [post_id]);
 
   if (!post) return null;
 
