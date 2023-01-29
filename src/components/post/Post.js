@@ -11,7 +11,7 @@ function Post() {
   const post = {
     "id": 2,
     "title": "New post",
-    "body": "new post",
+    "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     "created_at": "2023-01-27T13:32:05.257Z",
     "comments_count": 0,
     "score": 1,
@@ -37,7 +37,7 @@ function Post() {
               {post.title}
             </div>
           </div>
-          <div className="px-[8px] mt-[5px] mb-[10px] max-h-[250px] overflow-hidden gradient-mask-b-60">
+          <div className="px-[8px] mt-[5px] mb-[10px]">
             <div className="text-[14px] leading-[21px] break-words ">
               {post.body}
             </div>
