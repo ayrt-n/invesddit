@@ -10,7 +10,7 @@ function Homepage() {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    getPostFeed().then(data => setPosts(data));
+    getPostFeed().then(data => setPosts(data.data));
   }, [])
 
   return (

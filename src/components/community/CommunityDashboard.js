@@ -9,7 +9,7 @@ function CommunityHomepage() {
 
   const [community, setCommunity] = useState(null);
   useEffect(() => {
-    getCommunity(community_id).then(data => setCommunity(data));
+    getCommunity(community_id).then(data => setCommunity(data.data));
   }, [community_id]);
 
   if (!community) return null;

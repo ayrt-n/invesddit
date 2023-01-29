@@ -10,7 +10,7 @@ function CommunityFeed() {
   const [posts, setPosts] = useState(null)
   useEffect(() => {
     getPostFeed(`community=${community_id}`).then(data => {
-      setPosts(data);
+      setPosts(data.data);
     });
   }, [community_id]);
 
