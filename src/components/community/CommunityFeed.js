@@ -10,9 +10,6 @@ function CommunityFeed() {
   const [posts, setPosts] = useState(null)
   useEffect(() => {
     getPostFeed(`community=${community_id}`).then(data => {
-      // Remove community details as not needed
-      // THIS SHOULD BE OPTIMIZED BY API NOT RENDERING THIS WHEN RETURNING COMMUNITY FEED
-      data.forEach((post) => delete post['community'])
       setPosts(data);
     });
   }, [community_id]);
@@ -22,7 +19,7 @@ function CommunityFeed() {
   return (
     <>
       <FeedController />
-      {posts.map((post) => (<PostPreview post={post} key={post.id} />))}
+      {posts.map((post) => (<PostPreview post={post} communityView key={post.id} />))}
     </>
   );
 }
