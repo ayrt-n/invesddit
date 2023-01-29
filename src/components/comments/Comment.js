@@ -3,13 +3,16 @@ import CommentMetaText from './CommentMetaText';
 import CommentActions from './CommentActions';
 import CollapsedCommentHeader from './CollapsedCommentHeader';
 import CommentSidebar from './CommentSidebar';
+import CommentReplyForm from './CommentReplyForm';
 
 function Comment({ comment }) {
   const [collapsed, setCollapsed] = useState(false);
-  const toggleCollapse = () => { setCollapsed((prev) => !prev) }
+  const toggleCollapse = () => { setCollapsed((prev) => !prev) };
+
+  const [replyOpen, setReplyOpen] = useState(false);
+  const toggleReply = () => { setReplyOpen((prev) => !prev) };
   
-  const hasNestedComment = comment.comments.length > 0
-  
+  const hasNestedComment = comment.comments.length > 0;
 
   return (
     <div className="pt-[8px] pl-[8px] flex">
@@ -22,7 +25,10 @@ function Comment({ comment }) {
         <div className="my-[2px] text-[14px] leading-[21px] break-words ">
           {comment.body}
         </div>
-        <CommentActions score={comment.score} id={comment.id} />
+        <CommentActions score={comment.score} id={comment.id} toggleReply={toggleReply} />
+
+        {replyOpen ? <CommentReplyForm /> : null}
+
         {hasNestedComment ?
           comment.comments.map((comment) => <Comment comment={comment} key={comment.id} />) :
           null
