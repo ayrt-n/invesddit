@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 import PillButton from '../PillButton';
 
-function CommentForm() {
+function CommentForm({ autoFocus }) {
   const validate = (values) => {
     const errors = {};
     if (!values.body) { errors.body = 'Required' }
@@ -28,6 +28,7 @@ function CommentForm() {
                 {...formik.getFieldProps('body')}
                 placeholder="What are your thoughts?"
                 className="w-full !outline-none align-top h-[106px] py-[8px] px-[16px] text-[14px] leading-[21px] rounded-[4px]"
+                autoFocus={autoFocus}
               />
               <div className="flex justify-end py-[4px] px-[8px]">
                 <PillButton additionalClasses="w-auto text-[12px] leading-[16px]" disabled={!formik.isValid || !formik.dirty} type="submit" >
