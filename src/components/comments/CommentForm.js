@@ -30,8 +30,8 @@ function CommentForm({ autoFocus }) {
                 className="w-full !outline-none align-top h-[106px] py-[8px] px-[16px] text-[14px] leading-[21px] rounded-[4px]"
                 autoFocus={autoFocus}
               />
-              <div className="flex justify-end py-[4px] px-[8px]">
-                <PillButton additionalClasses="w-auto text-[12px] leading-[16px]" disabled={!formik.isValid || !formik.dirty} type="submit" >
+              <div className="flex justify-end py-[4px] px-[8px] w-auto">
+                <PillButton additionalClasses="w-[90px] text-[12px] leading-[16px]" disabled={!formik.isValid || !formik.dirty} type="submit" >
                   Comment
                 </PillButton>
               </div>
