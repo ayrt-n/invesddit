@@ -45,9 +45,6 @@ function CommentController({ sortBy, setSortBy }) {
             <button onClick={() => handleMenuClick('best')} className={`font-medium align-center text-feed-text text-[14px] leading-[18px] p-[8px] hover:bg-sky-100 w-full text-left ${sortBy === 'best' ? 'text-primary-500' : 'text-feed-text hover:text-neutral-900'}`}>
               Best
             </button>
-            <button onClick={() => handleMenuClick('hot')} className={`font-medium align-center text-feed-text text-[14px] leading-[18px] p-[8px] hover:bg-sky-100 w-full text-left ${sortBy === 'hot' ? 'text-primary-500' : 'text-feed-text hover:text-neutral-900'}`}>
-              Hot
-            </button>
             <button onClick={() => handleMenuClick('new')} className={`font-medium align-center text-feed-text text-[14px] leading-[18px] p-[8px] hover:bg-sky-100 w-full text-left ${sortBy === 'new' ? 'text-primary-500' : 'text-feed-text hover:text-neutral-900'}`}>
               New
             </button>
