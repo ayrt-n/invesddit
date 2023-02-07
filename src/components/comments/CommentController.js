@@ -18,16 +18,18 @@ function CommentController({ sortBy, setSortBy }) {
   // Handle clicks outside of menu
   useEffect(() => {
     // Event listener to determine if clicked outside of menu and to close menu
-    function handleClickOutside(event) {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        if (menuOpen) { setMenuOpen(false); }
+    function handleClickOutside(e) {
+      if(menuRef.current && menuOpen && !menuRef.current.contains(e.target)){
+        setMenuOpen(false);
       }
     }
 
     // Bind event listener and return to remove after unmounting
     document.addEventListener('mousedown', handleClickOutside);
-    return () => { document.removeEventListener('mousedown', handleClickOutside); }
-  }, [menuRef])
+    return (
+      () => { document.removeEventListener('mousedown', handleClickOutside); }
+    );
+  });
 
   return (
     <div className="py-[4px] pr-[8px]">
