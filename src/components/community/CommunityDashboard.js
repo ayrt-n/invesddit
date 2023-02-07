@@ -29,7 +29,7 @@ function CommunityHomepage() {
           </div>
 
           {/* Feed Sidebar */}
-          <div className="w-[312px] ml-[24px]">
+          <div className="w-[312px] ml-[24px] hidden md:block">
             <AboutCommunityWidget
               description={community.description}
               createdAt={community.created_at}

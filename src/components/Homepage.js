@@ -29,7 +29,7 @@ function Homepage() {
         </div>
 
         {/* Feed Sidebar */}
-        <div className="w-[312px] ml-[24px]">
+        <div className="w-[312px] ml-[24px] hidden md:block">
           <FeedSidebarWelcome />
           <div className="sticky top-[68px]">
             <FeedSidebarFooter />
