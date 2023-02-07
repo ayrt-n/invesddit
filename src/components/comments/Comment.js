@@ -20,7 +20,7 @@ function Comment({ comment }) {
         <CollapsedCommentHeader comment={comment} toggleCollapse={toggleCollapse} /> :
         <CommentSidebar account={comment.account} toggleCollapse={toggleCollapse} />
       }
-      <div className={`ml-[8px] max-w-[800px] ${collapsed ? 'hidden' : ''}`}>
+      <div className={`ml-[8px] max-w-[800px] w-full ${collapsed ? 'hidden' : ''}`}>
         <CommentMetaText account={comment.account} createdAt={comment.created_at} />
         <div className="my-[2px] text-[14px] leading-[21px] break-words ">
           {comment.body}
