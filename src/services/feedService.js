@@ -2,8 +2,10 @@ import { config } from './constants';
 
 const API_URL = config.urls.API_URL;
 
-function getPostFeed(filters = '') {
-  return fetch(`${API_URL}/api/v1/posts?${filters}`, {
+function getPostFeed(params = {}) {
+  const searchParams = new URLSearchParams(params)
+
+  return fetch(`${API_URL}/api/v1/posts?${searchParams}`, {
     method: 'GET',
     mode: 'cors',
     headers: {
