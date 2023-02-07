@@ -36,7 +36,7 @@ function Post() {
           <PostActions commentCount={post.comments_count} />
         </div>
       </div>
-      <CommentSection comments={post.comments} />
+      <CommentSection postId={post_id} />
     </div>
   );
 }
