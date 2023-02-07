@@ -6,19 +6,20 @@ import { useParams } from 'react-router-dom'
 
 function CommunityFeed() {
   let { community_id } = useParams();
+  const [posts, setPosts] = useState(null);
+  const [sortBy, setSortBy] = useState('hot')
 
-  const [posts, setPosts] = useState(null)
   useEffect(() => {
-    getPostFeed(`community=${community_id}`).then(data => {
-      setPosts(data.data);
-    });
-  }, [community_id]);
+    let searchParams = { sort_by: sortBy }
+
+    getPostFeed(searchParams).then(data => setPosts(data.data));
+  }, [sortBy, community_id]);
 
   if (!posts) return null;
 
   return (
     <>
-      <FeedController />
+      <FeedController sortBy={sortBy} handleClick={setSortBy} />
       {posts.map((post) => (<PostPreview post={post} communityView key={post.id} />))}
     </>
   );

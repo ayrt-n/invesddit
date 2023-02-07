@@ -8,17 +8,20 @@ import PostPreview from './post/PostPreview';
 
 function Homepage() {
   const [posts, setPosts] = useState([])
+  const [sortBy, setSortBy] = useState('hot')
 
   useEffect(() => {
-    getPostFeed().then(data => setPosts(data.data));
-  }, [])
+    let searchParams = { sort_by: sortBy }
+
+    getPostFeed(searchParams).then(data => setPosts(data.data));
+  }, [sortBy])
 
   return (
     <div className="py-[20px] px-[24px]">
       <div className="mx-auto max-w-min flex">
         {/* Main Post Feed */}
         <div className="w-[640px]">
-          <FeedController />
+          <FeedController sortBy={sortBy} handleClick={setSortBy} />
 
           {posts.map((post) => (
               <PostPreview post={post} key={post.id} />
