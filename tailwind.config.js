@@ -20,6 +20,7 @@ module.exports = {
         'primary-500': '#0079D3',
         'primary-400': '#3293db',
         'primary-300': '#7fbce9',
+        'feed-text': '#878A8C',
       },
     },
   },
