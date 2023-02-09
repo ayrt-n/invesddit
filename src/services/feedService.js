@@ -1,4 +1,5 @@
 import { config } from './constants';
+import authHeader from './authHeader';
 
 const API_URL = config.urls.API_URL;
 
@@ -9,7 +10,8 @@ function getPostFeed(params = {}) {
     method: 'GET',
     mode: 'cors',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      Authorization: authHeader()
     }
   })
   .then(response => {
