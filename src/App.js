@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import CommunityFeed from './components/community/CommunityFeed';
 import Post from './components/post/Post';
 import PostForm from './components/PostForm';
+import Login from './components/Login';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route index element={<Homepage />} />
           <Route path="submit" element={<PostForm />} />
+          <Route path="login" element={<Login />} />
           <Route path="c/:community_id" element={<CommunityDashboard />}>
             <Route index element={<CommunityFeed />} />
             <Route path="posts/:post_id" element={<Post />} />
