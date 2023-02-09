@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 import LoginInput from './forms/LoginInput';
 import { login } from '../services/authService';
-import PillButton from './PillButton';
+import LoginButton from './forms/LoginButton';
 
 function Login() {
   // Validate email and password, return errors if present
@@ -44,9 +44,7 @@ function Login() {
             <form onSubmit={formik.handleSubmit}>
               <LoginInput label="Email" name="email" id="email" type="text" />
               <LoginInput label="Password" name="password" id="password" type="password" />
-              <div className="mt-[16px]">
-                <PillButton type="submit" additionalClasses="h-[40px] leading-[18px] mt-[8px]">Log in</PillButton>
-              </div>
+              <LoginButton />
             </form>
           )}
         </Formik>
