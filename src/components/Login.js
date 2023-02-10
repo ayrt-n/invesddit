@@ -3,8 +3,11 @@ import { Formik } from 'formik';
 import LoginInput from './forms/LoginInput';
 import { login } from '../services/authService';
 import LoginButton from './forms/LoginButton';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+  const navigate = useNavigate();
+
   // Validate email and password, return errors if present
   const validate = (values) => {
     const errors = {};
@@ -28,6 +31,8 @@ function Login() {
     .then((data) => {
       console.log(data);
       setSubmitting(false);
+      navigate('/');
+      window.location.reload();
     })
   };
 
