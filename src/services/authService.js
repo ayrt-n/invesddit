@@ -13,16 +13,19 @@ function login(email, password) {
     })
   })
   .then(response => {
-    if (response.headers.get('authorization')) {
+    if (response.ok && response.headers.get('authorization')) {
       localStorage.setItem(
         'account',
         JSON.stringify({
           authorization: response.headers.get('authorization')
         })
       );
+
+      return response.json();
     }
-    
-    return response.json();
+  })
+  .catch((err) => {
+    console.error(err)
   });
 }
 
@@ -42,8 +45,8 @@ function createAccount(email, username, password, passwordConfirmation) {
       'password-confirm': passwordConfirmation
     })
   })
-  .then(response => {
-    return response.json();
+  .catch((err) => {
+    console.error(err)
   });
 }
 
