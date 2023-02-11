@@ -4,12 +4,18 @@ import PostMetaText from './PostMetaText';
 import PostSidebar from './PostSidebar';
 import { Link } from 'react-router-dom';
 
-function PostPreview({ post, communityView }) {
+function PostPreview({ post, communityView, updatePostVoteStatus }) {
   const postLink = `/c/${post.community.sub_dir}/posts/${post.id}`;
 
   return (
     <div className="bg-canvas-light border-[1px] border-post-border mb-[10px] flex rounded-[4px] hover:border-post-border-hover cursor-pointer">
-      <PostSidebar id={post.id} score={post.score} preview />
+      <PostSidebar
+        id={post.id}
+        score={post.score}
+        voted={post.vote_status}
+        updatePostVoteStatus={updatePostVoteStatus}
+        preview
+      />
 
       <div>
         {/* Render Posts Meta Text */}

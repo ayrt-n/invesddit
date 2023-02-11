@@ -7,14 +7,30 @@ import BackToTopWidget from './BackToTopWidget';
 import PostPreview from './post/PostPreview';
 
 function Homepage() {
-  const [posts, setPosts] = useState([])
-  const [sortBy, setSortBy] = useState('hot')
+  const [posts, setPosts] = useState([]);
+  const [sortBy, setSortBy] = useState('hot');
 
   useEffect(() => {
     let searchParams = { sort_by: sortBy }
 
-    getPostFeed(searchParams).then(data => setPosts(data.data));
-  }, [sortBy])
+    getPostFeed(searchParams).then(data => {
+      setPosts(data.data);
+      console.log(data.data);
+    });
+  }, [sortBy]);
+
+  const updatePostVoteStatus = (id, status, changeInScore) => {
+    setPosts((prev) => (
+      prev.map((post) => {
+        if (post.id === id) {
+          const updatedScore = parseInt(post.score) + changeInScore;
+          return { ...post, vote_status: status, score: updatedScore };
+        } else {
+          return post;
+        }
+      })
+    ))
+  }
 
   return (
     <div className="py-[20px] px-[24px]">
@@ -24,7 +40,7 @@ function Homepage() {
           <FeedController sortBy={sortBy} handleClick={setSortBy} />
 
           {posts.map((post) => (
-              <PostPreview post={post} key={post.id} />
+              <PostPreview post={post} key={post.id} updatePostVoteStatus={updatePostVoteStatus} />
           ))}
         </div>
 
