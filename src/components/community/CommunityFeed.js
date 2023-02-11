@@ -15,12 +15,25 @@ function CommunityFeed() {
     getPostFeed(searchParams).then(data => setPosts(data.data));
   }, [sortBy, community_id]);
 
+  const updatePostVoteStatus = (id, status, changeInScore) => {
+    setPosts((prev) => (
+      prev.map((post) => {
+        if (post.id === id) {
+          const updatedScore = parseInt(post.score) + changeInScore;
+          return { ...post, vote_status: status, score: updatedScore };
+        } else {
+          return post;
+        }
+      })
+    ));
+  }
+
   if (!posts) return null;
 
   return (
     <>
       <FeedController sortBy={sortBy} handleClick={setSortBy} />
-      {posts.map((post) => (<PostPreview post={post} communityView key={post.id} />))}
+      {posts.map((post) => (<PostPreview post={post} communityView key={post.id} updatePostVoteStatus={updatePostVoteStatus} />))}
     </>
   );
 }
