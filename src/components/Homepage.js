@@ -29,7 +29,7 @@ function Homepage() {
         }
       })
     ));
-  }
+  };
 
   return (
     <div className="py-[20px] px-[24px]">

@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom'
 function CommunityFeed() {
   let { community_id } = useParams();
   const [posts, setPosts] = useState(null);
-  const [sortBy, setSortBy] = useState('hot')
+  const [sortBy, setSortBy] = useState('hot');
 
   useEffect(() => {
     let searchParams = { sort_by: sortBy }
@@ -26,7 +26,7 @@ function CommunityFeed() {
         }
       })
     ));
-  }
+  };
 
   if (!posts) return null;
 
