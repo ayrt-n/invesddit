@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../../assets/icons/invesddit-logo.svg';
 import PillButton from '../PillButton';
+import { joinCommunity, leaveCommunity } from '../../services/communityService';
 
-function CommunityHeader({ title, id }) {
+function CommunityHeader({ title, id, isMember, setMembership }) {
+  const [leaveText, setLeaveText] = useState('Joined');
+
+  const requestJoinCommunity = () => {
+    joinCommunity(id).then(() => {
+      setMembership(true);
+    })
+    .catch(err => console.error(err));
+  };
+
+  const requestLeaveCommunity = () => {
+    leaveCommunity(id).then(() => {
+      setMembership(false);
+    })
+    .catch(err => console.error(err));
+  };
+
   return (
     <div className="w-full bg-canvas-light">
       <div className="max-w-[984px] px-[16px] mx-auto flex">
@@ -18,9 +35,20 @@ function CommunityHeader({ title, id }) {
               </h2>
             </div>
             <div>
-              <PillButton variant="inverted" additionalClasses="w-[96px]">
-                Join
-              </PillButton>
+              {isMember ?
+                <PillButton
+                  variant="inverted"
+                  additionalClasses="w-[96px]"
+                  onClick={requestLeaveCommunity}
+                  onMouseOver={() => setLeaveText('Leave')}
+                  onMouseLeave={() => setLeaveText('Joined')}
+                >
+                  {leaveText}
+                </PillButton> :
+                <PillButton additionalClasses="w-[96px]" onClick={requestJoinCommunity}>
+                  Join
+                </PillButton>
+              }
             </div>
           </div>
         </div>
