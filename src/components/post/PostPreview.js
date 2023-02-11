@@ -9,9 +9,7 @@ function PostPreview({ post, communityView }) {
 
   return (
     <div className="bg-canvas-light border-[1px] border-post-border mb-[10px] flex rounded-[4px] hover:border-post-border-hover cursor-pointer">
-      <Link to={postLink}>
-        <PostSidebar id={post.id} score={post.score} preview />
-      </Link>
+      <PostSidebar id={post.id} score={post.score} preview />
 
       <div>
         {/* Render Posts Meta Text */}
