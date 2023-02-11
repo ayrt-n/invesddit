@@ -5,6 +5,6 @@ export default function authHeader() {
   if (account && account.authorization) {
     return account.authorization;
   } else {
-    return '';
+    return null;
   }
 }
