@@ -15,7 +15,6 @@ function Homepage() {
 
     getPostFeed(searchParams).then(data => {
       setPosts(data.data);
-      console.log(data.data);
     });
   }, [sortBy]);
 
@@ -29,7 +28,7 @@ function Homepage() {
           return post;
         }
       })
-    ))
+    ));
   }
 
   return (
