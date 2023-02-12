@@ -14,6 +14,26 @@ function getPost(id) {
   })
 }
 
+function createPost(values) {
+  return fetch(`${API_URL}/api/v1/communities/${values.community}/posts`, {
+    method: 'POST',
+    mode: 'cors',
+    headers: defaultHeaders(),
+    body: JSON.stringify({
+      'title': values.title,
+      'body': values.body
+    })
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw response.text().then(text => { throw new Error(text) });
+    }
+  });
+}
+
 export {
   getPost,
+  createPost,
 }
