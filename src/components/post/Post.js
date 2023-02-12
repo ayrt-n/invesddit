@@ -14,12 +14,24 @@ function Post() {
     getPost(post_id).then(data => setPost(data.data))
   }, [post_id]);
 
+  const updatePostVoteStatus = (_id, status, changeInScore) => {
+    setPost((prev) => {
+      const updatedScore = parseInt(prev.score) + changeInScore;
+      return { ...prev, vote_status: status, score: updatedScore };
+    });
+  };
+
   if (!post) return null;
 
   return (
     <div className="bg-canvas-light border-[1px] border-post-border mb-[10px] rounded-[4px]">
       <div className="flex">
-        <PostSidebar id={post.id} score={post.score} />
+        <PostSidebar
+          id={post.id}
+          score={post.score}
+          voted={post.vote_status}
+          updatePostVoteStatus={updatePostVoteStatus}
+        />
         
         <div>
           <PostMetaText community={post.community} account={post.account} createdAt={post.created_at} />

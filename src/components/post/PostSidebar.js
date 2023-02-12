@@ -37,7 +37,7 @@ function PostSidebar({ id, score, voted, updatePostVoteStatus, preview }) {
     // Change in score is either -1 (remove an upvote) or +1 (remove a downvote)
     const changeInScore = voted === 'upvote' ? -1 : 1
 
-    deleteVote('posts', id, changeInScore).then(() => {
+    deleteVote('posts', id).then(() => {
       updatePostVoteStatus(id, null, changeInScore);
     })
     .catch(err => console.error(err));
