@@ -23,6 +23,7 @@ module.exports = {
         'inv-green-500': '#349F48',
         'feed-text': '#878A8C',
         'community-button-alpha40': 'rgba(0,121,211,0.4)',
+        'input-focused': '#1A1A1B',
       },
     },
   },
