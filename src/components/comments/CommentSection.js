@@ -3,9 +3,10 @@ import CommentController from './CommentController';
 import CommentForm from './CommentForm';
 import Comment from './Comment';
 import { getComments } from '../../services/commentService';
+import NoCommentsMessage from './NoCommentsMessage';
 
 function CommentSection({ postId }) {
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState(null);
   const [sortBy, setSortBy] = useState('best');
 
   useEffect(() => {
@@ -13,6 +14,8 @@ function CommentSection({ postId }) {
 
     getComments(postId, searchParams).then(data => setComments(data.data));
   }, [postId, sortBy]);
+
+  if (!comments) return null;
 
   return (
     <>
@@ -23,13 +26,18 @@ function CommentSection({ postId }) {
         <CommentController sortBy={sortBy} setSortBy={setSortBy} />
       </div>
       <div className="pr-[16px] pb-[16px] mt-[16px] mr-[16px] ml-[10px]">
-        {comments.map((comment) => {
-          return (
-            <div className="mt-[16px]" key={comment.id}>
-              <Comment comment={comment} />
-            </div>
-          );
-        })}
+        {comments.length > 0 ?
+          <>
+            {comments.map((comment) => {
+              return (
+                <div className="mt-[16px]" key={comment.id}>
+                  <Comment comment={comment} />
+                </div>
+              );
+            })}
+          </> :
+          <NoCommentsMessage />
+        }
       </div>
     </>
   );
