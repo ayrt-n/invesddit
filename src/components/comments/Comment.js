@@ -25,7 +25,7 @@ function Comment({ comment }) {
         <div className="my-[2px] text-[14px] leading-[21px] break-words ">
           {comment.body}
         </div>
-        <CommentActions score={comment.score} id={comment.id} toggleReply={toggleReply} />
+        <CommentActions score={comment.score} voted={comment.vote_status} id={comment.id} toggleReply={toggleReply} />
 
         {replyOpen ? <CommentReplyForm /> : null}
 
