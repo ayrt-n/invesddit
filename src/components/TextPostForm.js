@@ -3,10 +3,29 @@ import TextInput from './forms/TextInput';
 import PillButton from './PillButton';
 import { Formik } from 'formik';
 import TextareaInput from './forms/TextareaInput';
+import HiddenInput from './forms/HiddenInput';
+import { createPost } from '../services/postService';
+import { useNavigate } from 'react-router-dom';
 
 function TextPostForm({ community }) {
+  const navigate = useNavigate();
+
+  const validate = (values) => {
+    const errors = {};
+
+    if (!values.title) { errors.title = 'Required' }
+    if (!values.community) { errors.title = 'Required' }
+
+    return errors;
+  };
+
   const handlePost = (values) => {
-    console.log(values);
+    createPost(values).then((data) => {
+      navigate(`/c/${data.data.community}/posts/${data.data.id}`);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
   }
 
   return (
@@ -17,10 +36,12 @@ function TextPostForm({ community }) {
           body: '',
           community: community,
         }}
+        validate={validate}
         onSubmit={handlePost}
       >
         {formik => (
           <form onSubmit={formik.handleSubmit}>
+            <HiddenInput id="community" name="community" />
             <div className="m-[16px]">
               <div className="mb-[8px]">
                 <div className="relative mb-[6px]">
@@ -35,7 +56,7 @@ function TextPostForm({ community }) {
               <div className="w-full">
                 <div className="flex items-center flex-row-reverse justify-between">
                   <div>
-                    <PillButton type="Submit">
+                    <PillButton type="Submit" disabled={!formik.isValid || !formik.dirty} >
                       Post
                     </PillButton>
                   </div>
