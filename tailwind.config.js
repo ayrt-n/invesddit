@@ -22,6 +22,7 @@ module.exports = {
         'primary-300': '#7fbce9',
         'inv-green-500': '#349F48',
         'feed-text': '#878A8C',
+        'community-button-alpha40': 'rgba(0,121,211,0.4)',
       },
     },
   },
