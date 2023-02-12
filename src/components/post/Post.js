@@ -40,8 +40,8 @@ function Post() {
               {post.title}
             </div>
           </div>
-          <div className="px-[8px] mt-[5px] mb-[10px]">
-            <div className="text-[14px] leading-[21px] break-words ">
+          <div className="ml-[8px] mt-[12px] pb-[5px] pr-[16px]">
+            <div className="text-[14px] leading-[21px] break-all">
               {post.body}
             </div>
           </div>
