@@ -1,8 +1,9 @@
 import React from 'react';
 import { Formik } from 'formik';
 import PillButton from '../PillButton';
+import { createComment } from '../../services/commentService';
 
-function CommentForm({ autoFocus }) {
+function CommentForm({ postId, commentId, autoFocus, updateCommentSection }) {
   const validate = (values) => {
     const errors = {};
     if (!values.body) { errors.body = 'Required' }
@@ -10,7 +11,16 @@ function CommentForm({ autoFocus }) {
   };
 
   const handleSubmit = (values) => {
-    console.log(values);
+    // Set resource and id based on whether postId or commentId provided
+    const resource = postId ? 'posts' : 'comments';
+    const id = postId ? postId : commentId;
+
+    createComment(resource, id, values).then((data) => {
+      updateCommentSection(data.data);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
   };
 
   return (

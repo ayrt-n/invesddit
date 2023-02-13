@@ -15,12 +15,18 @@ function CommentSection({ postId }) {
     getComments(postId, searchParams).then(data => setComments(data.data));
   }, [postId, sortBy]);
 
+  const updateCommentSection = (newComment) => {
+    setComments((prev) => {
+      return [ newComment, ...prev ]
+    })
+  };
+
   if (!comments) return null;
 
   return (
     <>
       <div className="my-[24px] mr-[40px] ml-[48px]">
-        <CommentForm />
+        <CommentForm postId={postId} updateCommentSection={updateCommentSection} />
       </div>
       <div className="border-b-[1px] mx-[48px] mb-[4px] pr-[16px]">
         <CommentController sortBy={sortBy} setSortBy={setSortBy} />
