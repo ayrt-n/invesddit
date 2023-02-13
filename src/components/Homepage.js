@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import FeedSidebarWelcome from './FeedSidebarWelcome';
 import FeedController from './FeedController';
 import { getPostFeed } from '../services/feedService';
 import FeedSidebarFooter from './FeedSidebarFooter';
 import BackToTopWidget from './BackToTopWidget';
 import PostPreview from './post/PostPreview';
+import AuthContext from '../contexts/authentication/AuthContext';
+import CreatePostWidget from './CreatePostWidget';
 
 function Homepage() {
   const [posts, setPosts] = useState([]);
   const [sortBy, setSortBy] = useState('hot');
+  const { loggedIn } = useContext(AuthContext);
 
   useEffect(() => {
     let searchParams = { sort_by: sortBy }
@@ -36,6 +39,7 @@ function Homepage() {
       <div className="mx-auto max-w-min flex">
         {/* Main Post Feed */}
         <div className="w-[640px]">
+          {loggedIn ? <CreatePostWidget /> : null }
           <FeedController sortBy={sortBy} handleClick={setSortBy} />
 
           {posts.map((post) => (
