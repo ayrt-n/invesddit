@@ -8,6 +8,7 @@ module.exports = {
       'colors': {
         'canvas': '#DAE0E6',
         'canvas-light': '#FFFFFF',
+        'field': '#F6F7F8',
         'post-border': '#ccc',
         'post-border-hover': '#898989',
         'nav-border': '#EDEFF1',
