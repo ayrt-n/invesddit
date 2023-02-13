@@ -12,10 +12,33 @@ function getComments(postId, params = {}) {
     headers: defaultHeaders(),
   })
   .then(response => {
-    return response.json();
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw response.text().then(text => { throw new Error(text) });
+    }
+  })
+}
+
+function createComment(resource, id, values) {
+  return fetch(`${API_URL}/api/v1/${resource}/${id}/comments`, {
+    method: 'POST',
+    mode: 'cors',
+    headers: defaultHeaders(),
+    body: JSON.stringify({
+      body: values.body,
+    })
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw response.text().then(text => { throw new Error(text) });
+    }
   })
 }
 
 export {
   getComments,
+  createComment
 }
