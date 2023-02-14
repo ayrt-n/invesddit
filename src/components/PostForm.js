@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PostGuidelineWidget from './PostGuidelineWidget';
 import TextPostForm from './TextPostForm';
+import Select from 'react-select';
 
 function PostForm() {
+  const [community, setCommunity] = useState('');
+
+  const communities = [
+    { value: 'GOOG', label: 'c/GOOG' },
+    { value: 'TSLA', label: 'c/TSLA' },
+    { value: 'AAPL', label: 'c/AAPL' },
+    { value: 'KO', label: 'c/KO' },
+  ];
+
   return (
     <div className="py-[20px] px-[24px]">
       <div className="mx-auto max-w-min flex">
@@ -12,10 +22,8 @@ function PostForm() {
               Create Post
             </div>
           </div>
-          <div className="mb-[8px]">
-            <div className="mr-[16px] w-[300px] h-[40px] bg-canvas-light rounded-[4px] border-nav-border">
-              
-            </div>
+          <div className="mb-[8px] w-[300px]">
+            <Select placeholder="Choose a community" options={communities} onChange={setCommunity} />
           </div>
           <div className="bg-canvas-light mb-[15px] rounded-[5px] overflow-hidden w-full">
             <div className="flex items-stretch">
@@ -42,7 +50,7 @@ function PostForm() {
               </button>
             </div>
 
-            <TextPostForm community="GOOG" />
+            <TextPostForm community={community.value} />
           </div>
         </div>
 
