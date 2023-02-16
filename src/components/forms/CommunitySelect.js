@@ -13,7 +13,7 @@ const formatOptionLabel = ({ value, imgSrc, label, memberCount }) => (
   </div>
 );
 
-function CommunitySelect({ setCommunity }) {
+function CommunitySelect({ onChange }) {
   const communities = [
     { value: 'GOOG', label: 'c/GOOG', imgSrc: logo, memberCount: 10 },
     { value: 'TSLA', label: 'c/TSLA', imgSrc: logo, memberCount: 10 },
@@ -21,16 +21,12 @@ function CommunitySelect({ setCommunity }) {
     { value: 'KO', label: 'c/KO', imgSrc: logo, memberCount: 10 },
   ];
 
-  const handleChange = (value) => {
-    setCommunity(value.value);
-  }
-
   return (
     <Select
       placeholder="Choose a community"
       defaultValue=""
       options={communities}
-      onChange={handleChange}
+      onChange={(value) => onChange(value.value)}
       styles={{
         control: (baseStyles, state) => ({
           ...baseStyles,

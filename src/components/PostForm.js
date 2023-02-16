@@ -59,12 +59,12 @@ function PostForm() {
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="mb-[8px] w-[300px]">
-        <CommunitySelect setCommunity={(value) => formik.setFieldValue('community', value)} />
+        <CommunitySelect onChange={(value) => formik.setFieldValue('community', value)} />
       </div>
       <div className="bg-canvas-light mb-[15px] rounded-[5px] overflow-hidden w-full">
         <PostTypeSelector
           value={formik.values.postType}
-          setPostType={(value) => formik.setFieldValue('postType', value)}
+          onChange={(value) => formik.setFieldValue('postType', value)}
         />
         <div className="m-[16px]">
           <div className="mb-[8px]">
@@ -79,6 +79,8 @@ function PostForm() {
                 {...formik.getFieldProps('title')}
               />
             </div>
+
+            {/* Different inputs visible based on the type of post selected */}
             <div className={formik.values.postType === "text" ? "" : "hidden"}>
               <TextareaInput
                 placeholder="Text (optional)"
@@ -91,7 +93,8 @@ function PostForm() {
               <FileInput
                 id="media"
                 name="media"
-                setMedia={(value) => formik.setFieldValue("media", value)}
+                value={formik.values.media}
+                onChange={(value) => formik.setFieldValue("media", value)}
               />
             </div>
             <div className={formik.values.postType === "link" ? "" : "hidden"}>
@@ -104,6 +107,7 @@ function PostForm() {
             </div>
           </div>
         </div>
+
         <div className="px-[16px] pb-[16px]">
           <div className="w-full">
             <div className="flex items-center flex-row-reverse justify-between">

@@ -1,11 +1,11 @@
 import React from 'react';
 
-function PostTypeSelector({ value, setPostType }) {
+function PostTypeSelector({ value, onChange }) {
   const selectedClassNames = 'text-primary-500 border-b-[2px] border-b-primary-500';
   const unselectedClassNames = 'text-feed-text';
 
   const handleClick = (event) => {
-    setPostType(event.currentTarget.value);
+    onChange(event.currentTarget.value);
   };
 
   return (
