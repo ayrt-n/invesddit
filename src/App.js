@@ -5,9 +5,9 @@ import CommunityDashboard from './components/community/CommunityDashboard';
 import { Routes, Route } from 'react-router-dom';
 import CommunityFeed from './components/community/CommunityFeed';
 import Post from './components/post/Post';
-import PostForm from './components/PostForm';
 import Login from './components/Login';
 import AuthProvider from './contexts/authentication/AuthProvider';
+import CreatePostPage from './components/CreatePostPage';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <div className="pt-[48px]">
           <Routes>
             <Route index element={<Homepage />} />
-            <Route path="submit" element={<PostForm />} />
+            <Route path="submit" element={<CreatePostPage />} />
             <Route path="login" element={<Login />} />
             <Route path="c/:community_id" element={<CommunityDashboard />}>
               <Route index element={<CommunityFeed />} />

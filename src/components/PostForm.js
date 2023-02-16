@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PostGuidelineWidget from './PostGuidelineWidget';
 import TextInput from './forms/TextInput';
 import TextareaInput from './forms/TextareaInput';
 import PillButton from './PillButton';
@@ -58,81 +57,66 @@ function PostForm() {
   useEffect(() => console.log(formik.values), [formik.values]);
 
   return (
-    <div className="py-[20px] px-[24px]">
-      <div className="mx-auto max-w-min flex">
-        <div className="w-[640px]">
-          <div className="p-[4px] my-[16px] border-b-[1px] border-nav-border min-h-[43px]">
-            <div className="text-[18px] font-medium leading-[22px]">
-              Create Post
+    <form onSubmit={formik.handleSubmit}>
+      <div className="mb-[8px] w-[300px]">
+        <CommunitySelect setCommunity={(value) => formik.setFieldValue('community', value)} />
+      </div>
+      <div className="bg-canvas-light mb-[15px] rounded-[5px] overflow-hidden w-full">
+        <PostTypeSelector
+          value={formik.values.postType}
+          setPostType={(value) => formik.setFieldValue('postType', value)}
+        />
+        <div className="m-[16px]">
+          <div className="mb-[8px]">
+            <div className="relative mb-[6px]">
+              <TextInput
+                type="text"
+                placeholder="Title"
+                showLength
+                maxLength={300}
+                id="title"
+                name="title"
+                {...formik.getFieldProps('title')}
+              />
+            </div>
+            <div className={formik.values.postType === "text" ? "" : "hidden"}>
+              <TextareaInput
+                placeholder="Text (optional)"
+                id="body"
+                name="body"
+                {...formik.getFieldProps('body')}
+              />
+            </div>
+            <div className={formik.values.postType === "media" ? "" : "hidden"}>
+              <FileInput
+                id="media"
+                name="media"
+                setMedia={(value) => formik.setFieldValue("media", value)}
+              />
+            </div>
+            <div className={formik.values.postType === "link" ? "" : "hidden"}>
+              <TextInput
+                placeholder="URL"
+                id="link"
+                name="link"
+                {...formik.getFieldProps('link')}
+              />
             </div>
           </div>
-          <form onSubmit={formik.handleSubmit}>
-            <div className="mb-[8px] w-[300px]">
-              <CommunitySelect setCommunity={(value) => formik.setFieldValue('community', value)} />
-            </div>
-            <div className="bg-canvas-light mb-[15px] rounded-[5px] overflow-hidden w-full">
-              <PostTypeSelector
-                value={formik.values.postType}
-                setPostType={(value) => formik.setFieldValue('postType', value)}
-              />
-              <div className="m-[16px]">
-                <div className="mb-[8px]">
-                  <div className="relative mb-[6px]">
-                    <TextInput
-                      type="text"
-                      placeholder="Title"
-                      showLength
-                      maxLength={300}
-                      id="title"
-                      name="title"
-                      {...formik.getFieldProps('title')}
-                    />
-                  </div>
-                  <div className={formik.values.postType === "text" ? "" : "hidden"}>
-                    <TextareaInput
-                      placeholder="Text (optional)"
-                      id="body"
-                      name="body"
-                      {...formik.getFieldProps('body')}
-                    />
-                  </div>
-                  <div className={formik.values.postType === "media" ? "" : "hidden"}>
-                    <FileInput
-                      id="media"
-                      name="media"
-                      setMedia={(value) => formik.setFieldValue("media", value)}
-                    />
-                  </div>
-                  <div className={formik.values.postType === "link" ? "" : "hidden"}>
-                    <TextInput
-                      placeholder="URL"
-                      id="link"
-                      name="link"
-                      {...formik.getFieldProps('link')}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="px-[16px] pb-[16px]">
-                <div className="w-full">
-                  <div className="flex items-center flex-row-reverse justify-between">
-                    <div>
-                      <PillButton type="Submit" disabled={!formik.isValid || !formik.dirty} >
-                        Post
-                      </PillButton>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
         </div>
-
-        <div className="w-[312px] ml-[24px] pt-[27px] hidden md:block">
-          <PostGuidelineWidget />
+        <div className="px-[16px] pb-[16px]">
+          <div className="w-full">
+            <div className="flex items-center flex-row-reverse justify-between">
+              <div>
+                <PillButton type="Submit" disabled={!formik.isValid || !formik.dirty} >
+                  Post
+                </PillButton>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 }
 
