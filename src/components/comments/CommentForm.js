@@ -10,13 +10,14 @@ function CommentForm({ postId, commentId, autoFocus, updateCommentSection }) {
     return errors;
   };
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, { resetForm }) => {
     // Set resource and id based on whether postId or commentId provided
     const resource = postId ? 'posts' : 'comments';
     const id = postId ? postId : commentId;
 
     createComment(resource, id, values).then((data) => {
       updateCommentSection(data.data);
+      resetForm();
     })
     .catch((err) => {
       console.error(err);
