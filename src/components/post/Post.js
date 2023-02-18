@@ -12,15 +12,18 @@ import LinkContent from './LinkContent';
 
 function Post() {
   const { post_id } = useParams();
-
+  const { community_id } = useParams();
   const [post, setPost] = useState(null);
+
+  // Query API to set post state and track post via recent posts
   useEffect(() => {
     getPost(post_id).then(data => {
+      addRecentPost({ ...data.data, community: { sub_dir: community_id } });
       setPost(data.data);
-      addRecentPost(data.data);
     });
-  }, [post_id]);
+  }, [post_id, community_id]);
 
+  // Update post vote status and score in "real time"
   const updatePostVoteStatus = (_id, status, changeInScore) => {
     setPost((prev) => {
       const updatedScore = parseInt(prev.score) + changeInScore;
