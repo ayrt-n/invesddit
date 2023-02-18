@@ -7,11 +7,15 @@ import BackToTopWidget from './BackToTopWidget';
 import PostPreview from './post/PostPreview';
 import AuthContext from '../contexts/authentication/AuthContext';
 import CreatePostWidget from './CreatePostWidget';
+import RecentPostsWidget from './RecentPostsWidget';
+import { getRecentPosts } from '../services/recentPostTracker';
 
 function Homepage() {
   const [posts, setPosts] = useState([]);
   const [sortBy, setSortBy] = useState('hot');
+  const [recentPosts, setRecentPosts] = useState(getRecentPosts());
   const { loggedIn } = useContext(AuthContext);
+
 
   useEffect(() => {
     let searchParams = { sort_by: sortBy }
@@ -50,6 +54,10 @@ function Homepage() {
         {/* Feed Sidebar */}
         <div className="w-[312px] ml-[24px] hidden md:block">
           <FeedSidebarWelcome />
+          <RecentPostsWidget
+            recentPosts={recentPosts}
+            clear={() => setRecentPosts([])}
+          />
           <div className="sticky top-[68px]">
             <FeedSidebarFooter />
             <BackToTopWidget />
