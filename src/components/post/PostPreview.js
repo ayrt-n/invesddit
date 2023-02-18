@@ -2,6 +2,9 @@ import React from 'react';
 import PostActions from './PostActions';
 import PostMetaText from './PostMetaText';
 import PostSidebar from './PostSidebar';
+import TextPostPreview from './TextPostPreview';
+import MediaPostPreview from './MediaPostPreview';
+import LinkPostPreview from './LinkPostPreview';
 import { Link } from 'react-router-dom';
 
 function PostPreview({ post, communityView, updatePostVoteStatus }) {
@@ -32,11 +35,16 @@ function PostPreview({ post, communityView, updatePostVoteStatus }) {
               {post.title}
             </div>
           </div>
-          <div className="px-[8px] mt-[5px] mb-[10px] max-h-[250px] overflow-hidden gradient-mask-b-60">
-            <div className="text-[14px] leading-[21px] break-all">
-              {post.body}
-            </div>
-          </div>
+
+          {/* Render preview of content based on post type */}
+          {
+            post.type === 'TextPost' ?
+            <TextPostPreview body={post.body} /> :
+            post.type === 'MediaPost' ?
+            <MediaPostPreview media={post.image} /> :
+            <LinkPostPreview link={post.body} />
+          }
+
           {/* Render Post actions (comment count link) */}
           <PostActions
             commentCount={post.comments_count}

@@ -5,13 +5,20 @@ import PostSidebar from './PostSidebar';
 import PostActions from './PostActions';
 import CommentSection from '../comments/CommentSection';
 import { getPost } from '../../services/postService';
+import { addRecentPost } from '../../services/recentPostTracker';
+import TextContent from './TextContent';
+import MediaContent from './MediaContent';
+import LinkContent from './LinkContent';
 
 function Post() {
   const { post_id } = useParams();
 
   const [post, setPost] = useState(null);
   useEffect(() => {
-    getPost(post_id).then(data => setPost(data.data))
+    getPost(post_id).then(data => {
+      setPost(data.data);
+      addRecentPost(data.data);
+    });
   }, [post_id]);
 
   const updatePostVoteStatus = (_id, status, changeInScore) => {
@@ -40,11 +47,15 @@ function Post() {
               {post.title}
             </div>
           </div>
-          <div className="ml-[8px] mt-[12px] mb-[10px] pr-[16px]">
-            <div className="text-[14px] leading-[21px] break-all">
-              {post.body}
-            </div>
-          </div>
+          
+          {
+            post.type === 'TextPost' ?
+            <TextContent body={post.body} /> :
+            post.type === 'MediaPost' ?
+            <MediaContent media={post.image} /> :
+            <LinkContent link={post.body} />
+          }
+
           <PostActions commentCount={post.comments_count} />
         </div>
       </div>
