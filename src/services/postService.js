@@ -11,7 +11,11 @@ function getPost(id) {
     headers: defaultHeaders(),
   })
   .then(response => {
-    return response.json();
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw response.text().then(text => { throw new Error(text) });
+    }
   })
 }
 
