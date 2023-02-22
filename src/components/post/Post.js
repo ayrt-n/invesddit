@@ -20,6 +20,9 @@ function Post() {
     getPost(post_id).then(data => {
       addRecentPost({ ...data.data, community: { sub_dir: community_id } });
       setPost(data.data);
+    })
+    .catch((err) => {
+      console.error(err);
     });
   }, [post_id, community_id]);
 
