@@ -10,9 +10,12 @@ function CommunityFeed() {
   const [sortBy, setSortBy] = useState('hot');
 
   useEffect(() => {
-    let searchParams = { sort_by: sortBy }
+    let feedParams = {
+      sort_by: sortBy,
+      community: community_id,
+    }
 
-    getPostFeed(searchParams).then(data => setPosts(data.data));
+    getPostFeed(feedParams).then(data => setPosts(data.data));
   }, [sortBy, community_id]);
 
   const updatePostVoteStatus = (id, status, changeInScore) => {
