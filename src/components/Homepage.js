@@ -9,21 +9,25 @@ import AuthContext from '../contexts/authentication/AuthContext';
 import CreatePostWidget from './CreatePostWidget';
 import RecentPostsWidget from './RecentPostsWidget';
 import { getRecentPosts } from '../services/recentPostTracker';
+import { useSearchParams } from 'react-router-dom';
 
 function Homepage() {
+  const [searchParams] = useSearchParams();
   const [posts, setPosts] = useState([]);
   const [sortBy, setSortBy] = useState('hot');
   const [recentPosts, setRecentPosts] = useState(getRecentPosts());
   const { loggedIn } = useContext(AuthContext);
 
-
   useEffect(() => {
-    let searchParams = { sort_by: sortBy }
+    let feedParams = {
+      sort_by: sortBy,
+      filter: searchParams.get('filter'),
+    }
 
-    getPostFeed(searchParams).then(data => {
+    getPostFeed(feedParams).then(data => {
       setPosts(data.data);
     });
-  }, [sortBy]);
+  }, [sortBy, searchParams]);
 
   const updatePostVoteStatus = (id, status, changeInScore) => {
     setPosts((prev) => (
