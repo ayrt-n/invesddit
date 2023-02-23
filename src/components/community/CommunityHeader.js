@@ -3,19 +3,19 @@ import logo from '../../assets/icons/invesddit-logo.svg';
 import PillButton from '../PillButton';
 import { joinCommunity, leaveCommunity } from '../../services/communityService';
 
-function CommunityHeader({ title, id, isMember, setMembership }) {
+function CommunityHeader({ title, id, role, setRole }) {
   const [leaveText, setLeaveText] = useState('Joined');
 
   const requestJoinCommunity = () => {
     joinCommunity(id).then(() => {
-      setMembership(true);
+      setRole('member');
     })
     .catch(err => console.error(err));
   };
 
   const requestLeaveCommunity = () => {
     leaveCommunity(id).then(() => {
-      setMembership(false);
+      setRole(null);
     })
     .catch(err => console.error(err));
   };
@@ -34,8 +34,8 @@ function CommunityHeader({ title, id, isMember, setMembership }) {
                 {`c/${id}`}
               </h2>
             </div>
-            <div>
-              {isMember ?
+            <div className="mr-[26px]">
+              {role ?
                 <PillButton
                   variant="inverted"
                   additionalClasses="w-[96px]"
