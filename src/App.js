@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import CommunityFeed from './components/community/CommunityFeed';
 import Post from './components/post/Post';
 import Login from './components/Login';
+import CommunitySettings from './components/community/CommunitySettings';
 import AuthProvider from './contexts/authentication/AuthProvider';
 import CreatePostPage from './components/CreatePostPage';
 
@@ -23,6 +24,7 @@ function App() {
               <Route index element={<CommunityFeed />} />
               <Route path="posts/:post_id" element={<Post />} />
             </Route>
+            <Route path="c/:community_id/settings" element={<CommunitySettings />} />
           </Routes>
         </div>
       </div>
