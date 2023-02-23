@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import TextInput from './forms/TextInput';
 import TextareaInput from './forms/TextareaInput';
 import PillButton from './PillButton';
@@ -53,8 +53,6 @@ function PostForm() {
     validate: validate,
     onSubmit: handlePost,
   });
-
-  useEffect(() => console.log(formik.values), [formik.values]);
 
   return (
     <form onSubmit={formik.handleSubmit}>
