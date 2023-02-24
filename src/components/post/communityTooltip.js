@@ -1,7 +1,7 @@
 import React from 'react';
 import PillButton from '../PillButton';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/icons/invesddit-logo.svg';
+import defaultCommunityAvatar from '../../assets/icons/invesddit-logo.svg';
 
 function CommunityTooltip({ community }) {
   // Used to prevent links wrapped around parent components from firing
@@ -12,7 +12,7 @@ function CommunityTooltip({ community }) {
     <div onClick={stopWrappedLinks} className="absolute top-full bg-canvas-light rounded-[4px] shadow-[0_1px_3px_0px_rgba(0,0,0,0.2)] max-w-[380px] min-w-[240px] z-50 cursor-auto">
       <div className="p-[12px]">
         <div className="w-full flex">
-          <img src={logo} className="rounded-full h-[32px] w-[32px] mr-[8px] align-middle shrink-0" alt="invesddit logo" />
+          <img src={community.avatar || defaultCommunityAvatar} className="rounded-full h-[32px] w-[32px] mr-[8px] align-middle shrink-0 bg-canvas-light" alt="invesddit logo" />
           <Link to={`c/${community.sub_dir}`} className="text-[16px] font-medium leading-[20px] items-center flex">
             {`c/${community.sub_dir}`}
           </Link>
