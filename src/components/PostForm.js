@@ -32,7 +32,7 @@ function PostForm() {
     return errors;
   };
 
-  const handlePost = (values) => {
+  const handleSumbit = (values) => {
     createPost(values).then((data) => {
       navigate(`/c/${data.data.community}/posts/${data.data.id}`);
     })
@@ -51,7 +51,7 @@ function PostForm() {
       postType: 'text',
     },
     validate: validate,
-    onSubmit: handlePost,
+    onSubmit: handleSumbit,
   });
 
   return (
