@@ -26,14 +26,13 @@ function CommunityHomepage() {
 
   return (
     <div>
-      <Link to={`/c/${community_id}`}>
-        <div className="h-[64px] bg-blue-300" />
-      </Link>
       <CommunityHeader
         title={community.title || community.sub_dir}
         id={community_id}
         role={community.current_role}
         setRole={setRole}
+        avatar={community.avatar}
+        banner={community.banner}
       />
 
       <div className="py-[20px] px-[24px]">

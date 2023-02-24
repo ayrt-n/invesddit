@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import logo from '../../assets/icons/invesddit-logo.svg';
+import defaultCommunityAvatar from '../../assets/icons/invesddit-logo.svg';
 import PillButton from '../PillButton';
 import { joinCommunity, leaveCommunity } from '../../services/communityService';
+import { Link } from 'react-router-dom';
 
-function CommunityHeader({ title, id, role, setRole }) {
+function CommunityHeader({ title, id, role, setRole, avatar, banner }) {
+  console.log(banner);
   const [leaveText, setLeaveText] = useState('Joined');
 
   const requestJoinCommunity = () => {
@@ -21,39 +23,44 @@ function CommunityHeader({ title, id, role, setRole }) {
   };
 
   return (
-    <div className="w-full bg-canvas-light">
-      <div className="max-w-[984px] px-[16px] mx-auto flex">
-        <div className="mb-[12px] mt-[-14px] flex">
-          <img src={logo} alt={`community logo for ${id}`} className="h-[72px] w-[72px] rounded-full border-[4px] border-canvas-light" />
-          <div className="mt-[24px] pl-[16px] inline-flex items-start flex-1 justify-between w-full">
-            <div className="inline-block pr-[24px]">
-              <h1 className="text-[28px] font-bold leading-[32px] pr-[2px] pb-[4px]">
-                {title}
-              </h1>
-              <h2 className="text-[14px] font-medium leading-[18px] text-meta-text">
-                {`c/${id}`}
-              </h2>
-            </div>
-            <div className="mr-[26px]">
-              {role ?
-                <PillButton
-                  variant="inverted"
-                  additionalClasses="w-[96px]"
-                  onClick={requestLeaveCommunity}
-                  onMouseOver={() => setLeaveText('Leave')}
-                  onMouseLeave={() => setLeaveText('Joined')}
-                >
-                  {leaveText}
-                </PillButton> :
-                <PillButton additionalClasses="w-[96px]" onClick={requestJoinCommunity}>
-                  Join
-                </PillButton>
-              }
+    <>
+      <Link to={`/c/${id}`}>
+        <div className="h-[128px] bg-blue-300 bg-center bg-no-repeat bg-cover" style={{backgroundImage: `url(${banner})`}} />
+      </Link>
+      <div className="w-full bg-canvas-light">
+        <div className="max-w-[984px] px-[16px] mx-auto flex">
+          <div className="mb-[12px] mt-[-14px] flex">
+            <img src={avatar || defaultCommunityAvatar} alt={`community logo for ${id}`} className="h-[72px] w-[72px] rounded-full border-[4px] border-canvas-light bg-canvas-light" />
+            <div className="mt-[24px] pl-[16px] inline-flex items-start flex-1 justify-between w-full">
+              <div className="inline-block pr-[24px]">
+                <h1 className="text-[28px] font-bold leading-[32px] pr-[2px] pb-[4px]">
+                  {title}
+                </h1>
+                <h2 className="text-[14px] font-medium leading-[18px] text-meta-text">
+                  {`c/${id}`}
+                </h2>
+              </div>
+              <div className="mr-[26px]">
+                {role ?
+                  <PillButton
+                    variant="inverted"
+                    additionalClasses="w-[96px]"
+                    onClick={requestLeaveCommunity}
+                    onMouseOver={() => setLeaveText('Leave')}
+                    onMouseLeave={() => setLeaveText('Joined')}
+                  >
+                    {leaveText}
+                  </PillButton> :
+                  <PillButton additionalClasses="w-[96px]" onClick={requestJoinCommunity}>
+                    Join
+                  </PillButton>
+                }
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
