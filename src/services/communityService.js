@@ -1,5 +1,6 @@
 import { config } from './constants';
 import defaultHeaders from './defaultHeaders';
+import authHeader from './authHeader';
 
 const API_URL = config.urls.API_URL;
 
@@ -44,8 +45,30 @@ function leaveCommunity(community) {
   })
 }
 
+function updateCommunity(values) {
+  const formData = new FormData();
+  for (let key in values) {
+    if (values[key]) { formData.append(`community[${key}]`, values[key]) }
+  }
+
+  return fetch(`${API_URL}/api/v1/communities/${values.community}`, {
+    method: 'PATCH',
+    mode: 'cors',
+    headers: { 'Authorization': authHeader() },
+    body: formData,
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw response.text().then(text => { throw new Error(text) });
+    }
+  })
+}
+
 export {
   getCommunity,
   joinCommunity,
   leaveCommunity,
+  updateCommunity,
 }
