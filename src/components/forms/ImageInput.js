@@ -26,8 +26,8 @@ function ImageInput({ onChange, value, defaultImg, styles, ...props }) {
   return (
     <>
       <input ref={uploadRef} onChange={handleChange} {...props} type="file" accept="image/png,image/jpeg" className="hidden" />
-      <div className="relative w-full h-full cursor-pointer rounded-[4px] border-[1px] border-nav-border" onClick={uploadFile}>
-        <img src={imagePreview} alt="community avatar" className="object-cover object-top" style={styles} />
+      <div className="relative w-full h-full cursor-pointer rounded-[4px] border-[1px] border-nav-border overflow-hidden" onClick={uploadFile}>
+        <img src={imagePreview} alt="community avatar" className="object-cover object-top h-full w-full" style={styles} />
         <div className="flex items-center justify-center border-[1px] border-primary-500 h-[36px] w-[36px] absolute right-[8px] bottom-[8px] bg-canvas-light rounded-full ">
           <svg className="text-primary-500 h-[20px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <title>camera-plus-outline</title>
