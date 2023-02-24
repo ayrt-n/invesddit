@@ -50,7 +50,7 @@ function createTextPost(values) {
 }
 
 function createMediaPost(values) {
-  const formData = new FormData;
+  const formData = new FormData();
   formData.append("post[title]", values.title)
   formData.append("post[image]", values.media)
 
