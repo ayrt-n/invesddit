@@ -5,29 +5,47 @@ import TextareaInput from '../forms/TextareaInput';
 import PillButton from '../PillButton';
 import ImageInput from '../forms/ImageInput';
 import defaultAvatar from '../../assets/icons/invesddit-logo.svg';
+import { useNavigate } from 'react-router-dom';
+import { updateCommunity } from '../../services/communityService';
 
 function CommunityForm({ community }) {
+  const navigate = useNavigate();
+
   const validate = (values) => {
     const errors = {};
    
-    
+    if (values.title.length > 20) {
+      errors.title = 'Cannot be greater than 20 characters'
+    }
+
+    if (values.description.length > 500) {
+      errors.description = 'Cannot be greater than 300 characters'
+    }
    
     return errors;
   };
 
-  const handlePost = (values) => {
-    console.log(values);
+  const handleSubmit = (values) => {
+    console.log(values)
+
+    updateCommunity(values).then((data) => {
+      navigate(`/c/${data.data.sub_dir}/`);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
   };
 
   const formik = useFormik({
     initialValues: {
       title: community.title || '',
       description: community.description || '',
-      avatar: community.avatar || '',
-      banner: community.banner || '',
+      avatar: '',
+      banner: '',
+      community: community.sub_dir || '',
     },
     validate: validate,
-    onSubmit: handlePost,
+    onSubmit: handleSubmit,
   });
 
   return (
@@ -68,7 +86,7 @@ function CommunityForm({ community }) {
               id="description"
               name="description"
               showLength
-              maxLength="300"
+              maxLength="500"
               {...formik.getFieldProps("description")}
             />
           </div>
@@ -83,22 +101,22 @@ function CommunityForm({ community }) {
               </p>
             </div>
             <div className="flex h-[120px]">
-              <div className="w-[120px] mr-[12px] h-full overflow-hidden">
+              <div className="w-[120px] mr-[12px] h-full overflow-hidden bg-canvas-light">
                 <ImageInput
                   id="avatar"
                   name="avatar"
-                  defaultImg={defaultAvatar}
+                  defaultImg={community.avatar || defaultAvatar}
                   value={formik.values.avatar}
                   onChange={(value) => formik.setFieldValue("avatar", value)}
                 />
               </div>
               <div className="w-[412px] mr-[12px] h-full overflow-hidden">
                 <ImageInput
-                  id="avatar"
-                  name="avatar"
-                  defaultImg={defaultAvatar}
-                  value={formik.values.avatar}
-                  onChange={(value) => formik.setFieldValue("avatar", value)}
+                  id="banner"
+                  name="banner"
+                  defaultImg={community.banner || defaultAvatar}
+                  value={formik.values.banner}
+                  onChange={(value) => formik.setFieldValue("banner", value)}
                 />
               </div>
             </div>
