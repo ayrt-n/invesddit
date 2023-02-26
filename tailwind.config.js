@@ -26,6 +26,8 @@ module.exports = {
         'community-button-alpha40': 'rgba(0,121,211,0.4)',
         'input-focused': '#1A1A1B',
         'link-text': '#0079D3',
+        'dropdown-category': '#787c7e',
+        'dropdown-item-hover': 'rgba(0,0,0,0.04)'
       },
     },
   },
