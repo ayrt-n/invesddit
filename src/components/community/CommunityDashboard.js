@@ -16,9 +16,9 @@ function CommunityHomepage() {
     .catch(err => console.error(err));
   }, [community_id]);
 
-  const setRole = (bool) => {
+  const setRole = (value) => {
     setCommunity((prev) => {
-      return {...prev, is_member: bool }
+      return {...prev, current_role: value }
     })
   };
 

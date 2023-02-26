@@ -5,7 +5,6 @@ import { joinCommunity, leaveCommunity } from '../../services/communityService';
 import { Link } from 'react-router-dom';
 
 function CommunityHeader({ title, id, role, setRole, avatar, banner }) {
-  console.log(banner);
   const [leaveText, setLeaveText] = useState('Joined');
 
   const requestJoinCommunity = () => {
