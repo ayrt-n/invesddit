@@ -6,12 +6,14 @@ import CommentSidebar from './CommentSidebar';
 import CommentReplyForm from './CommentReplyForm';
 
 function Comment({ comment }) {
+  // State and toggle to collapse/uncollapse comment thread
   const [collapsed, setCollapsed] = useState(false);
   const toggleCollapse = () => { setCollapsed((prev) => !prev) };
 
+  // State and toggle to open/close the reply to comment form
   const [replyOpen, setReplyOpen] = useState(false);
   const toggleReply = () => { setReplyOpen((prev) => !prev) };
-  
+
   const hasNestedComment = comment.comments.length > 0;
 
   return (
@@ -27,7 +29,7 @@ function Comment({ comment }) {
         </div>
         <CommentActions score={comment.score} voted={comment.vote_status} id={comment.id} toggleReply={toggleReply} />
 
-        {replyOpen ? <CommentReplyForm /> : null}
+        {replyOpen ? <CommentReplyForm postId={comment.post_id} commentId={comment.id} /> : null}
 
         {hasNestedComment ?
           comment.comments.map((comment) => <Comment comment={comment} key={comment.id} />) :

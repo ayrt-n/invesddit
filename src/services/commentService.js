@@ -20,13 +20,14 @@ function getComments(postId, params = {}) {
   })
 }
 
-function createComment(resource, id, values) {
-  return fetch(`${API_URL}/api/v1/${resource}/${id}/comments`, {
+function createComment(postId, values) {
+  return fetch(`${API_URL}/api/v1/posts/${postId}/comments`, {
     method: 'POST',
     mode: 'cors',
     headers: defaultHeaders(),
     body: JSON.stringify({
       body: values.body,
+      reply_id: values.commentId,
     })
   })
   .then(response => {

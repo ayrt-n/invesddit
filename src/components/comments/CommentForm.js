@@ -12,10 +12,7 @@ function CommentForm({ postId, commentId, autoFocus, updateCommentSection }) {
 
   const handleSubmit = (values, { resetForm }) => {
     // Set resource and id based on whether postId or commentId provided
-    const resource = postId ? 'posts' : 'comments';
-    const id = postId ? postId : commentId;
-
-    createComment(resource, id, values).then((data) => {
+    createComment(postId, values).then((data) => {
       updateCommentSection(data.data);
       resetForm();
     })
@@ -28,7 +25,7 @@ function CommentForm({ postId, commentId, autoFocus, updateCommentSection }) {
     <div className="border-[1px] border-post-border rounded-[4px] focus-within:border-post-border-hover">
       <div>
         <Formik
-          initialValues={{body: ''}}
+          initialValues={{body: '', commentId: commentId}}
           validate={validate}
           onSubmit={handleSubmit}
         >
@@ -41,6 +38,7 @@ function CommentForm({ postId, commentId, autoFocus, updateCommentSection }) {
                 className="w-full !outline-none align-top h-[106px] py-[8px] px-[16px] text-[14px] leading-[21px] rounded-[4px]"
                 autoFocus={autoFocus}
               />
+              <input type="hidden" {...formik.getFieldProps('commentId')} />
               <div className="flex justify-end py-[4px] px-[8px] w-auto">
                 <PillButton additionalClasses="w-[90px] text-[12px] leading-[16px]" disabled={!formik.isValid || !formik.dirty} type="submit" >
                   Comment
