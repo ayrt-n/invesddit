@@ -25,7 +25,7 @@ function NavDropdownMenu({ closeDropdown }) {
         <NavDropdownItem to="profile/1">
           Profile
         </NavDropdownItem>
-        <NavDropdownItem to="profile/1/settings">
+        <NavDropdownItem to="profile/settings">
           Settings
         </NavDropdownItem>
       </NavDropdownSection>
