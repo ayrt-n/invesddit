@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import FeedSidebarWelcome from './FeedSidebarWelcome';
 import FeedController from './FeedController';
-import { getPostFeed } from '../services/feedService';
 import FeedSidebarFooter from './FeedSidebarFooter';
 import BackToTopWidget from './BackToTopWidget';
 import PostPreview from './post/PostPreview';
@@ -9,25 +8,12 @@ import AuthContext from '../contexts/authentication/AuthContext';
 import CreatePostWidget from './CreatePostWidget';
 import RecentPostsWidget from './RecentPostsWidget';
 import { getRecentPosts } from '../services/recentPostTracker';
-import { useSearchParams } from 'react-router-dom';
+import { usePostFeed } from '../hooks/usePostFeed';
 
 function Homepage() {
-  const [searchParams] = useSearchParams();
-  const [posts, setPosts] = useState([]);
-  const [sortBy, setSortBy] = useState('hot');
+  const [posts, setPosts] = usePostFeed('/api/v1/posts');
   const [recentPosts, setRecentPosts] = useState(getRecentPosts());
   const { loggedIn } = useContext(AuthContext);
-
-  useEffect(() => {
-    let feedParams = {
-      sort_by: sortBy,
-      filter: searchParams.get('filter'),
-    }
-
-    getPostFeed(feedParams).then(data => {
-      setPosts(data.data);
-    });
-  }, [sortBy, searchParams]);
 
   const updatePostVoteStatus = (id, status, changeInScore) => {
     setPosts((prev) => (
@@ -48,7 +34,7 @@ function Homepage() {
         {/* Main Post Feed */}
         <div className="w-[640px]">
           {loggedIn ? <CreatePostWidget /> : null }
-          <FeedController sortBy={sortBy} handleClick={setSortBy} />
+          <FeedController />
 
           {posts.map((post) => (
               <PostPreview post={post} key={post.id} updatePostVoteStatus={updatePostVoteStatus} />

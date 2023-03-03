@@ -3,10 +3,10 @@ import defaultHeaders from './defaultHeaders';
 
 const API_URL = config.urls.API_URL;
 
-function getPostFeed(params = {}) {
+function getPostFeed(subdir, params = {}) {
   const searchParams = new URLSearchParams(params);
 
-  return fetch(`${API_URL}/api/v1/posts?${searchParams}`, {
+  return fetch(`${API_URL}/${subdir}?${searchParams}`, {
     method: 'GET',
     mode: 'cors',
     headers: defaultHeaders(),
