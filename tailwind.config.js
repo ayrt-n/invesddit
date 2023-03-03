@@ -29,6 +29,9 @@ module.exports = {
         'dropdown-category': '#787c7e',
         'dropdown-item-hover': 'rgba(0,0,0,0.04)'
       },
+      backgroundImage: {
+        'stock-banner': "url('/src/assets/images/stock-banner.jpg')",
+      }
     },
   },
   plugins: [require("tailwind-gradient-mask-image")],
