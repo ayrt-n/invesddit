@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import hotSelected from '../assets/icons/hot-selected.png';
 import hotUnselected from '../assets/icons/hot-unselected.png';
 import newSelected from '../assets/icons/new-selected.png';
@@ -6,7 +7,21 @@ import newUnselected from '../assets/icons/new-unselected.png';
 import topSelected from '../assets/icons/top-selected.png';
 import topUnselected from '../assets/icons/top-unselected.png';
 
-function FeedController({ sortBy, handleClick }) {
+function FeedController() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Change value of ?sort_by=x search param on click
+  // Maintains value of other search params
+  const handleClick = (value) => {
+    setSearchParams(searchParams => {
+      searchParams.set('sort_by', value);
+      return searchParams;
+    });
+  };
+
+  // Get sortBy value based on searchParams OR default to hot
+  const sortBy = searchParams.get('sort_by') || 'hot';
+
   return (
     <div className="bg-canvas-light border-[1px] border-post-border rounded-[4px] mb-[16px] py-[10px] px-[12px] flex items-center">
       <div className="items-center flex cursor-pointer">
