@@ -33,7 +33,7 @@ function AccountTooltip({ account }) {
               </div>
             </div>
           </div>
-          <PillButton as={Link} to={`/user/${account.username}`}>
+          <PillButton as={Link} to={`/profile/${account.username}`}>
             View Profile
           </PillButton>
         </div>
