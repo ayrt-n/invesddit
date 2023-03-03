@@ -17,20 +17,27 @@ function CommunitySettings() {
   if (!community) return null;
 
   return (
-    <div>
-      <div className="py-[20px] px-[24px]">
-        <div className="mx-auto max-w-min flex">
-          <div className="w-[640px]">
-            <div className="p-[4px] my-[16px] border-b-[1px] border-nav-border min-h-[43px]">
-              <div className="text-[18px] font-medium leading-[22px]">
-                <Link to={`/c/${community.sub_dir}`} className="text-primary-500">
-                  c/{community.sub_dir}
-                </Link>
-                <span className="mx-[4px]">-</span>
-                Settings
-              </div>
-            </div>
-            
+    <div className="min-h-[calc(100vh-48px)] bg-canvas-light pb-[40px]">
+      <div className="max-w-[1200px] mx-auto flex px-[16px]">
+        <div className="max-w-[688px] flex-auto">
+          <div className="border-b-[1px] border-nav-border">
+            <h1 className="text-[18px] font-medium leading-[22px] py-[16px] px-[20px]">
+              Mod Tools
+              <span className="mx-[4px]">
+                - 
+              </span>
+              <Link to={`/c/${community.sub_dir}`} className="text-primary-500">
+                c/{community.sub_dir}
+              </Link>
+            </h1>
+          </div>
+          <div className="px-[20px]">
+            <h2 className="text-[20px] font-medium leading-[24px] py-[40px]">
+              Community Settings
+            </h2>
+            <h3 className="text-[10px] text-meta-text font-bold leading-[12px] border-b-[1px] border-nav-border pb-[6px] mb-[32px]">
+              COMMUNITY INFORMATION
+            </h3>
             <CommunityForm community={community} />
           </div>
         </div>

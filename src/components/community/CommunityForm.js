@@ -49,7 +49,7 @@ function CommunityForm({ community }) {
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="bg-canvas-light mb-[15px] rounded-[5px] overflow-hidden w-full">
-        <div className="m-[16px]">
+        <div className="my-[16px]">
           <div className="mb-[36px]">
             <div className="mb-[12px]">
               <label htmlFor="title" className="text-[16px] font-medium leading-[20px] mb-[4px]">
