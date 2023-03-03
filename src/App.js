@@ -10,6 +10,7 @@ import CommunitySettings from './components/community/CommunitySettings';
 import AuthProvider from './contexts/authentication/AuthProvider';
 import CreatePostPage from './components/CreatePostPage';
 import ProfileSettings from './components/profile/ProfileSettings';
+import Profile from './components/profile/Profile';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             </Route>
             <Route path="c/:community_id/settings" element={<CommunitySettings />} />
             <Route path="profile/settings" element={<ProfileSettings/>} />
+            <Route path="profile/:username" element={<Profile />} />
           </Routes>
         </div>
       </div>
