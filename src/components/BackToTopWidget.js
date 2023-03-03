@@ -9,7 +9,7 @@ function BackToTopWidget() {
 
   return (
     <div className="mt-[16px] flex justify-center">
-      <PillButton additionalClasses="w-[115px] text-[14px] leading-[17px]" onClick={scrollToTop}>
+      <PillButton additionalClasses="text-[14px] leading-[17px] max-w-[115px] min-h-[32px]" onClick={scrollToTop}>
         Back to Top
       </PillButton>
     </div>
