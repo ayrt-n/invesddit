@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PillButton from '../PillButton';
 import ProfileForm from './ProfileForm';
-import { getAccountDetails } from '../../services/accountService';
+import { getPrivateAccountDetails } from '../../services/accountService';
 
 function ProfileSettings() {
   const [profile, setProfile] = useState(null);
 
   useEffect(() => {
-    getAccountDetails().then(data => {
-      console.log(data.data);
+    getPrivateAccountDetails().then(data => {
       setProfile(data.data);
     });
   }, [])
