@@ -46,7 +46,9 @@ function Profile() {
         {/* Feed Sidebar */}
         <div className="w-[312px] ml-[24px] hidden md:block">
           <ProfileWidget account={account} />
-          <BackToTopWidget />
+          <div className="sticky top-[68px]">
+            <BackToTopWidget />
+          </div>
         </div>
       </div>
     </div>
