@@ -5,10 +5,17 @@ import ImageInput from '../forms/ImageInput';
 import PillButton from '../PillButton';
 import { updateAccountProfile } from '../../services/accountService';
 
-function ProfileForm({ profile }) {
+function ProfileForm({ profile, updateProfile }) {
   const handleSubmit = (values, { resetForm }) => {
-    updateAccountProfile(values)
-    resetForm();
+    updateAccountProfile(values).then(data => {
+      updateProfile(data.data);
+    })
+    .then(() => {
+      resetForm();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
   };
 
   const formik = useFormik({

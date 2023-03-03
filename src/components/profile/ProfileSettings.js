@@ -31,7 +31,7 @@ function ProfileSettings() {
             <h3 className="text-[10px] text-meta-text font-bold leading-[12px] border-b-[1px] border-nav-border pb-[6px] mb-[32px]">
               PROFILE INFORMATION
             </h3>
-            <ProfileForm profile={profile} />
+            <ProfileForm profile={profile} updateProfile={setProfile} />
           </div>
           <div className="px-[20px]">
             <h2 className="text-[20px] font-medium leading-[24px] py-[40px]">
