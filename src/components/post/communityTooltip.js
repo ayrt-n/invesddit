@@ -13,7 +13,7 @@ function CommunityTooltip({ community }) {
       <div className="p-[12px]">
         <div className="w-full flex">
           <img src={community.avatar || defaultCommunityAvatar} className="rounded-full h-[32px] w-[32px] mr-[8px] align-middle shrink-0 bg-canvas-light" alt="invesddit logo" />
-          <Link to={`c/${community.sub_dir}`} className="text-[16px] font-medium leading-[20px] items-center flex">
+          <Link to={`/c/${community.sub_dir}`} className="text-[16px] font-medium leading-[20px] items-center flex">
             {`c/${community.sub_dir}`}
           </Link>
         </div>

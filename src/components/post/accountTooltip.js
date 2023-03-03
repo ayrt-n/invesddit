@@ -17,7 +17,7 @@ function AccountTooltip({ account }) {
           <div className="w-full flex mb-[12px]">
             <img src={account.avatar || defaultAvatar} className="rounded-full h-[32px] w-[32px] mr-[8px] align-middle shrink-0" alt="invesddit logo" />
             <div>
-              <Link className="text-[16px] font-medium leading-[20px] mr-[4px] inline-block" to={`/user/${account.username}`}>
+              <Link className="text-[16px] font-medium leading-[20px] mr-[4px] inline-block" to={`/profile/${account.username}`}>
                 {`u/${account.username}`}
               </Link>
               <div className="text-[12px] leading-[16px] text-meta-text">

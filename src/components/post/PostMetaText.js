@@ -39,12 +39,12 @@ function PostMetaText({ community, account, createdAt }) {
         {community &&
           <>
             <div>
-              <Link to={`c/${community.sub_dir}`}>
+              <Link to={`/c/${community.sub_dir}`}>
                 <img src={community.avatar || defaultCommunityAvatar} className="rounded-full h-[20px] w-[20px] align-middle mr-[4px] bg-canvas-light" alt="community avatar" />
               </Link>
             </div>
             <div className="relative" onMouseOver={() => handleMouseEnter(setCommunityMenuOpen)} onMouseLeave={() => handleMouseLeave(setCommunityMenuOpen)}>
-              <Link to={`c/${community.sub_dir}`}>
+              <Link to={`/c/${community.sub_dir}`}>
                 <span className="font-bold hover:underline">
                   {`c/${community.sub_dir}`}
                 </span>
@@ -62,9 +62,11 @@ function PostMetaText({ community, account, createdAt }) {
           Posted by
         </span>
         <div className="relative" onMouseOver={() => handleMouseEnter(setAccountMenuOpen)} onMouseLeave={() => handleMouseLeave(setAccountMenuOpen)}>
-          <span className="mr-[3px] text-meta-text hover:underline">
-            {`u/${account.username}`}
-          </span>
+          <Link to={`/profile/${account.username}`}>
+            <span className="mr-[3px] text-meta-text hover:underline">
+              {`u/${account.username}`}
+            </span>
+          </Link>
           { accountMenuOpen &&
             <AccountTooltip account={account} />
           }
