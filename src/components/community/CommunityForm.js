@@ -26,8 +26,6 @@ function CommunityForm({ community }) {
   };
 
   const handleSubmit = (values) => {
-    console.log(values)
-
     updateCommunity(values).then((data) => {
       navigate(`/c/${data.data.sub_dir}/`);
     })
