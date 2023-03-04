@@ -4,7 +4,7 @@ import defaultHeaders from './defaultHeaders';
 
 const API_URL = config.urls.API_URL;
 
-function getPrivateAccountDetails() {
+function getCurrentAccount() {
   return fetch(`${API_URL}/api/v1/account/edit`, {
     method: 'GET',
     mode: 'cors',
@@ -57,6 +57,6 @@ function getAccount(username) {
 
 export {
   updateAccountProfile,
-  getPrivateAccountDetails,
+  getCurrentAccount,
   getAccount,
 }
