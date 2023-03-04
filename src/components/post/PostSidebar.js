@@ -6,8 +6,6 @@ function PostSidebar({ id, score, voted, updatePostVoteStatus, preview }) {
   const bgColor = preview ? 'bg-post-sidebar' : 'bg-canvas-light'
 
   const upvotePost = (event) => {
-    event.preventDefault();
-
     // The score changes by either 1 (in the case of a new vote, i.e., voted was null)
     // Or by 2 (in the case of a change from downvote to upvote, i.e., voted was downvote)
     const changeInScore = voted === null ? 1 : 2
@@ -16,11 +14,11 @@ function PostSidebar({ id, score, voted, updatePostVoteStatus, preview }) {
       updatePostVoteStatus(id, 'upvote', changeInScore);
     })
     .catch(err => console.error(err));
+
+    event.stopPropagation();
   };
 
   const downvotePost = (event) => {
-    event.preventDefault();
-
     // The score changes by either -1 (in the case of a new vote, i.e., voted was null)
     // Or by -2 (in the case of a change from upvote to downvote, i.e., voted was upvote)
     const changeInScore = voted === null ? -1 : -2
@@ -29,11 +27,11 @@ function PostSidebar({ id, score, voted, updatePostVoteStatus, preview }) {
       updatePostVoteStatus(id, 'downvote', changeInScore);
     })
     .catch(err => console.error(err));
+
+    event.stopPropagation();
   };
 
   const deletePostVote = (event) => {
-    event.preventDefault();
-
     // Change in score is either -1 (remove an upvote) or +1 (remove a downvote)
     const changeInScore = voted === 'upvote' ? -1 : 1
 
@@ -41,6 +39,8 @@ function PostSidebar({ id, score, voted, updatePostVoteStatus, preview }) {
       updatePostVoteStatus(id, null, changeInScore);
     })
     .catch(err => console.error(err));
+
+    event.stopPropagation();
   };
 
   return (
