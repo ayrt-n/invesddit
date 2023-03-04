@@ -1,11 +1,18 @@
-import React, { useContext } from 'react';
-import AuthContext from '../../contexts/authentication/AuthContext';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavDropdownHeader from './NavDropdownHeader';
 import NavDropdownItem from './NavDropdownItem';
 import NavDropdownSection from './NavDropdownSection';
+import { logout } from '../../services/authService';
 
-function NavDropdownMenu({ closeDropdown }) {
-  const { logOut } = useContext(AuthContext);
+function NavDropdownMenu() {
+  const navigate = useNavigate();
+
+  const logOut = () => {
+    logout();
+    navigate('/')
+    window.location.reload();
+  };
 
   return (
     <div className="fixed top-[50px] right-[20px] max-h-[80%] w-[252px] bg-canvas-light rounded-[4px] border-[1px] border-nav-border py-[8px] overflow-y-auto overflow-x-hidden z-[80]">

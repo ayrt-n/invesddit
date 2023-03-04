@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AccountContext from '../contexts/account/AccountContext';
 import { Link } from 'react-router-dom';
-import logo from '../assets/icons/invesddit-logo.svg';
+import defaultAvatar from '../assets/icons/invesddit-logo.svg';
 
 function CreatePostWidget() {
+  const { currentAccount } = useContext(AccountContext);
+
+  if (!currentAccount) return null;
+
   return (
     <div className="bg-canvas-light rounded-[4px] border-[1px] border-post-border flex mb-[16px] p-[8px]">
       {/* User Avatar */}
-      <Link to="/" className="w-[38px] h-[38px] rounded-full mr-[8px] basis-[38px]">
-        <img src={logo} alt="invesddit logo" />
+      <Link to={`/profile/${currentAccount.username}`} className="w-[38px] h-[38px] rounded-full mr-[8px] basis-[38px]">
+        <img className="rounded-full" src={currentAccount.avatar || defaultAvatar} alt="invesddit logo" />
       </Link>
 
       {/* Create Text Post Link */}

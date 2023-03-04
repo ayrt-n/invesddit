@@ -1,20 +1,20 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
 import Homepage from './components/Homepage';
 import CommunityDashboard from './components/community/CommunityDashboard';
-import { Routes, Route } from 'react-router-dom';
 import CommunityFeed from './components/community/CommunityFeed';
 import Post from './components/post/Post';
 import Login from './components/Login';
 import CommunitySettings from './components/community/CommunitySettings';
-import AuthProvider from './contexts/authentication/AuthProvider';
 import CreatePostPage from './components/CreatePostPage';
 import ProfileSettings from './components/profile/ProfileSettings';
 import Profile from './components/profile/Profile';
+import AccountProvider from './contexts/account/AccountProvider';
 
 function App() {
   return (
-    <AuthProvider>
+    <AccountProvider>
       <div className="bg-canvas min-h-screen">
         <Navbar />
         <div className="pt-[48px]">
@@ -32,7 +32,7 @@ function App() {
           </Routes>
         </div>
       </div>
-    </AuthProvider>
+  </AccountProvider>
   );
 }
 

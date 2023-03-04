@@ -1,13 +1,12 @@
-import React, { useState, useContext, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import logo from '../../assets/icons/invesddit-logo.svg'
 import { Link } from 'react-router-dom';
 import PillButton from '../PillButton';
-import AuthContext from '../../contexts/authentication/AuthContext';
 import NavDropdown from './NavDropdown';
 import NavDropdownMenu from './NavDropdownMenu';
+import { isLoggedIn } from '../../services/authService';
 
 function Navbar() {
-  const { loggedIn } = useContext(AuthContext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdown = useRef(null);
 
@@ -35,7 +34,7 @@ function Navbar() {
         <img src={logo} className="w-[40px] h-[40px] pr-[8px]" alt="invesddit logo"/>
       </a>
       <div className="flex items-center">
-        {loggedIn ?
+        {isLoggedIn() ?
           <div ref={dropdown} onClick={toggleDropdown}>
             <NavDropdown />
             {dropdownOpen ? <NavDropdownMenu /> : null}
