@@ -29,6 +29,10 @@ function login(email, password) {
   });
 }
 
+function isLoggedIn() {
+  return !!localStorage.getItem('account')
+}
+
 function logout() {
   localStorage.removeItem('account')
 }
@@ -52,6 +56,7 @@ function createAccount(email, username, password, passwordConfirmation) {
 
 export {
   login,
+  isLoggedIn,
   logout,
   createAccount,
 }
