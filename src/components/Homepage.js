@@ -48,8 +48,10 @@ function Homepage() {
             recentPosts={recentPosts}
             clear={() => setRecentPosts([])}
           />
-          <div className="sticky top-[68px]">
+          <div className="sticky top-[57px]">
             <FeedSidebarFooter />
+          </div>
+          <div className="sticky top-[calc(100vh-8px)] translate-y-[-100%]">
             <BackToTopWidget />
           </div>
         </div>
