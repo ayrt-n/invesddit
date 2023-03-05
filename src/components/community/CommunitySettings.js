@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getCommunity } from '../../services/communityService';
-import CommunityForm from './CommunityForm';
+import EditCommunityForm from './EditCommunityForm';
 
 function CommunitySettings() {
   let { community_id } = useParams()
@@ -38,7 +38,7 @@ function CommunitySettings() {
             <h3 className="text-[10px] text-meta-text font-bold leading-[12px] border-b-[1px] border-nav-border pb-[6px] mb-[32px]">
               COMMUNITY INFORMATION
             </h3>
-            <CommunityForm community={community} />
+            <EditCommunityForm community={community} />
           </div>
         </div>
       </div>

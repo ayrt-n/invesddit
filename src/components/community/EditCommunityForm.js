@@ -8,7 +8,7 @@ import defaultAvatar from '../../assets/icons/invesddit-logo.svg';
 import { useNavigate } from 'react-router-dom';
 import { updateCommunity } from '../../services/communityService';
 
-function CommunityForm({ community }) {
+function EditCommunityForm({ community }) {
   const navigate = useNavigate();
 
   const validate = (values) => {
@@ -137,4 +137,4 @@ function CommunityForm({ community }) {
   );
 }
 
-export default CommunityForm;
+export default EditCommunityForm;
