@@ -45,6 +45,27 @@ function leaveCommunity(community) {
   })
 }
 
+function createCommunity(values) {
+  const formData = new FormData();
+  for (let key in values) {
+    if (values[key]) { formData.append(`community[${key}]`, values[key]) }
+  }
+
+  return fetch(`${API_URL}/api/v1/communities/`, {
+    method: 'POST',
+    mode: 'cors',
+    headers: { 'Authorization': authHeader() },
+    body: formData,
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw response.text().then(text => { throw new Error(text) });
+    }
+  })
+}
+
 function updateCommunity(values) {
   const formData = new FormData();
   for (let key in values) {
@@ -70,5 +91,6 @@ export {
   getCommunity,
   joinCommunity,
   leaveCommunity,
+  createCommunity,
   updateCommunity,
 }
