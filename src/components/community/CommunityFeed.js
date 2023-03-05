@@ -3,6 +3,7 @@ import FeedController from '../FeedController'
 import PostPreview from '../post/PostPreview'
 import { useParams } from 'react-router-dom'
 import { usePostFeed } from '../../hooks/usePostFeed'
+import EmptyCommunityFeed from './EmptyCommunityFeed'
 
 function CommunityFeed() {
   let { community_id } = useParams();
@@ -27,7 +28,10 @@ function CommunityFeed() {
   return (
     <>
       <FeedController sortBy={sortBy} handleClick={setSortBy} />
-      {posts.map((post) => (<PostPreview post={post} communityView key={post.id} updatePostVoteStatus={updatePostVoteStatus} />))}
+      {posts.length > 0 ?
+        posts.map((post) => (<PostPreview post={post} communityView key={post.id} updatePostVoteStatus={updatePostVoteStatus} />)) :
+        <EmptyCommunityFeed />
+      }
     </>
   );
 }

@@ -9,6 +9,7 @@ import RecentPostsWidget from './RecentPostsWidget';
 import { getRecentPosts } from '../services/recentPostTracker';
 import { usePostFeed } from '../hooks/usePostFeed';
 import { isLoggedIn } from '../services/authService';
+import EmptyHomeFeed from './EmptyHomeFeed';
 
 function Homepage() {
   const [posts, setPosts] = usePostFeed('/api/v1/posts');
@@ -35,9 +36,12 @@ function Homepage() {
           {isLoggedIn() ? <CreatePostWidget /> : null }
           <FeedController />
 
-          {posts.map((post) => (
-              <PostPreview post={post} key={post.id} updatePostVoteStatus={updatePostVoteStatus} />
-          ))}
+          {posts.length > 0 ?
+            posts.map((post) => (
+                <PostPreview post={post} key={post.id} updatePostVoteStatus={updatePostVoteStatus} />
+            )) :
+            <EmptyHomeFeed />
+          }
         </div>
 
         {/* Feed Sidebar */}

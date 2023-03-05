@@ -27,7 +27,8 @@ module.exports = {
         'input-focused': '#1A1A1B',
         'link-text': '#0079D3',
         'dropdown-category': '#787c7e',
-        'dropdown-item-hover': 'rgba(0,0,0,0.04)'
+        'dropdown-item-hover': 'rgba(0,0,0,0.04)',
+        'post-transparent-20': 'rgba(255,255,255,0.8)',
       },
       backgroundImage: {
         'stock-banner': "url('/src/assets/images/stock-banner.jpg')",

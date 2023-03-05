@@ -6,6 +6,7 @@ import BackToTopWidget from '../BackToTopWidget';
 import { usePostFeed } from '../../hooks/usePostFeed';
 import { getAccount } from '../../services/accountService';
 import ProfileWidget from './ProfileWidget';
+import EmptyProfileFeed from './EmptyProfileFeed';
 
 function Profile() {
   let { username } = useParams();
@@ -38,9 +39,12 @@ function Profile() {
         <div className="w-[640px]">
           <FeedController />
 
-          {posts.map((post) => (
-              <PostPreview post={post} key={post.id} updatePostVoteStatus={updatePostVoteStatus} />
-          ))}
+          {posts.length > 0 ?
+            posts.map((post) => (
+                <PostPreview post={post} key={post.id} updatePostVoteStatus={updatePostVoteStatus} />
+            )) :
+            <EmptyProfileFeed username={username} />
+          }
         </div>
 
         {/* Feed Sidebar */}
