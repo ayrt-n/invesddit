@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import AccountContext from '../../contexts/account/AccountContext';
 import { useNavigate } from 'react-router-dom';
 import NavDropdownHeader from './NavDropdownHeader';
 import NavDropdownItem from './NavDropdownItem';
 import NavDropdownSection from './NavDropdownSection';
 import { logout } from '../../services/authService';
+import { getCurrentAccountCommunities } from '../../services/accountService';
+import defaultAvatar from '../../assets/icons/invesddit-logo.svg';
 
 function NavDropdownMenu() {
   const navigate = useNavigate();
+  const { currentAccount } = useContext(AccountContext);
+  
+  const [communities, setCommunities] = useState([]);
+  useEffect(() => {
+    getCurrentAccountCommunities().then(data => {
+      setCommunities(data.data);
+    });
+  }, [])
 
   const logOut = () => {
     logout();
     navigate('/')
     window.location.reload();
   };
+  
+  if (!currentAccount) return null;
 
   return (
     <div className="fixed top-[50px] right-[20px] max-h-[80%] w-[252px] bg-canvas-light rounded-[4px] border-[1px] border-nav-border py-[8px] overflow-y-auto overflow-x-hidden z-[80]">
@@ -29,7 +42,7 @@ function NavDropdownMenu() {
               My Stuff
             </span>
         </NavDropdownHeader>
-        <NavDropdownItem to="profile/1">
+        <NavDropdownItem to={`/profile/${currentAccount.username}`}>
           Profile
         </NavDropdownItem>
         <NavDropdownItem to="profile/settings">
@@ -71,11 +84,16 @@ function NavDropdownMenu() {
               My Communities
             </span>
         </NavDropdownHeader>
-        <NavDropdownItem to="/c/TSLA">
-          <span className="flex-1 text-[14px] leading-[18px] font-semibold overflow-hidden text-ellipsis text-left w-full">
-            c/TSLATSLATSLATSLATSLATSLATSLATSLATSLATSLATSLATSLATSLATSLATSLATSLATSLATSLATSLATSLA
-          </span>
-        </NavDropdownItem>
+        {communities.map((community) => (
+          <NavDropdownItem to={`/c/${community.sub_dir}`} key={community.id} withIcon>
+            <span className="h-[20px] w-[20px] mr-[12px] flex-none">
+              <img src={community.avatar || defaultAvatar} alt="community avatar" className="rounded-full" />
+            </span>
+            <span className="flex-1 text-[14px] leading-[18px] font-semibold overflow-hidden text-ellipsis text-left w-full">
+              {`c/${community.sub_dir}`}
+            </span>
+          </NavDropdownItem>
+        ))}
       </NavDropdownSection>
 
       {/* Logout */}
