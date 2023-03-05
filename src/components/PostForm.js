@@ -16,7 +16,7 @@ function PostForm() {
     const errors = {};
     
     // All posts require a title and a community
-    if (!values.title) { errors.title = 'Required' }
+    if (!values.title || values.title.trim().length < 1) { errors.title = 'Required' }
     if (!values.community) { errors.title = 'Required' }
 
     // Other post requirements depends on the post type
@@ -57,7 +57,7 @@ function PostForm() {
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="mb-[8px] w-[300px]">
-        <CommunitySelect onChange={(value) => formik.setFieldValue('community', value)} />
+        <CommunitySelect value={formik.community} onChange={(value) => formik.setFieldValue('community', value)} />
       </div>
       <div className="bg-canvas-light mb-[15px] rounded-[5px] overflow-hidden w-full">
         <PostTypeSelector
