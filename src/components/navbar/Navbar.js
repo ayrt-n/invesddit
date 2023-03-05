@@ -5,6 +5,7 @@ import PillButton from '../PillButton';
 import NavDropdown from './NavDropdown';
 import NavDropdownMenu from './NavDropdownMenu';
 import { isLoggedIn } from '../../services/authService';
+import brand from '../../assets/icons/invesddit-brand.png';
 
 function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -30,9 +31,12 @@ function Navbar() {
 
   return (
     <header className="min-h-[48px] px-[20px] bg-canvas-light border-b-[1px] border-nav-border flex items-center fixed w-full z-10 justify-between fixed">
-      <a href="/" className="flex items-center">
-        <img src={logo} className="w-[40px] h-[40px] pr-[8px]" alt="invesddit logo"/>
-      </a>
+      <div className="flex items-center">
+        <a href="/" className="flex items-center">
+          <img src={logo} className="w-[40px] h-[40px] pr-[8px]" alt="invesddit logo"/>
+          <img src={brand} className="h-[25px] hidden md:block" alt="" />
+        </a>
+      </div>
       <div className="flex items-center">
         {isLoggedIn() ?
           <div ref={dropdown} onClick={toggleDropdown}>
