@@ -20,9 +20,9 @@ function login(email, password) {
           authorization: response.headers.get('authorization')
         })
       );
-
-      return response.json();
     }
+
+    return response.json();
   })
   .catch((err) => {
     console.error(err)
@@ -48,6 +48,9 @@ function createAccount(email, username, password, passwordConfirmation) {
       'password': password,
       'password-confirm': passwordConfirmation
     })
+  })
+  .then(response => {
+    return response.json();
   })
   .catch((err) => {
     console.error(err)
