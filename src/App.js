@@ -12,6 +12,7 @@ import ProfileSettings from './components/profile/ProfileSettings';
 import Profile from './components/profile/Profile';
 import AccountProvider from './contexts/account/AccountProvider';
 import CreateCommunityPage from './components/community/CreateCommunityPage';
+import SignUp from './components/SignUp';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route index element={<Homepage />} />
             <Route path="submit" element={<CreatePostPage />} />
             <Route path="login" element={<Login />} />
+            <Route path="signup" element={<SignUp />} />
             <Route path="communities/new" element={<CreateCommunityPage />} />
             <Route path="c/:community_id" element={<CommunityDashboard />}>
               <Route index element={<CommunityFeed />} />
