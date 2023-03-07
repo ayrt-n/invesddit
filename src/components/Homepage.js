@@ -10,9 +10,10 @@ import { getRecentPosts } from '../services/recentPostTracker';
 import { usePostFeed } from '../hooks/usePostFeed';
 import { isLoggedIn } from '../services/authService';
 import EmptyHomeFeed from './EmptyHomeFeed';
+import PostLoading from './post/PostLoading';
 
 function Homepage() {
-  const [posts, setPosts] = usePostFeed('/api/v1/posts');
+  const {posts, setPosts, isLoading} = usePostFeed('/api/v1/posts');
   const [recentPosts, setRecentPosts] = useState(getRecentPosts());
 
   const updatePostVoteStatus = (id, status, changeInScore) => {
@@ -36,7 +37,13 @@ function Homepage() {
           {isLoggedIn() ? <CreatePostWidget /> : null }
           <FeedController />
 
-          {posts.length > 0 ?
+          {isLoading ?
+            <>
+              <PostLoading />
+              <PostLoading />
+              <PostLoading />
+            </> :
+            posts.length > 0 ?
             posts.map((post) => (
                 <PostPreview post={post} key={post.id} updatePostVoteStatus={updatePostVoteStatus} />
             )) :

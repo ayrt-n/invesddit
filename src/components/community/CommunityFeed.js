@@ -4,10 +4,11 @@ import PostPreview from '../post/PostPreview'
 import { useParams } from 'react-router-dom'
 import { usePostFeed } from '../../hooks/usePostFeed'
 import EmptyCommunityFeed from './EmptyCommunityFeed'
+import PostLoading from '../post/PostLoading'
 
 function CommunityFeed() {
   let { community_id } = useParams();
-  const [posts, setPosts] = usePostFeed(`/api/v1/communities/${community_id}/posts`);
+  const {posts, setPosts, isLoading} = usePostFeed(`/api/v1/communities/${community_id}/posts`);
   const [sortBy, setSortBy] = useState('hot');
 
   const updatePostVoteStatus = (id, status, changeInScore) => {
@@ -23,12 +24,16 @@ function CommunityFeed() {
     ));
   };
 
-  if (!posts) return null;
-
   return (
     <>
       <FeedController sortBy={sortBy} handleClick={setSortBy} />
-      {posts.length > 0 ?
+      {isLoading ?
+        <>
+          <PostLoading />
+          <PostLoading />
+          <PostLoading />
+        </> :
+        posts.length > 0 ?
         posts.map((post) => (<PostPreview post={post} communityView key={post.id} updatePostVoteStatus={updatePostVoteStatus} />)) :
         <EmptyCommunityFeed />
       }

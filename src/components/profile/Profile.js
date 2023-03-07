@@ -7,11 +7,12 @@ import { usePostFeed } from '../../hooks/usePostFeed';
 import { getAccount } from '../../services/accountService';
 import ProfileWidget from './ProfileWidget';
 import EmptyProfileFeed from './EmptyProfileFeed';
+import PostLoading from '../post/PostLoading';
 
 function Profile() {
   let { username } = useParams();
   const [account, setAccount] = useState(null);
-  const [posts, setPosts] = usePostFeed(`api/v1/accounts/${username}/posts`);
+  const {posts, setPosts, isLoading} = usePostFeed(`api/v1/accounts/${username}/posts`);
 
   useEffect(() => {
     getAccount(username).then(data => {
@@ -39,7 +40,13 @@ function Profile() {
         <div className="w-[640px]">
           <FeedController />
 
-          {posts.length > 0 ?
+          {isLoading ?
+            <>
+              <PostLoading />
+              <PostLoading />
+              <PostLoading />
+            </> :
+            posts.length > 0 ?
             posts.map((post) => (
                 <PostPreview post={post} key={post.id} updatePostVoteStatus={updatePostVoteStatus} />
             )) :

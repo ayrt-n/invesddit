@@ -4,6 +4,7 @@ import { getPostFeed } from '../services/feedService';
 
 export function usePostFeed(subdir) {
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
@@ -14,8 +15,9 @@ export function usePostFeed(subdir) {
 
     getPostFeed(subdir, feedParams).then(data => {
       setPosts(data.data);
+      setIsLoading(false);
     });
   }, [subdir, searchParams]);
 
-  return [posts, setPosts]
+  return {posts, setPosts, isLoading}
 }
