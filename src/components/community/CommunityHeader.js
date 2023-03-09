@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import defaultCommunityAvatar from '../../assets/icons/invesddit-logo.svg';
 import PillButton from '../PillButton';
+import ProtectedButton from '../ProtectedButton';
 import { joinCommunity, leaveCommunity } from '../../services/communityService';
 import { Link } from 'react-router-dom';
 
@@ -50,7 +51,7 @@ function CommunityHeader({ title, id, role, setRole, avatar, banner }) {
                   >
                     {leaveText}
                   </PillButton> :
-                  <PillButton additionalClasses="w-[96px]" onClick={requestJoinCommunity}>
+                  <PillButton as={ProtectedButton} additionalClasses="w-[96px]" onClick={requestJoinCommunity}>
                     Join
                   </PillButton>
                 }

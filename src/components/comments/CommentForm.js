@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 import PillButton from '../PillButton';
+import ProtectedButton from '../ProtectedButton';
 import { createComment } from '../../services/commentService';
 
 function CommentForm({ postId, commentId, autoFocus, updateCommentSection }) {
@@ -40,8 +41,8 @@ function CommentForm({ postId, commentId, autoFocus, updateCommentSection }) {
               />
               <input type="hidden" {...formik.getFieldProps('commentId')} />
               <div className="flex justify-end py-[4px] px-[8px] w-auto">
-                <PillButton additionalClasses="w-[90px] text-[12px] leading-[16px]" disabled={!formik.isValid || !formik.dirty} type="submit" >
-                  Comment
+                <PillButton as={ProtectedButton} additionalClasses="w-[90px] text-[12px] leading-[16px]" disabled={!formik.isValid || !formik.dirty} type="submit" >
+                  {commentId ? 'Reply' : 'Comment'}
                 </PillButton>
               </div>
             </form>
