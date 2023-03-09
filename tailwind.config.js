@@ -30,6 +30,9 @@ module.exports = {
         'dropdown-item-hover': 'rgba(0,0,0,0.04)',
         'post-transparent-20': 'rgba(255,255,255,0.8)',
       },
+      boxShadow: {
+        'modal': '1px 7px 20px 2px rgba(0, 0, 0, 0.4)'
+      },
       backgroundImage: {
         'stock-banner': "url('/src/assets/images/stock-banner.jpg')",
       }
