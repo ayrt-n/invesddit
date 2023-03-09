@@ -45,6 +45,7 @@ function PostSidebar({ id, score, voted, updatePostVoteStatus, preview }) {
 
   return (
     <div className={`${bgColor} min-w-[40px] flex flex-col items-center py-[8px] rounded-tl-[4px] rounded-bl-[4px]`}>
+      {/* Upvote button - Filled in if account has voted === upvote */}
       {voted === 'upvote' ?
         <button onClick={deletePostVote} className="flex items-center justify-items-center" aria-label="upvote">
           <svg className="w-[24px] h-[24px] rounded-[2px] text-upvote hover:bg-icon-hover" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -58,9 +59,13 @@ function PostSidebar({ id, score, voted, updatePostVoteStatus, preview }) {
           </svg>
         </button>
       }
+
+      {/* Posts total score (upvotes - downvotes) */}
       <div className={`my-[4px] text-[12px] leading-[16px] font-bold text-center ${voted ? `text-${voted}` : ''}`}>
         {score}
       </div>
+
+      {/* Downvote button - Filled in if account has voted === downvote */}
       {voted === 'downvote' ?
         <button onClick={deletePostVote} className="flex items-center justify-items-center" aria-label="downvote">
           <svg className="w-[24px] h-[24px] rounded-[2px] text-downvote hover:bg-icon-hover" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
