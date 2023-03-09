@@ -57,9 +57,24 @@ function createAccount(email, username, password, passwordConfirmation) {
   });
 }
 
+function verifyAccount(key) {
+  return fetch(`${API_URL}/verify-account?key=${key}`, {
+    method: 'POST',
+    mode: 'cors',
+    headers: { 'Content-Type': 'application/json' },
+  })
+  .then(response => {
+    return response.json();
+  })
+  .catch(err => {
+    console.error(err);
+  })
+}
+
 export {
   login,
   isLoggedIn,
   logout,
   createAccount,
+  verifyAccount,
 }
