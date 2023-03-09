@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import logo from '../../assets/icons/invesddit-logo.svg'
 import { Link } from 'react-router-dom';
 import PillButton from '../PillButton';
@@ -6,6 +6,9 @@ import NavDropdown from './NavDropdown';
 import NavDropdownMenu from './NavDropdownMenu';
 import { isLoggedIn } from '../../services/authService';
 import brand from '../../assets/icons/invesddit-brand.png';
+import ModalContext from '../../contexts/modal/ModalContext';
+import SignUpForm from '../SignUpForm';
+import LoginForm from '../LoginForm';
 
 function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -29,6 +32,9 @@ function Navbar() {
     };
   });
 
+  // Use modal context to open sign up or login modals
+  const { openModal } = useContext(ModalContext);
+
   return (
     <header className="min-h-[48px] px-[20px] bg-canvas-light border-b-[1px] border-nav-border flex items-center fixed w-full z-10 justify-between fixed">
       <div className="flex items-center">
@@ -44,10 +50,10 @@ function Navbar() {
             {dropdownOpen ? <NavDropdownMenu /> : null}
           </div> :
           <>
-            <PillButton as={Link} to="/signup" variant="inverted" additionalClasses="ml-[4px] text-[14px] whitespace-nowrap">
+            <PillButton onClick={() => openModal(<SignUpForm/>)} variant="inverted" additionalClasses="ml-[4px] text-[14px] whitespace-nowrap">
               Sign up
             </PillButton>
-            <PillButton as={Link} to="/login" additionalClasses="ml-[4px] text-[14px]">
+            <PillButton onClick={() => openModal(<LoginForm/>)} additionalClasses="ml-[4px] text-[14px]">
               Log In
             </PillButton>
           </>
