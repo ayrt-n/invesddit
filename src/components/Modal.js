@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 function Modal({ isOpen, content, closeModal }) {
+  // Prevent screen from scrolling while modal is open
+  // Return to normal scrolling behaviour once closed
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    }
 
+    return (() => {
+      document.body.style.overflow = 'unset';
+    });
+  }, [isOpen])
 
   if (isOpen) return ReactDOM.createPortal(
     <div className="fixed top-0 left-0 h-screen w-full z-[50]" style={{ background: "rgba(0,0,0,0.4)" }}>
