@@ -6,7 +6,7 @@ import LoginButton from './forms/LoginButton';
 import ErrorMessage from './forms/ErrorMessage';
 
 
-function SignUpForm() {
+function SignUpForm({ callToAction }) {
   const [errorMessage, setErrorMessage] = useState(null);
 
   // Validate email, password, and password confirmation
@@ -65,7 +65,7 @@ function SignUpForm() {
   return (
     <div className="max-w-[280px] mx-auto">
       <div className="my-[24px]">
-        <h1 className="font-medium text-[20px] leading-[24px]">Sign up</h1>
+        <h1 className="font-medium text-[20px] leading-[24px]">{callToAction || "Sign up"}</h1>
         <p className="mt-[8px] text-[12px] leading-[16px]">
           By continuing, you agree to setting up an Invesddit account and agree to our <a href="/user-agreement" target="_blank" className="underline text-primary-500">User Agreement</a> and <a href="/user-agreement" target="_blank" className="underline text-primary-500">Privacy Policy.</a>
         </p>
@@ -88,12 +88,6 @@ function SignUpForm() {
           </form>
         )}
       </Formik>
-      <div className="text-[12px] leading-[16px] mt-[16px] mb-[24px]">
-        <div>
-          Already have an account?
-          <a href="/login" className="underline ml-[2px] text-primary-500 font-bold leading-[24px]">Log in</a>
-        </div>
-      </div>
     </div>
   );
 }
