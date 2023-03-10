@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { isLoggedIn } from '../../services/authService';
 import ModalContext from '../../contexts/modal/ModalContext';
-import SignUpForm from '../SignUpForm';
 import OnboardModal from '../OnboardModal';
 
 // Higher order component used for dealing with clickable elements that require auth
