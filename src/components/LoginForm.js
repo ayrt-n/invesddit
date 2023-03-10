@@ -70,17 +70,6 @@ function LoginForm() {
           </form>
         )}
       </Formik>
-      <div className="text-[12px] leading-[16px] mt-[16px] mb-[24px]">
-        <div>
-          New to Invesddit?
-          <a href="/signup" className="underline ml-[2px] text-primary-500 font-bold leading-[24px]">Sign up</a>
-        </div>
-        <div>
-          Forgot your
-          <a href="/forgot-password" className="underline ml-[2px] text-primary-500 font-bold leading-[24px]">password</a>
-          ?
-        </div>
-      </div>
     </div>
   );
 }
