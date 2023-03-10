@@ -2,11 +2,12 @@ import React, { useContext } from 'react';
 import { isLoggedIn } from '../../services/authService';
 import ModalContext from '../../contexts/modal/ModalContext';
 import SignUpForm from '../SignUpForm';
+import OnboardModal from '../OnboardModal';
 
 // Higher order component used for dealing with clickable elements that require auth
 // If not logged in, component will open signup/login modal instead of original click purpose
 export default function withProtectedClick(WrappedComponent) {
-  return (props) => {
+  return ({ callToAction, ...props }) => {
     const { openModal } = useContext(ModalContext);
     
     // If logged in, call regular onClick handler
@@ -15,7 +16,7 @@ export default function withProtectedClick(WrappedComponent) {
       if (isLoggedIn()) {
         props.onClick()
       } else {
-        openModal(<SignUpForm />)
+        openModal(<OnboardModal callToAction={callToAction} />)
       }
 
       // Prevent click from propogating higher

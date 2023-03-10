@@ -9,6 +9,7 @@ import brand from '../../assets/icons/invesddit-brand.png';
 import ModalContext from '../../contexts/modal/ModalContext';
 import SignUpForm from '../SignUpForm';
 import LoginForm from '../LoginForm';
+import OnboardModal from '../OnboardModal';
 
 function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -50,10 +51,10 @@ function Navbar() {
             {dropdownOpen ? <NavDropdownMenu /> : null}
           </div> :
           <>
-            <PillButton onClick={() => openModal(<SignUpForm/>)} variant="inverted" additionalClasses="ml-[4px] text-[14px] whitespace-nowrap">
+            <PillButton onClick={() => openModal(<OnboardModal initialState="signup"/>)} variant="inverted" additionalClasses="ml-[4px] text-[14px] whitespace-nowrap">
               Sign up
             </PillButton>
-            <PillButton onClick={() => openModal(<LoginForm/>)} additionalClasses="ml-[4px] text-[14px]">
+            <PillButton onClick={() => openModal(<OnboardModal initialState="login"/>)} additionalClasses="ml-[4px] text-[14px]">
               Log In
             </PillButton>
           </>

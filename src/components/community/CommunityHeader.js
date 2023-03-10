@@ -22,6 +22,9 @@ function CommunityHeader({ title, id, role, setRole, avatar, banner }) {
     .catch(err => console.error(err));
   };
 
+  // Call to action if unauthorized user tries to join community
+  const callToAction = 'You can join communities with an Invesddit account.';
+
   return (
     <>
       <Link to={`/c/${id}`}>
@@ -51,7 +54,7 @@ function CommunityHeader({ title, id, role, setRole, avatar, banner }) {
                   >
                     {leaveText}
                   </PillButton> :
-                  <PillButton as={ProtectedButton} additionalClasses="w-[96px]" onClick={requestJoinCommunity}>
+                  <PillButton as={ProtectedButton} callToAction={callToAction} additionalClasses="w-[96px]" onClick={requestJoinCommunity}>
                     Join
                   </PillButton>
                 }

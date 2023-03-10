@@ -22,6 +22,9 @@ function CommentForm({ postId, commentId, autoFocus, updateCommentSection }) {
     });
   };
 
+  // Call to action if unauthorized user tries to post comment
+  const callToAction = 'You can comment on any post with an Invesddit account.'
+
   return (
     <div className="border-[1px] border-post-border rounded-[4px] focus-within:border-post-border-hover">
       <div>
@@ -41,7 +44,7 @@ function CommentForm({ postId, commentId, autoFocus, updateCommentSection }) {
               />
               <input type="hidden" {...formik.getFieldProps('commentId')} />
               <div className="flex justify-end py-[4px] px-[8px] w-auto">
-                <PillButton as={ProtectedButton} additionalClasses="w-[90px] text-[12px] leading-[16px]" disabled={!formik.isValid || !formik.dirty} type="submit" >
+                <PillButton as={ProtectedButton} callToAction={callToAction} additionalClasses="w-[90px] text-[12px] leading-[16px]" disabled={!formik.isValid || !formik.dirty} type="submit" >
                   {commentId ? 'Reply' : 'Comment'}
                 </PillButton>
               </div>
