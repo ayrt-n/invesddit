@@ -4,7 +4,7 @@ import PillButton from '../PillButton';
 import ProtectedButton from '../ProtectedButton';
 import { createComment } from '../../services/commentService';
 
-function CommentForm({ postId, commentId, autoFocus, updateCommentSection }) {
+function CommentForm({ postId, commentId, autoFocus, addComment }) {
   const validate = (values) => {
     const errors = {};
     if (!values.body) { errors.body = 'Required' }
@@ -14,7 +14,7 @@ function CommentForm({ postId, commentId, autoFocus, updateCommentSection }) {
   const handleSubmit = (values, { resetForm }) => {
     // Set resource and id based on whether postId or commentId provided
     createComment(postId, values).then((data) => {
-      updateCommentSection(data.data);
+      addComment(data.data);
       resetForm();
     })
     .catch((err) => {
@@ -45,6 +45,7 @@ function CommentForm({ postId, commentId, autoFocus, updateCommentSection }) {
               <input type="hidden" {...formik.getFieldProps('commentId')} />
               <div className="flex justify-end py-[4px] px-[8px] w-auto">
                 <PillButton as={ProtectedButton} callToAction={callToAction} additionalClasses="w-[90px] text-[12px] leading-[16px]" disabled={!formik.isValid || !formik.dirty} type="submit" >
+                  {/* If commentId exists, must be a reply */}
                   {commentId ? 'Reply' : 'Comment'}
                 </PillButton>
               </div>

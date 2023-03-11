@@ -5,7 +5,7 @@ import CollapsedCommentHeader from './CollapsedCommentHeader';
 import CommentSidebar from './CommentSidebar';
 import CommentReplyForm from './CommentReplyForm';
 
-function Comment({ comment }) {
+function Comment({ comment, addNestedComment }) {
   // State and toggle to collapse/uncollapse comment thread
   const [collapsed, setCollapsed] = useState(false);
   const toggleCollapse = () => { setCollapsed((prev) => !prev) };
@@ -14,6 +14,25 @@ function Comment({ comment }) {
   const [replyOpen, setReplyOpen] = useState(false);
   const toggleReply = () => { setReplyOpen((prev) => !prev) };
 
+  // Close reply form and submit this comment along with nested comments
+  // (including the new/updated comment) to addNestedComment
+  // This will bubble up through comment thread until it reaches the CommentSection and
+  // will proceed to update the comment list from there
+  const handleSubmitNestedComment = (newComment) => {
+    setReplyOpen(false);
+
+    addNestedComment(
+      {
+        ...comment,
+        comments: [
+          newComment,
+          ...comment.comments.filter((comment) => comment.id !== newComment.id)
+        ]
+      }
+    );
+  };
+
+  // Check if any nested comments
   const hasNestedComment = comment.comments.length > 0;
 
   return (
@@ -29,10 +48,10 @@ function Comment({ comment }) {
         </div>
         <CommentActions score={comment.score} voted={comment.vote_status} id={comment.id} toggleReply={toggleReply} />
 
-        {replyOpen ? <CommentReplyForm postId={comment.post_id} commentId={comment.id} /> : null}
+        {replyOpen ? <CommentReplyForm postId={comment.post_id} commentId={comment.id} addComment={handleSubmitNestedComment} /> : null}
 
         {hasNestedComment ?
-          comment.comments.map((comment) => <Comment comment={comment} key={comment.id} />) :
+          comment.comments.map((comment) => <Comment comment={comment} key={comment.id} addNestedComment={handleSubmitNestedComment} />) :
           null
         }
       </div>
