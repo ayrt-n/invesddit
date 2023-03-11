@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import CommunityTooltip from './communityTooltip';
-import AccountTooltip from './accountTooltip';
+import CommunityTooltip from './CommunityTooltip';
+import AccountTooltip from './AccountTooltip';
 import { Link } from 'react-router-dom';
 import defaultCommunityAvatar from '../../assets/icons/invesddit-logo.svg';
 
