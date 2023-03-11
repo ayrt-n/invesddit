@@ -15,6 +15,7 @@ import CreateCommunityPage from './components/community/CreateCommunityPage';
 import SignUp from './components/SignUp';
 import VerifyAccount from './components/VerifyAccount';
 import ModalProvider from './contexts/modal/ModalProvider';
+import SearchResults from './components/SearchResults';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
               <Route path="c/:community_id/settings" element={<CommunitySettings />} />
               <Route path="profile/settings" element={<ProfileSettings/>} />
               <Route path="profile/:username" element={<Profile />} />
+              <Route path="search" element={<SearchResults />} />
             </Routes>
           </div>
         </div>
