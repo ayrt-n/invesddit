@@ -6,7 +6,7 @@ import LoginButton from './forms/LoginButton';
 import { useNavigate } from 'react-router-dom';
 import ErrorMessage from './forms/ErrorMessage';
 
-function LoginForm() {
+function LoginForm({ links }) {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -70,6 +70,7 @@ function LoginForm() {
           </form>
         )}
       </Formik>
+      {links}
     </div>
   );
 }
