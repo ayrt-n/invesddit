@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import FeedSidebarWelcome from './FeedSidebarWelcome';
+import WelcomeWidget from './WelcomeWidget';
 import FeedController from './FeedController';
-import FeedSidebarFooter from './FeedSidebarFooter';
+import GithubWidget from './GithubWidget';
 import BackToTopWidget from './BackToTopWidget';
 import PostPreview from './post/PostPreview';
 import CreatePostWidget from './CreatePostWidget';
@@ -53,13 +53,13 @@ function Homepage() {
 
         {/* Feed Sidebar */}
         <div className="w-[312px] ml-[24px] hidden md:block">
-          <FeedSidebarWelcome />
+          <WelcomeWidget />
           <RecentPostsWidget
             recentPosts={recentPosts}
             clear={() => setRecentPosts([])}
           />
           <div className="sticky top-[57px]">
-            <FeedSidebarFooter />
+            <GithubWidget />
           </div>
           <div className="sticky top-[calc(100vh-8px)] translate-y-[-100%]">
             <BackToTopWidget />
