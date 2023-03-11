@@ -4,10 +4,11 @@ import LoginInput from './forms/LoginInput';
 import { createAccount } from '../services/authService';
 import LoginButton from './forms/LoginButton';
 import ErrorMessage from './forms/ErrorMessage';
+import SuccessMessage from './SuccessMessage';
 
-
-function SignUpForm({ callToAction }) {
+function SignUpForm({ callToAction, links }) {
   const [errorMessage, setErrorMessage] = useState(null);
+  const [submit, setSubmit] = useState(false);
 
   // Validate email, password, and password confirmation
   // Return errors if present
@@ -46,11 +47,11 @@ function SignUpForm({ callToAction }) {
   // On submit send API request to register user
   // If success, redirect to login with success message
   // Otherwise, display error message
-  const handleRegister = (values, { setSubmitting }) => {
+  const handleRegister = (values, { setSubmitting, setStatus }) => {
     createAccount(values.email, values.username, values.password, values.passwordConfirmation)
     .then((data) => {
       if (data.success) {
-        // Handle successful register
+        setSubmit('success');
       } else {
         setErrorMessage(() => {
           if (data['field-error']) return data['field-error'][1];
@@ -64,30 +65,38 @@ function SignUpForm({ callToAction }) {
 
   return (
     <div className="max-w-[280px] mx-auto">
-      <div className="my-[24px]">
-        <h1 className="font-medium text-[20px] leading-[24px]">{callToAction || "Sign up"}</h1>
-        <p className="mt-[8px] text-[12px] leading-[16px]">
-          By continuing, you agree to setting up an Invesddit account and agree to our <a href="/user-agreement" target="_blank" className="underline text-primary-500">User Agreement</a> and <a href="/user-agreement" target="_blank" className="underline text-primary-500">Privacy Policy.</a>
-        </p>
-      </div>
-      <Formik
-        initialValues={{email: '', username: '', password: '', passwordConfirmation: ''}}
-        validate={validate}
-        onSubmit={handleRegister}
-      >
-        {formik => (
-          <form onSubmit={formik.handleSubmit}>
-            <LoginInput label="Email" name="email" id="email" type="text" />
-            <LoginInput label="Username" name="username" id="username" type="text" />
-            <LoginInput label="Password" name="password" id="password" type="password" />
-            <LoginInput label="Confirm Password" name="passwordConfirmation" id="passwordConfirmation" type="password" />
-            {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
-            <LoginButton>
-              Sign up
-            </LoginButton>
-          </form>
-        )}
-      </Formik>
+      {submit ?
+        <div className="my-[24px]">
+          <SuccessMessage header="Thanks for signing up!" message="Check your email for a link to verify your account." />
+        </div> :
+        <>
+          <div className="my-[24px]">
+            <h1 className="font-medium text-[20px] leading-[24px]">{callToAction || "Sign up"}</h1>
+            <p className="mt-[8px] text-[12px] leading-[16px]">
+              By continuing, you agree to setting up an Invesddit account and agree to our <a href="/user-agreement" target="_blank" className="underline text-primary-500">User Agreement</a> and <a href="/user-agreement" target="_blank" className="underline text-primary-500">Privacy Policy.</a>
+            </p>
+          </div>
+          <Formik
+            initialValues={{email: '', username: '', password: '', passwordConfirmation: ''}}
+            validate={validate}
+            onSubmit={handleRegister}
+          >
+            {formik => (
+              <form onSubmit={formik.handleSubmit}>
+                <LoginInput label="Email" name="email" id="email" type="text" />
+                <LoginInput label="Username" name="username" id="username" type="text" />
+                <LoginInput label="Password" name="password" id="password" type="password" />
+                <LoginInput label="Confirm Password" name="passwordConfirmation" id="passwordConfirmation" type="password" />
+                {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+                <LoginButton>
+                  Sign up
+                </LoginButton>
+              </form>
+            )}
+          </Formik>
+          {links}
+        </>
+      }
     </div>
   );
 }
