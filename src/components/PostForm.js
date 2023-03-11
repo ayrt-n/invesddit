@@ -4,13 +4,18 @@ import TextareaInput from './forms/TextareaInput';
 import PillButton from './PillButton';
 import CommunitySelect from './forms/CommunitySelect';
 import PostTypeSelector from './forms/PostTypeSelector';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { createPost } from '../services/postService';
 import FileInput from './forms/FileInput';
 
 function PostForm() {
   const navigate = useNavigate();
+  
+  // Set initial post type based off of type query string
+  // Default to text post
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialPostType = searchParams.get('type') || 'text'
 
   const validate = (values) => {
     const errors = {};
@@ -32,6 +37,7 @@ function PostForm() {
     return errors;
   };
 
+  // Submit post and if successful, navigate to post page
   const handleSumbit = (values) => {
     createPost(values).then((data) => {
       navigate(`/c/${data.data.community}/posts/${data.data.id}`);
@@ -48,11 +54,21 @@ function PostForm() {
       media: '',
       link: '',
       community: '',
-      postType: 'text',
+      postType: initialPostType,
     },
     validate: validate,
     onSubmit: handleSumbit,
   });
+
+  // Handle change in post type value
+  // Removes the type query string if it exists
+  const handlePostTypeChange = (value) => {
+    formik.setFieldValue('postType', value);
+    if (searchParams.has('type')) {
+      searchParams.delete('type');
+      setSearchParams(searchParams);
+    }
+  }
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -62,7 +78,7 @@ function PostForm() {
       <div className="bg-canvas-light mb-[15px] rounded-[5px] overflow-hidden w-full">
         <PostTypeSelector
           value={formik.values.postType}
-          onChange={(value) => formik.setFieldValue('postType', value)}
+          onChange={handlePostTypeChange}
         />
         <div className="m-[16px]">
           <div className="mb-[8px]">
