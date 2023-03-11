@@ -1,10 +1,10 @@
 import React from 'react';
 import PillButton from '../PillButton';
 
-function LoginButton({ children }) {
+function LoginButton({ disabled, children }) {
   return (
     <div className="mt-[16px]">
-      <PillButton type="submit" additionalClasses="h-[40px] leading-[18px] mt-[8px]">
+      <PillButton type="submit" disabled={disabled} additionalClasses="h-[40px] leading-[18px] mt-[8px]">
         {children}
       </PillButton>
   </div>
