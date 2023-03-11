@@ -13,7 +13,7 @@ export default function withProtectedClick(WrappedComponent) {
     // Else, open signup/login modal
     const handleAction = (event) => {
       if (isLoggedIn()) {
-        props.onClick()
+        props.onClick(event)
       } else {
         openModal(<OnboardModal callToAction={callToAction} />)
       }
