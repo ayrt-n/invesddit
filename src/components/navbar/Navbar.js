@@ -7,6 +7,7 @@ import { isLoggedIn } from '../../services/authService';
 import brand from '../../assets/icons/invesddit-brand.png';
 import ModalContext from '../../contexts/modal/ModalContext';
 import OnboardModal from '../OnboardModal';
+import SearchBar from './SearchBar';
 
 function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -40,6 +41,11 @@ function Navbar() {
           <img src={logo} className="w-[40px] h-[40px] pr-[8px]" alt="invesddit logo"/>
           <img src={brand} className="h-[25px] hidden md:block" alt="" />
         </a>
+      </div>
+      <div className="flex items-center grow mx-auto max-w-[690px]">
+        <div className="mx-[16px] w-full h-auto">
+          <SearchBar />
+        </div>
       </div>
       <div className="flex items-center">
         {isLoggedIn() ?
