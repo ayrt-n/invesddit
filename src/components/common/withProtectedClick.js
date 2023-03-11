@@ -15,6 +15,7 @@ export default function withProtectedClick(WrappedComponent) {
       if (isLoggedIn()) {
         if (props.onClick) return props.onClick(event);
       } else {
+        event.preventDefault();
         openModal(<OnboardModal callToAction={callToAction} />)
       }
 
