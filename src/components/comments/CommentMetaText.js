@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import AccountTooltip from '../post/accountTooltip';
+import AccountTooltip from '../post/AccountTooltip';
 import { Link } from 'react-router-dom';
 
 function CommentMetaText({ account, createdAt }) {
@@ -34,9 +34,11 @@ function CommentMetaText({ account, createdAt }) {
     <div className="mt-[10px] mb-[6px] min-h-[18px]">
       <div className="text-[12px] leading-[16px] flex">
         <div className="relative" onMouseOver={() => handleMouseEnter(setAccountMenuOpen)} onMouseLeave={() => handleMouseLeave(setAccountMenuOpen)}>
-          <span className="mr-[3px] font-medium hover:underline">
-            {`${account.username}`}
-          </span>
+          <Link to={`/profile/${account.username}`}>
+            <span className="mr-[3px] font-medium hover:underline">
+              {`${account.username}`}
+            </span>
+          </Link>
           { accountMenuOpen &&
             <AccountTooltip account={account} />
           }
