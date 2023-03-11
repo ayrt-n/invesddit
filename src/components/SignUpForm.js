@@ -81,14 +81,14 @@ function SignUpForm({ callToAction, links }) {
             validate={validate}
             onSubmit={handleRegister}
           >
-            {formik => (
-              <form onSubmit={formik.handleSubmit}>
+            {({ isValid, dirty, isSubmitting, handleSubmit }) => (
+              <form onSubmit={handleSubmit}>
                 <LoginInput label="Email" name="email" id="email" type="text" />
                 <LoginInput label="Username" name="username" id="username" type="text" />
                 <LoginInput label="Password" name="password" id="password" type="password" />
                 <LoginInput label="Confirm Password" name="passwordConfirmation" id="passwordConfirmation" type="password" />
                 {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
-                <LoginButton>
+                <LoginButton disabled={!isValid || !dirty || isSubmitting}>
                   Sign up
                 </LoginButton>
               </form>
