@@ -25,7 +25,7 @@ function Modal({ isOpen, content, closeModal }) {
 
   if (isOpen) return ReactDOM.createPortal(
     <div className="fixed top-0 left-0 h-screen w-full z-[50]" style={{ background: "rgba(0,0,0,0.4)" }}>
-      <div className="max-h-[90%] max-w-[400px] w-[90%] bg-canvas-light rounded-[12px] overflow-hidden fixed top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%] shadow-modal">
+      <div className="max-h-[90%] max-w-[400px] w-[90%] bg-canvas-light rounded-[12px] overflow-y-auto overflow-x-hidden fixed top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%] shadow-modal">
         <div className="flex flex-row-reverse h-[50px] justify-start items-start">
           <button onClick={closeModal} aria-label="close modal" className="mt-[16px] mr-[16px] text-feed-text">
             <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" className="w-[14px] h-[14px]">
