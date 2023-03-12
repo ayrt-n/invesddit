@@ -12,6 +12,7 @@ function SearchResults() {
 
   useEffect(() => {
     const q = searchParams.get('q');
+    setLoading(true);
 
     getSearchResults(q).then(data => {
       console.log(data);
