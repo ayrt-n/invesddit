@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchWidget from './SearchWidget';
 import SearchWidgetItem from './SearchWidgetItem';
+import SearchWidgetLoading from './SearchWidgetLoading';
 
 function CommunitiesWidget({ communities, loading }) {
-  if (loading) return null;
+  if (loading) return <SearchWidgetLoading header="Communities" />;
   
   return (
     <SearchWidget header="Communites">

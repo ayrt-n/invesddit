@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchWidget from './SearchWidget';
 import SearchWidgetItem from './SearchWidgetItem';
+import SearchWidgetLoading from './SearchWidgetLoading';
 
 function AccountsWidget({ accounts, loading }) {
-  if (loading) return null;
+  if (loading) return <SearchWidgetLoading header="Accounts" />;
   
   return (
     <SearchWidget header="Accounts">
