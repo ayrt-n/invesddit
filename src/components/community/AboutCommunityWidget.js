@@ -1,6 +1,6 @@
 import React from 'react';
 import PillButton from '../PillButton';
-import { Link } from 'react-router-dom';
+import ProtectedLink from '../ProtectedLink';
 import format from 'date-fns/format'
 
 function AboutCommunityWidget({ description, createdAt, membershipCount }) {
@@ -34,7 +34,7 @@ function AboutCommunityWidget({ description, createdAt, membershipCount }) {
         </div>
         <hr className="h-[1px] my-[16px]" />
         <div>
-          <PillButton as={Link} to="/submit" variant="primary">
+          <PillButton as={ProtectedLink} callToAction="You can create posts and share ideas with an Invesddit account." to="/submit" variant="primary">
             Create Post
           </PillButton>
         </div>
