@@ -38,18 +38,20 @@ function CommentActions({ voted, score, id, toggleReply }) {
     .catch(err => console.error(err));
   };
 
+  const callToAction = 'You can vote to help everyone find the best content with an Invesddit account.'
+
   return (
     <div className="flex items-center text-[12px] font-bold leading-[16px] my-[4px] flex-nowrap text-meta-text">
       <div className="flex items-center mr-[4px]">
         {/* Comment Upvote Button */}
         {usersVote === 'upvote' ?
-          <ProtectedButton onClick={deleteCommentVote} className="flex items-center justify-items-center" aria-label="upvote">
+          <ProtectedButton callToAction={callToAction} onClick={deleteCommentVote} className="flex items-center justify-items-center" aria-label="upvote">
             <svg className="w-[24px] h-[24px] rounded-[2px] text-upvote hover:bg-icon-hover" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <title>arrow-up-bold</title>
               <path fill="currentColor" d="M15,20H9V12H4.16L12,4.16L19.84,12H15V20Z" />
             </svg>
           </ProtectedButton> :
-          <ProtectedButton onClick={upvoteComment} className="flex items-center justify-items-center" aria-label="upvote">
+          <ProtectedButton callToAction={callToAction} onClick={upvoteComment} className="flex items-center justify-items-center" aria-label="upvote">
             <svg className="w-[24px] h-[24px] rounded-[2px] hover:text-upvote hover:bg-icon-hover" viewBox="0 0 24 24">
               <path fill="currentColor" d="M16,13V21H8V13H2L12,3L22,13H16M7,11H10V19H14V11H17L12,6L7,11Z" />
             </svg>
@@ -63,13 +65,13 @@ function CommentActions({ voted, score, id, toggleReply }) {
 
         {/* Comment Downvote Button */}
         {usersVote === 'downvote' ?
-          <ProtectedButton onClick={deleteCommentVote} className="flex items-center justify-items-center" aria-label="downvote">
+          <ProtectedButton callToAction={callToAction} onClick={deleteCommentVote} className="flex items-center justify-items-center" aria-label="downvote">
             <svg className="w-[24px] h-[24px] rounded-[2px] text-downvote hover:bg-icon-hover" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <title>arrow-down-bold</title>
               <path fill="currentColor" d="M9,4H15V12H19.84L12,19.84L4.16,12H9V4Z" />
             </svg>
           </ProtectedButton> :
-          <ProtectedButton onClick={downvoteComment} className="flex items-center justify-items-center" aria-label="downvote">
+          <ProtectedButton callToAction={callToAction} onClick={downvoteComment} className="flex items-center justify-items-center" aria-label="downvote">
             <svg className="w-[24px] h-[24px] rounded-[2px] hover:text-downvote hover:bg-icon-hover" viewBox="0 0 24 24">
               <path fill="currentColor" d="M22,11L12,21L2,11H8V3H16V11H22M12,18L17,13H14V5H10V13H7L12,18Z" />
             </svg>
