@@ -7,7 +7,7 @@ function LoginInput({ label, ...props }) {
 
   return (
     <div className="mt-[16px] relative w-full">
-      <input className="rounded-[100px] text-[14px] font-semibold leading-[18px] h-[46px] pl-[16px] pr-[36px] pt-[22px] pb-[10px] outline-0 bg-gray-100 focus:border-primary-400 border-[1px] w-full peer"
+      <input className="rounded-[100px] text-[14px] font-semibold leading-[18px] h-[46px] pl-[16px] pr-[36px] pt-[22px] pb-[10px] outline-0 bg-gray-100 border-[1px] border-transparent hover:border-post-border focus:border-primary-400 w-full peer"
         {...field}
         {...props}
         placeholder=" "
