@@ -15,7 +15,6 @@ function SearchResults() {
     setLoading(true);
 
     getSearchResults(q).then(data => {
-      console.log(data);
       setResults(data.data);
       setLoading(false);
     });
