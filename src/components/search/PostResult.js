@@ -1,13 +1,11 @@
 import React from 'react';
 import PostMetaText from '../post/PostMetaText';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Highlighter from 'react-highlight-words';
 
-function PostResult({ post }) {
+function PostResult({ post, searchTerm }) {
   const navigate = useNavigate();
   const postLink = `/c/${post.community.sub_dir}/posts/${post.id}`;
-  const [searchParams] = useSearchParams();
-  const searchTerm = searchParams.get('q');
 
   // On click, navigate to the post
   // Used over anchor/link because of nested links/buttons within the post

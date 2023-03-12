@@ -26,7 +26,7 @@ function SearchResults() {
         <div className='w-full max-w-[100%] flex'>
           {/* Post Results */}
           <div className="max-w-[640px] w-full flex-[1_1_640px] mb-[16px]">
-            <PostsWidget posts={results.posts} loading={loading} />
+            <PostsWidget posts={results.posts} loading={loading} searchTerm={searchParams.get('q')} />
           </div>
 
           {/* Community and Account Results */}
