@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SearchBar() {
+  const navigate = useNavigate();
   const [search, setSearch] = useState('');
 
   const handleChange = (e) => {
     setSearch(e.target.value);
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/search?q=${e.target.q.value}`);
+  }
+
   return (
     <div className="group flex items-center bg-comment-controls border-[1px] border-nav-border rounded-[1.25em] shadow-none h-[40px] hover:border-primary-400 hover:bg-canvas-light focus-within:border-primary-400 focus-within:bg-canvas-light">
-      <form action="/search" className="w-full flex">
+      <form onSubmit={handleSubmit} className="w-full flex">
           <label htmlFor="q" className="flex">
             <div aria-hidden="true" className="flex items-center pr-[9px] pl-[15px]">
               <svg className="h-[25px] w-[25px] leading-[20px] align-middle text-feed-text relative top-[1px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
