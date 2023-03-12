@@ -15,7 +15,7 @@ import CreateCommunityPage from './components/community/CreateCommunityPage';
 import SignUp from './components/SignUp';
 import VerifyAccount from './components/VerifyAccount';
 import ModalProvider from './contexts/modal/ModalProvider';
-import SearchResults from './components/SearchResults';
+import SearchResults from './components/search/SearchResults';
 
 function App() {
   return (
