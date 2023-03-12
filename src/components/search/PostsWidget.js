@@ -1,9 +1,10 @@
 import React from 'react';
 import EmptyPostsSearch from './EmptyPostsSearch';
 import PostResult from './PostResult';
+import SearchPostLoading from './SearchPostLoading';
 
 function PostsWidget({ posts, loading, searchTerm }) {
-  if (loading) return null;
+  if (loading) return <SearchPostLoading />;
 
   return (
     <>
