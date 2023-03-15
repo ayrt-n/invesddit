@@ -7,7 +7,7 @@ import OnboardModal from '../OnboardModal';
 // If not logged in, component will open signup/login modal instead of original click purpose
 export default function withProtectedClick(WrappedComponent) {
   return ({ callToAction, ...props }) => {
-    const { openModal } = useContext(ModalContext);
+    const { openModal, closeModal } = useContext(ModalContext);
     
     // If logged in, call regular onClick handler
     // Else, open signup/login modal
@@ -16,7 +16,7 @@ export default function withProtectedClick(WrappedComponent) {
         if (props.onClick) return props.onClick(event);
       } else {
         event.preventDefault();
-        openModal(<OnboardModal callToAction={callToAction} />)
+        openModal(<OnboardModal callToAction={callToAction} closeModal={closeModal} />)
       }
 
       // Prevent click from propogating higher

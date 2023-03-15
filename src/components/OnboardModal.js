@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
 
-function OnboardModal({ initialState, callToAction }) {
+function OnboardModal({ initialState, callToAction, closeModal }) {
   const [content, setContent] = useState(initialState || 'signup');
   
   // Sign up content
@@ -16,14 +16,6 @@ function OnboardModal({ initialState, callToAction }) {
       </div>
     </div>
   );
-  
-  if (content === 'signup') {
-    return (
-      <div className="max-w-[280px] mx-auto">
-        <SignUpForm callToAction={callToAction} links={signupLinks} />
-      </div>
-    );
-  }
 
   // Login content
   const loginLinks = (
@@ -42,15 +34,6 @@ function OnboardModal({ initialState, callToAction }) {
     </div>
   );
 
-  if (content === 'login') {
-    return (
-      <div className="max-w-[280px] mx-auto">
-        <LoginForm links={loginLinks} />
-      </div>
-    );
-  }
-
-  
   // Password recovery content
   const recoveryLinks = (
     <div className="text-[12px] leading-[16px] mt-[16px] mb-[24px]">
@@ -60,10 +43,25 @@ function OnboardModal({ initialState, callToAction }) {
       </div>
     </div>
   );
-  
+
   return (
-    <div className="max-w-[280px] mx-auto">
-      Recover password
+    <div className="bg-canvas-light rounded-[12px] overflow-y-hidden overflow-x-hidden">
+      <div className="flex flex-row-reverse h-[50px] justify-start items-start">
+        <button onClick={closeModal} aria-label="close modal" className="mt-[16px] mr-[16px] text-feed-text">
+          <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" className="w-[14px] h-[14px]">
+            <polygon fill="currentColor" points="11.649 9.882 18.262 3.267 16.495 1.5 9.881 8.114 3.267 1.5 1.5 3.267 8.114 9.883 1.5 16.497 3.267 18.264 9.881 11.65 16.495 18.264 18.262 16.497"></polygon>
+          </svg>
+        </button>
+      </div>
+      <div className="max-w-[280px] mx-auto">
+        {content === 'signup' ?
+          <SignUpForm callToAction={callToAction} links={signupLinks} /> :
+        content === 'login' ?
+          <LoginForm links={loginLinks} /> :
+          recoveryLinks
+        }
+      </div>
+      <div className="h-[50px]" />
     </div>
   );
 }
