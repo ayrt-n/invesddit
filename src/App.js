@@ -22,9 +22,6 @@ function App() {
     <AccountProvider>
       <ModalProvider>
         <div className="bg-canvas min-h-screen">
-          <div>
-            
-          </div>
           <Navbar />
           <div className="pt-[48px]">
             <Routes>
