@@ -54,6 +54,7 @@ function PostPreview({ post, communityView, updatePostVoteStatus }) {
 
         {/* Render Post actions (comment count link) */}
         <PostActions
+          showPostDropdown={false}
           commentCount={post.comments_count}
         />
       </div>
