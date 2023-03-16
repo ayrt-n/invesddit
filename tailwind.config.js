@@ -32,6 +32,7 @@ module.exports = {
         'dropdown-category': '#787c7e',
         'dropdown-item-hover': 'rgba(0,0,0,0.04)',
         'post-transparent-20': 'rgba(255,255,255,0.8)',
+        'blue-highlight': '#e9f5fd',
       },
       boxShadow: {
         'modal': '1px 7px 20px 2px rgba(0, 0, 0, 0.4)'
