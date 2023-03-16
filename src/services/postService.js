@@ -88,7 +88,23 @@ function createLinkPost(values) {
   });
 }
 
+function deletePost(post_id) {
+  return fetch(`${API_URL}/api/v1/posts/${post_id}`, {
+    method: 'DELETE',
+    mode: 'cors',
+    headers: defaultHeaders(),
+  })
+  .then(response => {
+    if (response.ok) {
+      return response;
+    } else {
+      throw response.text().then(text => { throw new Error(text) });
+    }
+  });
+}
+
 export {
   getPost,
   createPost,
+  deletePost,
 }
