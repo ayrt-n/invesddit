@@ -42,23 +42,24 @@ function Post() {
     });
   };
 
-  // If post successfully deleted, navigate back to community page
+  // Open modal to confirm deleting post
+  // If successfully deleted, navigate back to community page
   const deleteCurrentPost = () => {
-    deletePost(post_id).then(() => {
-      navigate(`/c/${community_id}`);
-    })
-    .catch(err => {
-      console.error(err);
-    });
-  };
+    function queryDeletePost() {
+      deletePost(post_id).then(() => {
+        navigate(`/c/${community_id}`);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    }
 
-  const confirmDelete = () => {
     openModal(
       <ConfirmationModel
         header="Delete post?"
         message="Are you sure you want to delete your post? You can't undo this."
         actionText="Delete post"
-        callback={deleteCurrentPost}
+        callback={queryDeletePost}
         closeModal={closeModal}
       />
     );
@@ -81,7 +82,7 @@ function Post() {
         {/* Otherwise, render all components associated with a post */}
         {post.status === 'deleted' ?
           <DeletedPostContent post={post} /> :
-          <PostContent post={post} deletePost={confirmDelete} updatePost={updatePost} />
+          <PostContent post={post} deletePost={deleteCurrentPost} updatePost={updatePost} />
         }
       </div>
 

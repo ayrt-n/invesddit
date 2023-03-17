@@ -3,7 +3,7 @@ import AccountContext from '../../contexts/account/AccountContext';
 import { isLoggedIn } from '../../services/authService';
 import PostDropdown from './PostDropdown';
 
-function PostActions({ showPostDropdown, account, commentCount, deletePost, editPost }) {
+function PostActions({ showPostDropdown, accountId, commentCount, deletePost, editPost }) {
   const { currentAccount } = useContext(AccountContext);
 
   return (
@@ -19,7 +19,7 @@ function PostActions({ showPostDropdown, account, commentCount, deletePost, edit
       </div>
 
       {/* If showPostDropdown, logged in and current user is post author, show additional actions button */}
-      {(showPostDropdown && isLoggedIn() && currentAccount.id === account.id) ?
+      {(showPostDropdown && isLoggedIn() && currentAccount.id === accountId) ?
         <PostDropdown
           deletePost={deletePost}
           editPost={editPost}

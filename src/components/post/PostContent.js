@@ -38,7 +38,7 @@ function PostContent({ post, deletePost, updatePost }) {
       {/* Footer with different post actions/links */}
       <PostActions
         commentCount={post.comments_count}
-        account={post.account}
+        accountId={post.account.id}
         deletePost={deletePost}
         editPost={post.type === 'TextPost' ? () => setIsEditting(true) : null}
         showPostDropdown={true}
