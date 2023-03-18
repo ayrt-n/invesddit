@@ -14,7 +14,7 @@ function CommentForm({ postId, commentId, autoFocus, addComment }) {
   const handleSubmit = (values, { resetForm }) => {
     // Set resource and id based on whether postId or commentId provided
     createComment(postId, values).then((data) => {
-      addComment(data.data);
+      addComment(data);
       resetForm();
     })
     .catch((err) => {
