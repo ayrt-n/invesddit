@@ -1,16 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import PostSidebar from './PostSidebar';
 import CommentSection from '../comments/CommentSection';
 import { getPost, deletePost } from '../../services/postService';
 import { addRecentPost } from '../../services/recentPostTracker';
-import ModalContext from '../../contexts/modal/ModalContext';
-import ConfirmationModel from '../ConfirmationModal';
 import DeletedPostContent from './DeletedPostContent';
 import PostContent from './PostContent';
 
 function Post() {
-  const { openModal, closeModal } = useContext(ModalContext);
   const { post_id } = useParams();
   const { community_id } = useParams();
   const [post, setPost] = useState(null);
@@ -45,24 +42,12 @@ function Post() {
   // Open modal to confirm deleting post
   // If successfully deleted, navigate back to community page
   const deleteCurrentPost = () => {
-    function queryDeletePost() {
-      deletePost(post_id).then(() => {
-        navigate(`/c/${community_id}`);
-      })
-      .catch(err => {
-        console.error(err);
-      });
-    }
-
-    openModal(
-      <ConfirmationModel
-        header="Delete post?"
-        message="Are you sure you want to delete your post? You can't undo this."
-        actionText="Delete post"
-        callback={queryDeletePost}
-        closeModal={closeModal}
-      />
-    );
+    deletePost(post_id).then(() => {
+      navigate(`/c/${community_id}`);
+    })
+    .catch(err => {
+      console.error(err);
+    });
   };
 
   if (!post) return null;

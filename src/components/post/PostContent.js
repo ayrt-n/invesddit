@@ -36,6 +36,7 @@ function PostContent({ post, deletePost, updatePost }) {
       }
 
       {/* Footer with different post actions/links */}
+      {/* As of now, can only edit text posts */}
       <PostActions
         commentCount={post.comments_count}
         accountId={post.account.id}
