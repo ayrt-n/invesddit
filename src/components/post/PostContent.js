@@ -7,7 +7,7 @@ import PostActions from './PostActions';
 import EditPostForm from './EditPostForm';
 
 function PostContent({ post, deletePost, updatePost }) {
-  const [isEditting, setIsEditting] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   return (
     <div className="w-full">
@@ -21,11 +21,11 @@ function PostContent({ post, deletePost, updatePost }) {
       
       {/* Render either post edit form, or text/media/link post content */}
       {
-        isEditting ?
+        isEditing ?
           <EditPostForm
             postId={post.id}
             body={post.body}
-            closeEdit={() => setIsEditting(false)}
+            closeEdit={() => setIsEditing(false)}
             updatePostContent={updatePost}
           /> :
         post.type === 'TextPost' ?
@@ -41,7 +41,7 @@ function PostContent({ post, deletePost, updatePost }) {
         commentCount={post.comments_count}
         accountId={post.account.id}
         deletePost={deletePost}
-        editPost={post.type === 'TextPost' ? () => setIsEditting(true) : null}
+        editPost={post.type === 'TextPost' ? () => setIsEditing(true) : null}
         showPostDropdown={true}
       />
     </div>
