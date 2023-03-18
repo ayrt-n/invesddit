@@ -34,7 +34,7 @@ function ConfirmationModel({ header, message, actionText, callback, closeModal }
         <PillButton onClick={closeModal} variant="inverted" additionalClasses="w-auto">
           Cancel
         </PillButton>
-        <PillButton onClick={handleConfirm} additionalClasses="w-auto ml-[8px] hover:bg-red-500 active:bg-red-400">
+        <PillButton onClick={handleConfirm} variant="danger" additionalClasses="w-auto ml-[8px]">
           {actionText}
         </PillButton>
       </footer>

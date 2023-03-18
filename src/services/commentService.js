@@ -39,7 +39,23 @@ function createComment(postId, values) {
   })
 }
 
+function deleteComment(commentId) {
+  return fetch(`${API_URL}/api/v1/comments/${commentId}`, {
+    method: 'DELETE',
+    mode: 'cors',
+    headers: defaultHeaders(),
+  })
+  .then(response => {
+    if (response.ok) {
+      return response;
+    } else {
+      throw response.text().then(text => { throw new Error(text) });
+    }
+  })
+}
+
 export {
   getComments,
-  createComment
+  createComment,
+  deleteComment,
 }

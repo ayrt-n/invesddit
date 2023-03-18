@@ -18,23 +18,23 @@ function CommentSection({ postId }) {
     });
   }, [postId, sortBy]);
 
-  // Add new comment to list
+  // Add new top-level comment to list
   const addComment = (newComment) => {
     setComments((prev) => {
       return [ newComment, ...prev ]
     })
   };
 
-  // Add new comment thread (including newly created nested comment) to comment list
-  const addNestedComment = (newThread) => {
+  // Update existing list of comments
+  const updateComments = (newComment) => {
     setComments((prev) => {
-      return prev.map((commentThread) => {
-        if (commentThread.id === newThread.id) return newThread;
+      return prev.map((comment) => {
+        if (comment.id === newComment.id) return newComment;
         
-        return commentThread;
+        return comment;
       });
     });
-  };
+  }
 
   if (!comments) return null;
 
@@ -52,7 +52,11 @@ function CommentSection({ postId }) {
             {comments.map((comment) => {
               return (
                 <div className="mt-[16px]" key={comment.id}>
-                  <Comment comment={comment} addNestedComment={addNestedComment} />
+                  <Comment
+                    comment={comment}
+                    addNestedComment={updateComments}
+                    deleteComment={updateComments}
+                  />
                 </div>
               );
             })}

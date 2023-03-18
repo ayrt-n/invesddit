@@ -2,7 +2,8 @@ import React from 'react';
 
 const variants = {
   primary: 'bg-primary-500 hover:bg-primary-400 active:bg-primary-300 text-white',
-  inverted: 'border-[1px] text-primary-500 border-primary-500 hover:bg-blue-50 active:bg-blue-100'
+  inverted: 'border-[1px] text-primary-500 border-primary-500 hover:bg-blue-50 active:bg-blue-100',
+  danger: 'bg-primary-500 hover:bg-red-500 active:bg-red-300 text-white',
 }
 
 function PillButton({ as, children, variant, additionalClasses, ...props }) {

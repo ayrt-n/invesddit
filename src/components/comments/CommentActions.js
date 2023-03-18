@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import ProtectedButton from '../ProtectedButton';
 import { upvote, downvote, deleteVote } from '../../services/voteService';
+import AccountContext from '../../contexts/account/AccountContext';
+import { isLoggedIn } from '../../services/authService';
+import CommentDropdown from './CommentDropdown';
 
-function CommentActions({ voted, score, id, toggleReply }) {
+function CommentActions({ voted, score, id, accountId, toggleReply, deleteComment }) {
   const [usersVote, setUsersVote] = useState(voted);
   const [changeInScore, setChaneInScore] = useState(0);
+  const { currentAccount } = useContext(AccountContext);
 
   const upvoteComment = () => {
     upvote('comments', id).then(() => {
@@ -88,6 +92,15 @@ function CommentActions({ voted, score, id, toggleReply }) {
           Reply
         </span>
       </button>
+
+      {/* Comment dropdown menu for edit/delete */}
+      {/* If logged in and current user is comment author, show additional actions button */}
+      {(isLoggedIn() && currentAccount.id === accountId) ?
+        <CommentDropdown
+          deleteComment={deleteComment}
+        /> :
+        null
+      }
     </div>
   );
 }
