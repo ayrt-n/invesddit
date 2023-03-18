@@ -6,7 +6,7 @@ import CommentSidebar from './CommentSidebar';
 import CommentReplyForm from './CommentReplyForm';
 import { deleteComment as deleteCommentAPI } from '../../services/commentService';
 
-function Comment({ comment, addNestedComment, deleteComment }) {
+function Comment({ comment, addNestedComment, updateComment }) {
   // State and toggle to collapse/uncollapse comment thread
   const [collapsed, setCollapsed] = useState(false);
   const toggleCollapse = () => { setCollapsed((prev) => !prev) };
@@ -33,24 +33,16 @@ function Comment({ comment, addNestedComment, deleteComment }) {
     );
   };
 
-  const handleDelete = (replacementComment) => {
-    // If current comment is the comment to be deleted (replacementComment)
-    // Update comment attributes and pass upwards to delete comment
+  const handleUpdate = (replacementComment) => {
+    // If current comment is the comment to be replaced then replace and pass upwards
     if (comment.id === replacementComment.id) {
-      deleteComment(
-        {
-          ...comment,
-          body: '[removed]',
-          status: 'deleted',
-          account: null,
-        }
-      );
+      updateComment(replacementComment);
 
       return;
     }
 
-    // Otherwise, pass this comment with the new replacement comment as a nested comment
-    deleteComment(
+    // Otherwise, pass the current comment with the new replacement comment as nested comment
+    updateComment(
       {
         ...comment,
         comments: comment.comments.map((c) => {
@@ -62,10 +54,18 @@ function Comment({ comment, addNestedComment, deleteComment }) {
     );
   }
 
-  // Prompt user to confirm they would like to delete comment and query API on approval
-  const queryDeleteComment = () => {
+  // Queries API to delete the current comment (i.e., the comment that this component has rendered)
+  const deleteCurrentComment = () => {
+    // If successfully deleted, pass a mock deleted comment to function to update the commentSection state
     deleteCommentAPI(comment.id).then(() => {
-      handleDelete(comment)
+      handleUpdate(
+        {
+          ...comment,
+          body: '[removed]',
+          status: 'deleted',
+          account: null,
+        }
+      )
     })
     .catch(err => {
       console.error(err);
@@ -96,14 +96,14 @@ function Comment({ comment, addNestedComment, deleteComment }) {
           voted={comment.vote_status}
           id={comment.id}
           accountId={comment.account?.id}
-          deleteComment={queryDeleteComment}
+          deleteComment={deleteCurrentComment}
           toggleReply={toggleReply}
         />
 
         {replyOpen ? <CommentReplyForm postId={comment.post_id} commentId={comment.id} addComment={handleSubmitNestedComment} /> : null}
 
         {hasNestedComment ?
-          comment.comments.map((comment) => <Comment comment={comment} key={comment.id} addNestedComment={handleSubmitNestedComment} deleteComment={handleDelete} />) :
+          comment.comments.map((comment) => <Comment comment={comment} key={comment.id} addNestedComment={handleSubmitNestedComment} updateComment={handleUpdate} />) :
           null
         }
       </div>
