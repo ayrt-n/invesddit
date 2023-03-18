@@ -54,8 +54,27 @@ function deleteComment(commentId) {
   })
 }
 
+function updateComment(commentId, values) {
+  return fetch(`${API_URL}/api/v1/comments/${commentId}`, {
+    method: 'PATCH',
+    mode: 'cors',
+    headers: defaultHeaders(),
+    body: JSON.stringify({
+      body: values.body
+    })
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw response.text().then(text => { throw new Error(text) });
+    }
+  });
+}
+
 export {
   getComments,
   createComment,
   deleteComment,
+  updateComment,
 }

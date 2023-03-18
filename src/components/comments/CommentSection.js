@@ -55,7 +55,7 @@ function CommentSection({ postId }) {
                   <Comment
                     comment={comment}
                     addNestedComment={updateComments}
-                    deleteComment={updateComments}
+                    updateComment={updateComments}
                   />
                 </div>
               );

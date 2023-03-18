@@ -5,8 +5,12 @@ import CollapsedCommentHeader from './CollapsedCommentHeader';
 import CommentSidebar from './CommentSidebar';
 import CommentReplyForm from './CommentReplyForm';
 import { deleteComment as deleteCommentAPI } from '../../services/commentService';
+import EditCommentForm from './EditCommentForm';
 
 function Comment({ comment, addNestedComment, updateComment }) {
+  // State and toggle to switch to edit mode
+  const [isEditing, setIsEditing] = useState(false);
+
   // State and toggle to collapse/uncollapse comment thread
   const [collapsed, setCollapsed] = useState(false);
   const toggleCollapse = () => { setCollapsed((prev) => !prev) };
@@ -33,6 +37,9 @@ function Comment({ comment, addNestedComment, updateComment }) {
     );
   };
 
+  // Handle update of existing comment/comment threads
+  // This will bubble up through comment thread until it reaches the CommentSection and
+  // will proceed to update the comment state from there
   const handleUpdate = (replacementComment) => {
     // If current comment is the comment to be replaced then replace and pass upwards
     if (comment.id === replacementComment.id) {
@@ -41,7 +48,7 @@ function Comment({ comment, addNestedComment, updateComment }) {
       return;
     }
 
-    // Otherwise, pass the current comment with the new replacement comment as nested comment
+    // Otherwise, pass the current comment with the replacement comment as nested comment to maintain the changes
     updateComment(
       {
         ...comment,
@@ -87,9 +94,17 @@ function Comment({ comment, addNestedComment, updateComment }) {
       <div className={`ml-[8px] max-w-[800px] w-full ${collapsed ? 'hidden' : ''}`}>
         <CommentMetaText account={comment.account} createdAt={comment.created_at} status={comment.status} />
 
-        <div className="my-[2px] text-[14px] leading-[21px] break-words ">
-          {comment.body}
-        </div>
+        {isEditing ?
+          <EditCommentForm
+            commentId={comment.id}
+            body={comment.body}
+            closeEdit={() => setIsEditing(false)}
+            updateCommentContent={handleUpdate}
+          /> :
+          <div className="my-[2px] text-[14px] leading-[21px] break-words ">
+            {comment.body}
+          </div>
+        }
 
         <CommentActions
           score={comment.score}
@@ -97,6 +112,7 @@ function Comment({ comment, addNestedComment, updateComment }) {
           id={comment.id}
           accountId={comment.account?.id}
           deleteComment={deleteCurrentComment}
+          editComment={() => setIsEditing(true)}
           toggleReply={toggleReply}
         />
 

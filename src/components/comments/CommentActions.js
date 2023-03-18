@@ -5,7 +5,7 @@ import AccountContext from '../../contexts/account/AccountContext';
 import { isLoggedIn } from '../../services/authService';
 import CommentDropdown from './CommentDropdown';
 
-function CommentActions({ voted, score, id, accountId, toggleReply, deleteComment }) {
+function CommentActions({ voted, score, id, accountId, toggleReply, deleteComment, editComment }) {
   const [usersVote, setUsersVote] = useState(voted);
   const [changeInScore, setChaneInScore] = useState(0);
   const { currentAccount } = useContext(AccountContext);
@@ -98,6 +98,7 @@ function CommentActions({ voted, score, id, accountId, toggleReply, deleteCommen
       {(isLoggedIn() && currentAccount.id === accountId) ?
         <CommentDropdown
           deleteComment={deleteComment}
+          editComment={editComment}
         /> :
         null
       }
