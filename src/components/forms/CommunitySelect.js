@@ -9,12 +9,15 @@ import { getCommunities } from '../../services/communityService';
 const CommunityPlaceholder = (props) => {
   return (
     <components.Placeholder {...props}>
-        <div className="flex items-center h-full">
-          <span className="rounded-full border-[1px] border-feed-text border-dashed w-[22px] h-[22px] leading-[22px]" />
-          <div className="flex-1 pl-[8px] text-[14px] text-[#1c1c1c] font-medium leading-[18px] w-full align-middle">
-            Choose a community
+        {props.isFocused ?
+          null : 
+          <div className="flex items-center h-full">
+            <span className="rounded-full border-[1px] border-feed-text border-dashed w-[22px] h-[22px] leading-[22px]" />
+            <div className="flex-1 pl-[8px] text-[14px] text-[#1c1c1c] font-medium leading-[18px] w-full align-middle">
+              Choose a community
+            </div>
           </div>
-        </div>
+        }
     </components.Placeholder>
   );
 }
