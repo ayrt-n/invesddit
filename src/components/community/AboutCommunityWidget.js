@@ -7,7 +7,7 @@ function AboutCommunityWidget({ description, createdAt, membershipCount }) {
   const createdAtDate = Date.parse(createdAt);
 
   return (
-    <div className="bg-canvas-light border-post-border border-[1px]">
+    <div className="bg-canvas-light border-post-border border-[1px] rounded-[4px]">
       <div className="p-[12px]">
         <h2 className="text-[14px] font-bold leading-[18px]">
           About Community
