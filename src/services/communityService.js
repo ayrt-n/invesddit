@@ -87,10 +87,26 @@ function updateCommunity(values) {
   })
 }
 
+function getCommunities(q) {
+  return fetch(`${API_URL}/api/v1/communities?q=${q}`, {
+    method: 'GET',
+    mode: 'cors',
+    headers: defaultHeaders()
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw response.text().then(text => { throw new Error(text) });
+    }
+  })
+}
+
 export {
   getCommunity,
   joinCommunity,
   leaveCommunity,
   createCommunity,
   updateCommunity,
+  getCommunities,
 }
