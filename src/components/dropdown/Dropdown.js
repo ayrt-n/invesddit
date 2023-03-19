@@ -1,32 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
+import { useDropdown } from '../../hooks/useDropdown';
 
 function Dropdown({ dropdownPrompt, children }) {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdown = useRef(null);
+  const [dropdownOpen, setDropdownOpen, dropdownRef] = useDropdown();
 
   const toggleDropdown = (event) => {
     setDropdownOpen(!dropdownOpen)
     event.stopPropagation();
   };
 
-  // Close dropdown menu on outside click
-  const closeDropdowns = (e) => {
-    if (dropdown.current && dropdownOpen && !dropdown.current.contains(e.target)) {
-      setDropdownOpen(false);
-    }
-  }
-
-  // Set event listener to register clicks outside of dropdown menu
-  useEffect(() => {
-    document.addEventListener('mousedown', closeDropdowns);
-    
-    return () => {
-      document.removeEventListener('mousedown', closeDropdowns);
-    };
-  });
-
   return (
-    <div ref={dropdown} onClick={toggleDropdown} className="relative">
+    <div ref={dropdownRef} onClick={toggleDropdown} className="relative">
       <button className="p-[8px] flex items-center justify-center rounded-[2px] hover:bg-icon-hover">
         {dropdownPrompt}
       </button>
