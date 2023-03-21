@@ -11,7 +11,7 @@ function PillButton({ as, children, variant, additionalClasses, ...props }) {
   const buttonStyles = variant ? variants[variant] : variants['primary'];
 
   // Set default classes and add any additional classes specified as prop
-  let className = `${buttonStyles} font-bold py-[4px] px-[16px] rounded-full w-full cursor-pointer inline-block text-center disabled:cursor-not-allowed disabled:grayscale disabled:text-gray-300 ${additionalClasses}`
+  let className = `${buttonStyles} min-h-[32px] flex items-center justify-center font-noto text-[14px] leading-[17px] font-bold py-[4px] px-[16px] rounded-full w-full cursor-pointer inline-block text-center disabled:cursor-not-allowed disabled:grayscale disabled:text-gray-300 ${additionalClasses}`
 
   return (
     <Component className={className} {...props}>

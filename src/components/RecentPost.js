@@ -29,7 +29,7 @@ function RecentPost({ post }) {
           <p className="text-[14px] font-medium leading-[18px] mb-[4px] text-ellipsis overflow-hidden max-h-[36px]">
             {post.title}
           </p>
-          <div>
+          <div className="flex items-center">
             <span className="text-[12px] leading-[16px] whitespace-nowrap text-feed-text">
               {post.score} point{post.score === 1 ? "" : "s"}
             </span>

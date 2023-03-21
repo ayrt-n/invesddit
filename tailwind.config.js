@@ -39,8 +39,12 @@ module.exports = {
       },
       backgroundImage: {
         'stock-banner': "url('/src/assets/images/stock-banner.jpg')",
-      }
+      },
     },
+    fontFamily: {
+      'sans': ['IBM Plex Sans', 'Arial', 'sans serif'],
+      'noto': ['Noto Sans', 'Arial', 'sans serif'],
+    }
   },
   plugins: [require("tailwind-gradient-mask-image")],
 }

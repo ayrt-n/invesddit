@@ -18,7 +18,7 @@ function PostPreview({ post, communityView, updatePostVoteStatus }) {
   };
 
   return (
-    <div onClick={handleClick} className="bg-canvas-light border-[1px] border-post-border mb-[10px] flex rounded-[4px] hover:border-post-border-hover cursor-pointer">
+    <div onClick={handleClick} tabIndex="0" className="bg-canvas-light border-[1px] border-post-border mb-[10px] flex rounded-[4px] hover:border-post-border-hover cursor-pointer">
       <PostSidebar
         id={post.id}
         score={post.score}

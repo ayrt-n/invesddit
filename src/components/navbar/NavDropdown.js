@@ -1,10 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import defaultAvatar from '../../assets/icons/invesddit-logo.svg';
-import AccountContext from '../../contexts/account/AccountContext';
 
-function NavDropdown({ openDropdown }) {
-  const { currentAccount } = useContext(AccountContext);
-
+function NavDropdown({ openDropdown, currentAccount }) {
   if (!currentAccount) return null;
 
   return (

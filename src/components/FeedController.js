@@ -24,7 +24,7 @@ function FeedController() {
 
   return (
     <div className="bg-canvas-light border-[1px] border-post-border rounded-[4px] mb-[16px] py-[10px] px-[12px] flex items-center">
-      <div className="items-center flex cursor-pointer">
+      <div className="items-center flex cursor-pointer text-[14px] font-noto ">
         {/* Sory by Hot */}
         <button onClick={() => handleClick('hot')} className={`inline-flex py-[6px] px-[8px] rounded-[20px] font-bold leading-[17px] items-center justify-center w-auto mr-[8px] hover:bg-gray-200 focus:bg-gray-300 ${sortBy === 'hot' ? 'bg-gray-100 text-gray-100 hover:text-gray-200 focus:text-gray-300' : 'bg-inherit text-feed-text'}`}>
           {sortBy === 'hot' ?
