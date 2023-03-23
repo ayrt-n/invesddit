@@ -16,6 +16,7 @@ import SignUp from './components/SignUp';
 import VerifyAccount from './components/VerifyAccount';
 import ModalProvider from './contexts/modal/ModalProvider';
 import SearchResults from './components/search/SearchResults';
+import NotificationDashboard from './components/notifications/NotificationDashboard';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
               <Route path="profile/settings" element={<ProfileSettings/>} />
               <Route path="profile/:username" element={<Profile />} />
               <Route path="search" element={<SearchResults />} />
+              <Route path="notifications" element={<NotificationDashboard />} />
             </Routes>
           </div>
         </div>

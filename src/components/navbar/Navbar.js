@@ -17,7 +17,7 @@ function Navbar() {
   const { currentAccount } = useContext(AccountContext);
 
   // Use modal context to open sign up or login modals
-  const { openModal } = useContext(ModalContext);
+  const { openModal, closeModal } = useContext(ModalContext);
 
   // useDropdown hook to power nav dropdown menu
   const [dropdownOpen, setDropdownOpen, dropdownRef] = useDropdown();
@@ -38,17 +38,17 @@ function Navbar() {
       <div className="flex items-center ml-[8px] pl-[8px] border-l-[1px] border-nav-border">
         {isLoggedIn() ?
           <>
-            <Notifications notifications />
+            <Notifications currentAccount={currentAccount} />
             <div ref={dropdownRef} onClick={() => setDropdownOpen(!dropdownOpen)}>
               <NavDropdown currentAccount={currentAccount} />
               {dropdownOpen ? <NavDropdownMenu currentAccount={currentAccount} /> : null}
             </div>
           </> :
           <>
-            <PillButton onClick={() => openModal(<OnboardModal initialState="signup"/>)} variant="inverted" additionalClasses="ml-[4px] text-[14px] whitespace-nowrap">
+            <PillButton onClick={() => openModal(<OnboardModal closeModal={closeModal} initialState="signup"/>)} variant="inverted" additionalClasses="ml-[4px] text-[14px] whitespace-nowrap">
               Sign up
             </PillButton>
-            <PillButton onClick={() => openModal(<OnboardModal initialState="login"/>)} additionalClasses="ml-[4px] text-[14px]">
+            <PillButton onClick={() => openModal(<OnboardModal closeModal={closeModal} initialState="login"/>)} additionalClasses="ml-[4px] text-[14px]">
               Log In
             </PillButton>
           </>
