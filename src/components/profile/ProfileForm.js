@@ -5,13 +5,10 @@ import ImageInput from '../forms/ImageInput';
 import PillButton from '../PillButton';
 import { updateAccountProfile } from '../../services/accountService';
 
-function ProfileForm({ profile, updateProfile }) {
-  const handleSubmit = (values, { resetForm }) => {
+function ProfileForm({ profile }) {
+  const handleSubmit = (values) => {
     updateAccountProfile(values).then(data => {
-      updateProfile(data.data);
-    })
-    .then(() => {
-      resetForm();
+      window.location.reload()
     })
     .catch((err) => {
       console.error(err);
