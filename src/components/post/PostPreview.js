@@ -13,7 +13,7 @@ function PostPreview({ post, communityView, updatePostVoteStatus }) {
   return (
     <div className="bg-canvas-light border-[1px] border-post-border mb-[10px] flex rounded-[4px] hover:border-post-border-hover cursor-pointer relative">
       {/* Link overlay to allow user to click anywhere on post and navigate to the post */}
-      <Link tabIndex="0" to={postLink} className="absolute top-0 bottom-0 right-0 left-0 h-full w-full z-0" />
+      <Link tabIndex="0" to={postLink} className="absolute top-0 bottom-0 right-0 left-0 h-full w-full z-1" />
 
       <PostSidebar
         id={post.id}
@@ -42,7 +42,7 @@ function PostPreview({ post, communityView, updatePostVoteStatus }) {
         {/* Render preview of content based on post type */}
         {
           post.type === 'TextPost' ?
-          <TextPostPreview body={post.body} /> :
+          <Link to={postLink}><TextPostPreview body={post.body} /></Link> :
           post.type === 'MediaPost' ?
           <MediaPostPreview media={post.image} /> :
           <LinkPostPreview link={post.body} />
