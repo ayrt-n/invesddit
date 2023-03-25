@@ -50,7 +50,7 @@ function ProfileSettings() {
               </div>
               <div className="flex grow justify-end items-center">
                 <div>
-                  <PillButton variant="inverted">
+                  <PillButton variant="inverted" disabled>
                     Change
                   </PillButton>
                 </div>
@@ -67,7 +67,7 @@ function ProfileSettings() {
               </div>
               <div className="flex grow justify-end items-center">
                 <div>
-                  <PillButton variant="inverted">
+                  <PillButton variant="inverted" disabled>
                     Change
                   </PillButton>
                 </div>
