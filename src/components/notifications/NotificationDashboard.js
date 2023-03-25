@@ -8,7 +8,7 @@ import NotificationLoading from './NotificationLoading';
 import EmptyNotifications from './EmptyNotifications';
 
 function NotificationDashboard() {
-  const { setCurrentAccount } = useContext(AccountContext);
+  const { currentAccount, setCurrentAccount } = useContext(AccountContext);
   const [page, setPage] = useState(1);
   const {
     list,
@@ -34,8 +34,8 @@ function NotificationDashboard() {
   );
 
   const markAllAsRead = () => {
-    // If no notifications, return immediately and do not call API
-    if (!list.length) return;
+    // If no unread notifications, return immediately and do not call API
+    if (list.length === 0 || currentAccount.notifications === 0) return;
 
     readAllNotification().then(() => {
       // Set notification read status to true
