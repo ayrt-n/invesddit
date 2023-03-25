@@ -3,7 +3,7 @@ import React from 'react';
 function LinkContent({ link }) {
   return (
     <div className="ml-[8px] mt-[12px] mb-[10px] pr-[16px] font-noto">
-      <a className="hover:underline text-[12px] leading-[16px] whitespace-nowrap text-link-text flex align-center" href={"https://"+link} rel="noopener noreferrer" target="_blank">
+      <a className="hover:underline text-[12px] leading-[16px] whitespace-nowrap text-link-text flex align-center" href={link} rel="noopener noreferrer" target="_blank">
         {link}
         <svg className="pl-[4px] inline-block w-[16px] h-[16px] align-middle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>open-in-new</title>
