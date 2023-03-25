@@ -18,6 +18,9 @@ function NotificationsMenu({ closeDropdown }) {
   }, []);
 
   const markAllAsRead = () => {
+    // If no notifications, return immediately and do not call API
+    if (!notifications.length) return;
+
     readAllNotification().then(() => {
       // Set notification read status to true
       setNotifications(notifications.map(n => ({ ...n, read: true })));

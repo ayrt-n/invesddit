@@ -34,6 +34,9 @@ function NotificationDashboard() {
   );
 
   const markAllAsRead = () => {
+    // If no notifications, return immediately and do not call API
+    if (!list.length) return;
+
     readAllNotification().then(() => {
       // Set notification read status to true
       setList(list.map(n => ({ ...n, read: true })));
