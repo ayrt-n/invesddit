@@ -5,20 +5,16 @@ import PostSidebar from './PostSidebar';
 import TextPostPreview from './TextPostPreview';
 import MediaPostPreview from './MediaPostPreview';
 import LinkPostPreview from './LinkPostPreview';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function PostPreview({ post, communityView, updatePostVoteStatus }) {
-  const navigate = useNavigate();
   const postLink = `/c/${post.community.sub_dir}/posts/${post.id}`;
 
-  // On click, navigate to the post
-  // Used over anchor/link because of nested links/buttons within the post
-  const handleClick = () => {
-    navigate(postLink);
-  };
-
   return (
-    <div onClick={handleClick} tabIndex="0" className="bg-canvas-light border-[1px] border-post-border mb-[10px] flex rounded-[4px] hover:border-post-border-hover cursor-pointer">
+    <div className="bg-canvas-light border-[1px] border-post-border mb-[10px] flex rounded-[4px] hover:border-post-border-hover cursor-pointer relative">
+      {/* Link overlay to allow user to click anywhere on post and navigate to the post */}
+      <Link tabIndex="0" to={postLink} className="absolute top-0 bottom-0 right-0 left-0 h-full w-full z-0" />
+
       <PostSidebar
         id={post.id}
         score={post.score}
@@ -26,7 +22,7 @@ function PostPreview({ post, communityView, updatePostVoteStatus }) {
         updatePostVoteStatus={updatePostVoteStatus}
         preview
       />
-
+      
       <div>
         {/* Render Posts Meta Text */}
         {/* If communityView then don't render information on the community */}
