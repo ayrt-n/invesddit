@@ -1,4 +1,5 @@
 import React from 'react';
+import SkeletonLoader from '../SkeletonLoader';
 
 function PostLoading() {
   return (
@@ -21,11 +22,11 @@ function PostLoading() {
       </div>
 
       {/* Fake Post Content */}
-      <div className="animate-pulse w-full">
-        <div className="h-[14px] w-[50%] bg-slate-100 rounded-[4px] mt-[8px] mx-[8px] mb-[16px]" />
-        <div className="h-[24px] w-[60%] bg-slate-100 rounded-[4px] mt-[8px] mx-[8px] mb-[16px]" />
-        <div className="h-[250px] w-[90%] bg-slate-100 rounded-[4px] mt-[8px] mx-[8px] mb-[16px]" />
-        <div className="h-[24px] w-[25%] bg-slate-100 rounded-[4px] mt-[8px] mx-[8px] mb-[16px]" />
+      <div className="w-full">
+        <SkeletonLoader classNames="h-[14px] w-[50%] rounded-[4px] mt-[8px] mx-[8px] mb-[16px]" />
+        <SkeletonLoader classNames="h-[24px] w-[60%] mt-[8px] mx-[8px] mb-[16px]" />
+        <SkeletonLoader classNames="h-[250px] w-[90%] mt-[8px] mx-[8px] mb-[16px]" />
+        <SkeletonLoader classNames="h-[24px] w-[25%] mt-[8px] mx-[8px] mb-[16px]" />
       </div>
     </div>
   );
