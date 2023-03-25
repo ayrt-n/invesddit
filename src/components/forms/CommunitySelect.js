@@ -38,7 +38,7 @@ const formatOptionLabel = ({ avatar, label, memberCount }, { context }) => {
   if (context === 'menu') {
     return (
       <div className="p-[8px] flex items-center overflow-hidden">
-        <img src={avatar || defaultAvatar} alt="community logo" className="my-[2px] mr-[8px] max-h-[22px] max-w-[22px] rounded-full" />
+        <img src={avatar || defaultAvatar} alt="community logo" className="my-[2px] mr-[8px] h-[22px] w-[22px] rounded-full" />
         <div className="flex grow flex-col nowrap">
           <span className="text-[14px] font-medium leading-[18px] overflow-hidden text-ellipsis">
             {label}
@@ -53,7 +53,7 @@ const formatOptionLabel = ({ avatar, label, memberCount }, { context }) => {
 
   return (
     <div className="flex items-center overflow-hidden">
-      <img src={avatar || defaultAvatar} alt="community logo" className="my-[2px] mr-[8px] max-h-[22px] max-w-[22px] rounded-full" />
+      <img src={avatar || defaultAvatar} alt="community logo" className="my-[2px] mr-[8px] h-[22px] w-[22px] rounded-full" />
       <div className="flex grow flex-col nowrap">
         <span className="text-[14px] font-medium leading-[18px] overflow-hidden text-ellipsis">
           {label}
