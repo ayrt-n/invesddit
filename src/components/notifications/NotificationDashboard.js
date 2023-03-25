@@ -1,24 +1,42 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useRef, useContext, useCallback } from 'react';
 import NotificationListItem from './NotificationListItem';
 import { getNotifications } from '../../services/notificationService';
 import { readAllNotification } from '../../services/notificationService';
 import AccountContext from '../../contexts/account/AccountContext';
+import usePagination from '../../hooks/usePagination';
+import NotificationLoading from './NotificationLoading';
+import EmptyNotifications from './EmptyNotifications';
 
 function NotificationDashboard() {
   const { setCurrentAccount } = useContext(AccountContext);
-  const [notifications, setNotifications] = useState(null);
+  const [page, setPage] = useState(1);
+  const {
+    list,
+    setList,
+    hasMore,
+    isLoading
+  } = usePagination(getNotifications, page)
 
-  useEffect(() => {
-    getNotifications().then(data => {
-      console.log(data.data);
-      setNotifications(data.data);
-    })
-  }, [])
+  const observer = useRef();
+  const lastNotificationRef = useCallback((node) => {
+      if (isLoading) return;
+      if (observer.current) observer.current.disconnect();
+
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPage((prev) => prev + 1);
+        }
+      });
+
+      if (node) observer.current.observe(node);
+    },
+    [isLoading, hasMore]
+  );
 
   const markAllAsRead = () => {
     readAllNotification().then(() => {
       // Set notification read status to true
-      setNotifications(notifications.map(n => ({ ...n, read: true })));
+      setList(list.map(n => ({ ...n, read: true })));
 
       // Set notification count to 0
       setCurrentAccount(prev => (
@@ -31,13 +49,13 @@ function NotificationDashboard() {
     .catch(err => console.error(err));
   };
 
-  if (!notifications) return null;
+  if (!list) return null;
 
   return (
     <div className="py-[20px] px-[24px]">
       <div className="mx-auto max-w-full flex justify-center">
         <div className="max-w-[640px] w-full">
-          <div className="h-[131px] mx-auto max-w-[648px] flex flex-wrap items-center justify-between">
+          <div className="mx-auto max-w-[648px] flex flex-wrap items-center justify-between pt-[40px] pb-[21px]">
             <h1 className="text-[22px] font-medium leading-[26px] mr-[8px]">
               Notifications
             </h1>
@@ -53,9 +71,27 @@ function NotificationDashboard() {
             <div className="flex-[1_1_100%]">
               <div className="bg-canvas-light rounded-[4px] mx-auto overflow-hidden">
                 <ul>
-                  {notifications.length > 0 ?
-                    notifications.map((notification) => (<NotificationListItem key={notification.id} notification={notification} underlined />)) :
-                    null
+                  {isLoading && page === 1 ?
+                    <ul>
+                      <NotificationLoading underlined={true} />
+                      <NotificationLoading underlined={true} />
+                      <NotificationLoading underlined={true} />
+                    </ul> :
+                  list.length > 0 ?
+                    list.map((notification, index) => {
+                      if (list.length === index + 1) {
+                        return (
+                          <div key={notification.id} ref={lastNotificationRef}>
+                            <NotificationListItem key={notification.id} notification={notification} underlined />
+                          </div>
+                        );
+                      } else {
+                        return (
+                          <NotificationListItem key={notification.id} notification={notification} underlined />
+                        );
+                      }
+                    }) :
+                    <EmptyNotifications />
                   }
                 </ul>
               </div>

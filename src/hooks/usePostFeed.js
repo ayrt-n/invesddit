@@ -1,23 +1,32 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { getPostFeed } from '../services/feedService';
 
-export function usePostFeed(subdir) {
+export function usePostFeed(subdir, feedParams, pageNumber) {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchParams] = useSearchParams();
+  const [hasMore, setHasMore] = useState(true);
 
+  // Clear list if callback changes
   useEffect(() => {
-    let feedParams = {
-      sort_by: searchParams.get('sort_by'),
-      filter: searchParams.get('filter'),
-    }
+    setPosts([]);
+  }, [subdir]);
+ 
+  useEffect(() => {
+    setIsLoading(true);
 
-    getPostFeed(subdir, feedParams).then(data => {
-      setPosts(data.data);
-      setIsLoading(false);
-    });
-  }, [subdir, searchParams]);
+    getPostFeed(subdir, { page: pageNumber, ...feedParams }).then(data => {
+      if (pageNumber === 1) {
+        setPosts([...data.data]);
+        setHasMore(data.data.length > 0);
+        setIsLoading(false);
+      } else {
+        setPosts(prev => ([...prev, ...data.data]));
+        setHasMore(data.data.length > 0);
+        setIsLoading(false);
+      }
+    })
+    .catch(err => console.error(err));
+  }, [subdir, feedParams, pageNumber, hasMore])
 
-  return {posts, setPosts, isLoading}
+  return { posts, setPosts, isLoading, hasMore }
 }

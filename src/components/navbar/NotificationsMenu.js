@@ -4,17 +4,18 @@ import { getNotifications } from '../../services/notificationService';
 import NotificationListItem from '../notifications/NotificationListItem';
 import { readAllNotification } from '../../services/notificationService';
 import AccountContext from '../../contexts/account/AccountContext';
+import EmptyNotifications from '../notifications/EmptyNotifications';
 
 function NotificationsMenu({ closeDropdown }) {
   const { setCurrentAccount } = useContext(AccountContext )
   const [notifications, setNotifications] = useState(null);
 
+  // Query for and display the first five notifications
   useEffect(() => {
-    getNotifications().then(data => {
-      console.log(data.data);
+    getNotifications({ page: 1, limit: 5 }).then(data => {
       setNotifications(data.data);
-    })
-  }, [])
+    });
+  }, []);
 
   const markAllAsRead = () => {
     readAllNotification().then(() => {
@@ -47,19 +48,21 @@ function NotificationsMenu({ closeDropdown }) {
           </svg>
         </button>
       </div>
-      <div className="max-h-[407px] h-full overflow-x-hidden overflow-y-auto">
-        <ul onClick={closeDropdown}>
-          {notifications.length > 0 ?
-            notifications.map((notification) => (<NotificationListItem key={notification.id} notification={notification} />)) :
-            null
-          }
-        </ul>
-      </div>
-      <div className="flex items-center justify-center h-[49px] bg-comment-controls px-[12px]">
-        <Link onClick={closeDropdown} to="/notifications" className="text-primary-400 text-[14px] font-bold tracking-[0.5px] leading-[32px] overflow-hidden whitespace-nowrap">
-          SEE ALL
-        </Link>
-      </div>
+      {notifications.length > 0 ?
+        <>
+          <div className="max-h-[407px] h-full overflow-x-hidden overflow-y-auto">
+            <ul onClick={closeDropdown}>
+              {notifications.map((notification) => (<NotificationListItem key={notification.id} notification={notification} />))}
+            </ul>
+          </div>
+          <div className="flex items-center justify-center h-[49px] bg-comment-controls px-[12px]">
+            <Link onClick={closeDropdown} to="/notifications" className="text-primary-400 text-[14px] font-bold tracking-[0.5px] leading-[32px] overflow-hidden whitespace-nowrap">
+              SEE ALL
+            </Link>
+          </div>
+        </> :
+        <EmptyNotifications />
+      }
     </div>
   );
 }

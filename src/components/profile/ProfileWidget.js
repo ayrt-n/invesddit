@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import format from 'date-fns/format';
 import defaultAvatar from '../../assets/icons/invesddit-logo.svg';
+import { getAccount } from '../../services/accountService';
 
-function ProfileWidget({ account }) {
+function ProfileWidget({ username }) {
+  const [account, setAccount] = useState(null);
+
+  useEffect(() => {
+    getAccount(username).then(data => {
+      setAccount(data.data);
+    })
+  }, [username])
+
   if (!account) return null;
 
   return (

@@ -3,8 +3,10 @@ import defaultHeaders from './defaultHeaders';
 
 const API_URL = config.urls.API_URL;
 
-function getNotifications() {
-  return fetch(`${API_URL}/api/v1/notifications`, {
+function getNotifications(params = {}) {
+  const searchParams = new URLSearchParams(params);
+
+  return fetch(`${API_URL}/api/v1/notifications?${searchParams}`, {
     method: 'GET',
     mode: 'cors',
     headers: defaultHeaders(),
