@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import NavDropdownHeader from './NavDropdownHeader';
 import NavDropdownItem from './NavDropdownItem';
 import NavDropdownSection from './NavDropdownSection';
-import { logout } from '../../services/authService';
 import { getCurrentAccountCommunities } from '../../services/accountService';
 import defaultAvatar from '../../assets/icons/invesddit-logo.svg';
 
-function NavDropdownMenu({ currentAccount }) {
-  const navigate = useNavigate();
-  
+function NavDropdownMenu({ currentAccount, logOut }) {
   // Current account communities
   const [communities, setCommunities] = useState([]);
   useEffect(() => {
@@ -17,12 +13,6 @@ function NavDropdownMenu({ currentAccount }) {
       setCommunities(data.data);
     });
   }, []);
-
-  const logOut = () => {
-    logout();
-    navigate('/')
-    window.location.reload();
-  };
   
   if (!currentAccount) return null;
 

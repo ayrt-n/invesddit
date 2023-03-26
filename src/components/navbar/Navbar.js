@@ -14,7 +14,7 @@ import { useDropdown } from '../../hooks/useDropdown';
 
 function Navbar() {
   // Account context for notifications and dropdown menu
-  const { currentAccount } = useContext(AccountContext);
+  const { currentAccount, logOut } = useContext(AccountContext);
 
   // Use modal context to open sign up or login modals
   const { openModal, closeModal } = useContext(ModalContext);
@@ -41,7 +41,7 @@ function Navbar() {
             <Notifications currentAccount={currentAccount} />
             <div ref={dropdownRef} onClick={() => setDropdownOpen(!dropdownOpen)}>
               <NavDropdown currentAccount={currentAccount} />
-              {dropdownOpen ? <NavDropdownMenu currentAccount={currentAccount} /> : null}
+              {dropdownOpen ? <NavDropdownMenu currentAccount={currentAccount} logOut={logOut} /> : null}
             </div>
           </> :
           <>
