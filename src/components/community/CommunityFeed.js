@@ -11,7 +11,7 @@ function CommunityFeed() {
     <>
       <FeedController />
       <Feed
-        subdir={`/api/v1/communities/${community_id}/posts`}
+        subdir={`api/v1/communities/${community_id}/posts`}
         emptyFeed={<EmptyCommunityFeed />}
       />
     </>

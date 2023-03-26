@@ -22,7 +22,7 @@ function Homepage() {
           <FeedController />
 
           <Feed
-            subdir="/api/v1/posts"
+            subdir="api/v1/posts"
             emptyFeed={<EmptyHomeFeed />}
           />
         </div>
