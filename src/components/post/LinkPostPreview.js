@@ -2,8 +2,8 @@ import React from 'react';
 
 function LinkPostPreview({ link }) {
   return (
-    <div onClick={(e) => e.stopPropagation()} className="px-[8px] my-[5px] w-min font-noto">
-      <a className="relative hover:underline text-[12px] leading-[16px] whitespace-nowrap text-link-text flex align-center" href={link} rel="noopener nofollow ugc noreferrer" target="_blank">
+    <div onClick={(e) => e.stopPropagation()} className="px-[8px] my-[5px] font-noto">
+      <a className="relative hover:underline text-[12px] leading-[16px] text-link-text flex align-center" href={link} rel="noopener nofollow ugc noreferrer" target="_blank">
         {link}
         <svg className="pl-[4px] inline-block w-[16px] h-[16px] align-middle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>open-in-new</title>

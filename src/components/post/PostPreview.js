@@ -34,7 +34,7 @@ function PostPreview({ post, communityView, updatePostVoteStatus }) {
         />
         {/* Render Post title and Post body preview */}
         <div className="px-[8px]">
-          <div className="text-[18px] font-medium leading-[22px] break-all">
+          <div className="text-[18px] font-medium leading-[22px] break-word">
             {post.title}
           </div>
         </div>
