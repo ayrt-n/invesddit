@@ -31,7 +31,7 @@ function SignUpForm({ callToAction, links }) {
 
     if (!values.password) {
       errors.password = 'Please enter a password to continue';
-    } else if (values.password.length < 6) {
+    } else if (values.password.length < 8) {
       errors.password = 'Password must be at least 8 characters';
     }
 
