@@ -25,16 +25,20 @@ function login(email, password) {
     return response.json();
   })
   .catch((err) => {
-    console.error(err)
+    console.error(err);
   });
 }
 
+function getAccountToken() {
+  return localStorage.getItem('account');
+}
+
 function isLoggedIn() {
-  return !!localStorage.getItem('account')
+  return !!localStorage.getItem('account');
 }
 
 function logout() {
-  localStorage.removeItem('account')
+  localStorage.removeItem('account');
 }
 
 function createAccount(email, username, password, passwordConfirmation) {
@@ -77,4 +81,5 @@ export {
   logout,
   createAccount,
   verifyAccount,
+  getAccountToken,
 }
