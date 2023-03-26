@@ -1,7 +1,7 @@
 // Production urls
 const prod = {
   urls: {
-    API_URL: null
+    API_URL: 'https://thawing-atoll-42002.herokuapp.com'
   }
 };
 
