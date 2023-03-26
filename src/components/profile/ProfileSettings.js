@@ -16,8 +16,8 @@ function ProfileSettings() {
 
   return (
     <div className="min-h-[calc(100vh-48px)] bg-canvas-light pb-[40px]">
-      <div className="max-w-[1200px] mx-auto flex px-[16px]">
-        <div className="max-w-[688px] flex-auto">
+      <div className="max-w-[1200px] mx-auto px-[16px]">
+        <div className="max-w-[688px]">
           <div className="border-b-[1px] border-nav-border">
             <h1 className="text-[18px] font-medium leading-[22px] py-[16px] px-[20px]">
               User Settings

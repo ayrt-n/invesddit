@@ -5,7 +5,7 @@ import PostGuidelineWidget from './PostGuidelineWidget';
 
 function CreatePostPage() {
   return (
-    <div className="py-[20px] px-[24px]">
+    <div className="py-[20px] md:px-[24px]">
       <div className="mx-auto max-w-min flex">
         <div className="w-[640px]">
           <div className="p-[4px] my-[16px] border-b-[1px] border-nav-border min-h-[43px]">

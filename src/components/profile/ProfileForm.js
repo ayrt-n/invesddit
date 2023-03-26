@@ -34,7 +34,7 @@ function ProfileForm({ profile }) {
             Images must be .png or .jpg format.
           </p>
         </div>
-        <div className="flex h-[120px]">
+        <div className="flex flex-wrap">
           <div className="w-[120px] mr-[12px] h-full overflow-hidden bg-canvas-light">
             <ImageInput
               id="avatar"
@@ -44,7 +44,7 @@ function ProfileForm({ profile }) {
               onChange={(value) => formik.setFieldValue("avatar", value)}
             />
           </div>
-          <div className="w-[412px] mr-[12px] h-full overflow-hidden">
+          <div className="max-w-[412px] w-full h-[120px] mr-[12px] overflow-hidden">
             <ImageInput
               id="banner"
               name="banner"

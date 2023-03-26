@@ -35,7 +35,7 @@ function CommunityHomepage() {
         banner={community.banner}
       />
 
-      <div className="py-[20px] px-[24px]">
+      <div className="py-[20px] md:px-[24px]">
         <div className="mx-auto max-w-min flex">
           {/* Main Post Feed */}
           <div className="w-[640px]">
