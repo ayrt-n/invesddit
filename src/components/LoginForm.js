@@ -59,12 +59,12 @@ function LoginForm({ links }) {
         validate={validate}
         onSubmit={handleLogin}
       >
-        {formik => (
-          <form onSubmit={formik.handleSubmit}>
+        {({ isValid, dirty, isSubmitting, handleSubmit }) => (
+          <form onSubmit={handleSubmit}>
             <LoginInput label="Email" name="email" id="email" type="text" />
             <LoginInput label="Password" name="password" id="password" type="password" />
             {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
-            <LoginButton>
+            <LoginButton disabled={!isValid || !dirty || isSubmitting}>
               Log in
             </LoginButton>
           </form>

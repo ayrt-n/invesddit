@@ -47,7 +47,7 @@ function SignUpForm({ callToAction, links }) {
   // On submit send API request to register user
   // If success, redirect to login with success message
   // Otherwise, display error message
-  const handleRegister = (values, { setSubmitting, setStatus }) => {
+  const handleRegister = (values, { setSubmitting }) => {
     createAccount(values.email, values.username, values.password, values.passwordConfirmation)
     .then((data) => {
       if (data.success) {
