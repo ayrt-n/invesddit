@@ -76,7 +76,7 @@ function NavDropdownMenu({ currentAccount, logOut }) {
         {communities.map((community) => (
           <NavDropdownItem to={`/c/${community.sub_dir}`} key={community.id} withIcon>
             <span className="h-[20px] w-[20px] mr-[12px] flex-none">
-              <img src={community.avatar || defaultAvatar} alt="community avatar" className="rounded-full h-[20px] w-[20px]" />
+              <img src={community.avatar || defaultAvatar} alt="community avatar" className="rounded-full h-[20px] w-[20px] object-cover" />
             </span>
             <span className="flex-1 text-[14px] leading-[18px] font-semibold overflow-hidden text-ellipsis text-left w-full">
               {`c/${community.sub_dir}`}
