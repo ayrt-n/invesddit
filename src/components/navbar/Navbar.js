@@ -27,7 +27,7 @@ function Navbar() {
     <header className="min-h-[48px] px-[20px] bg-canvas-light border-b-[1px] border-nav-border flex items-center fixed w-full z-10 justify-between fixed">
       <div className="flex items-center">
         <Link to="/" className="flex items-center">
-          <img src={logo} className="w-[40px] h-[40px] pr-[8px]" alt="invesddit logo"/>
+          <img src={logo} className="w-[40px] h-[40px] min-w-[40px] min-h-[40px] pr-[8px]" alt="invesddit logo"/>
           <img src={brand} className="h-[25px] hidden md:block" alt="" />
         </Link>
       </div>
