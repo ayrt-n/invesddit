@@ -33,7 +33,7 @@ function CommunityHeader({ title, id, role, setRole, avatar, banner }) {
       <div className="w-full bg-canvas-light">
         <div className="max-w-[984px] px-[16px] mx-auto flex">
           <div className="mb-[12px] mt-[-14px] flex">
-            <img src={avatar || defaultCommunityAvatar} alt={`community logo for ${id}`} className="h-[72px] w-[72px] rounded-full border-[4px] border-canvas-light bg-canvas-light" />
+            <img src={avatar || defaultCommunityAvatar} alt={`community logo for ${id}`} className="h-[72px] w-[72px] rounded-full border-[4px] border-canvas-light bg-canvas-light object-cover" />
             <div className="mt-[24px] pl-[16px] inline-flex items-start flex-1 justify-between w-full">
               <div className="inline-block pr-[24px]">
                 <h1 className="text-[28px] font-bold leading-[32px] pr-[2px] pb-[4px]">
