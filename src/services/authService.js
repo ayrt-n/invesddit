@@ -1,4 +1,5 @@
 import { config } from './constants';
+import defaultHeaders from './defaultHeaders';
 
 const API_URL = config.urls.API_URL;
 
@@ -75,6 +76,23 @@ function verifyAccount(key) {
   })
 }
 
+function resetPasswordRequest(email) {
+  return fetch(`${API_URL}/reset-password-request`, {
+    method: 'POST',
+    mode: 'cors',
+    headers: defaultHeaders(),
+    body: JSON.stringify({
+      'login': email
+    })
+  })
+  .then(response => {
+    return response.json();
+  })
+  .catch((err) => {
+    console.error(err)
+  });
+}
+
 export {
   login,
   isLoggedIn,
@@ -82,4 +100,5 @@ export {
   createAccount,
   verifyAccount,
   getAccountToken,
+  resetPasswordRequest,
 }
