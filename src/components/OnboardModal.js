@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
+import RecoverPasswordForm from './RecoverPasswordForm';
 
 function OnboardModal({ initialState, callToAction, closeModal }) {
   const [content, setContent] = useState(initialState || 'signup');
@@ -38,8 +39,14 @@ function OnboardModal({ initialState, callToAction, closeModal }) {
   const recoveryLinks = (
     <div className="text-[12px] leading-[16px] mt-[16px] mb-[24px]">
       <div>
-        New to Invesddit?
+        Don't have an Invesddit account?
         <button onClick={() => setContent('signup')} className="underline ml-[2px] text-primary-500 font-bold leading-[24px]">Sign up</button>
+      </div>
+      <div>
+        Already have an account?
+        <button onClick={() => setContent('login')} className="underline ml-[2px] text-primary-500 font-bold leading-[24px]">
+          Log in
+        </button>
       </div>
     </div>
   );
@@ -58,7 +65,7 @@ function OnboardModal({ initialState, callToAction, closeModal }) {
           <SignUpForm callToAction={callToAction} links={signupLinks} /> :
         content === 'login' ?
           <LoginForm links={loginLinks} /> :
-          recoveryLinks
+          <RecoverPasswordForm links={recoveryLinks} />
         }
       </div>
       <div className="h-[50px]" />
