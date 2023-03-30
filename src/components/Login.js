@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import LoginForm from './LoginForm';
 
 function Login() {
@@ -6,23 +7,19 @@ function Login() {
     <div className="text-[12px] leading-[16px] mt-[16px] mb-[24px]">
       <div>
         New to Invesddit?
-        <a href="/signup" className="underline ml-[2px] text-primary-500 font-bold leading-[24px]">Sign up</a>
+        <Link to="/signup" className="underline ml-[2px] text-primary-500 font-bold leading-[24px]">Sign up</Link>
       </div>
       <div>
         Forgot your
-        <a href="/forgot-password" className="underline ml-[2px] text-primary-500 font-bold leading-[24px]">password</a>
+        <Link to="/forgot-password" className="underline ml-[2px] text-primary-500 font-bold leading-[24px]">password</Link>
         ?
       </div>
     </div>
   );
 
   return (
-    <div className="min-h-[calc(100vh-48px)] bg-canvas-light">
-      <div className="py-[20px] px-[24px]">
-        <div className="max-w-[280px] mx-auto">
-          <LoginForm links={loginLinks} />
-        </div>
-      </div>
+    <div className="py-[20px] px-[24px]">
+      <LoginForm links={loginLinks} />
     </div>
   );
 }
