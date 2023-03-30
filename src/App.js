@@ -17,33 +17,36 @@ import VerifyAccount from './components/VerifyAccount';
 import ModalProvider from './contexts/modal/ModalProvider';
 import SearchResults from './components/search/SearchResults';
 import NotificationDashboard from './components/notifications/NotificationDashboard';
+import Layout from './components/Layout';
+import AuthLayout from './components/AuthLayout';
+import RecoverPassword from './components/RecoverPassword';
 
 function App() {
   return (
     <AccountProvider>
       <ModalProvider>
-        <div className="bg-canvas min-h-screen font-sans">
-          <Navbar />
-          <div className="pt-[48px]">
-            <Routes>
-              <Route index element={<Homepage />} />
-              <Route path="submit" element={<CreatePostPage />} />
-              <Route path="login" element={<Login />} />
-              <Route path="signup" element={<SignUp />} />
-              <Route path="verify-account" element={<VerifyAccount />} />
-              <Route path="communities/new" element={<CreateCommunityPage />} />
-              <Route path="c/:community_id" element={<CommunityDashboard />}>
-                <Route index element={<CommunityFeed />} />
-                <Route path="posts/:post_id" element={<Post />} />
-              </Route>
-              <Route path="c/:community_id/settings" element={<CommunitySettings />} />
-              <Route path="profile/settings" element={<ProfileSettings/>} />
-              <Route path="profile/:username" element={<Profile />} />
-              <Route path="search" element={<SearchResults />} />
-              <Route path="notifications" element={<NotificationDashboard />} />
-            </Routes>
-          </div>
-        </div>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Homepage />} />
+            <Route path="submit" element={<CreatePostPage />} />
+            <Route path="verify-account" element={<VerifyAccount />} />
+            <Route path="communities/new" element={<CreateCommunityPage />} />
+            <Route path="c/:community_id" element={<CommunityDashboard />}>
+              <Route index element={<CommunityFeed />} />
+              <Route path="posts/:post_id" element={<Post />} />
+            </Route>
+            <Route path="c/:community_id/settings" element={<CommunitySettings />} />
+            <Route path="profile/settings" element={<ProfileSettings/>} />
+            <Route path="profile/:username" element={<Profile />} />
+            <Route path="search" element={<SearchResults />} />
+            <Route path="notifications" element={<NotificationDashboard />} />
+          </Route>
+          <Route path="/" element={<AuthLayout />}>
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<SignUp />} />
+            <Route path="forgot-password" element={<RecoverPassword />} />
+          </Route>
+        </Routes>
       </ModalProvider>
     </AccountProvider>
   );
