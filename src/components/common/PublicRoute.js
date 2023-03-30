@@ -1,11 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Navigate } from 'react-router-dom';
-import AccountContext from '../../contexts/account/AccountContext';
+import { isLoggedIn } from '../../services/authService';
 
 function PublicRoute({ children }) {
-  const { currentAccount } = useContext(AccountContext);
-  
-  return currentAccount ? <Navigate to="/" /> : children
+  return isLoggedIn() ? <Navigate to="/" /> : children
 }
 
 export default PublicRoute;
