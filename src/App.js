@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/navbar/Navbar';
 import Homepage from './components/Homepage';
 import CommunityDashboard from './components/community/CommunityDashboard';
 import CommunityFeed from './components/community/CommunityFeed';
@@ -20,6 +19,7 @@ import NotificationDashboard from './components/notifications/NotificationDashbo
 import Layout from './components/Layout';
 import AuthLayout from './components/AuthLayout';
 import RecoverPassword from './components/RecoverPassword';
+import PublicRoute from './components/common/PublicRoute';
 
 function App() {
   return (
@@ -42,9 +42,30 @@ function App() {
             <Route path="notifications" element={<NotificationDashboard />} />
           </Route>
           <Route path="/" element={<AuthLayout />}>
-            <Route path="login" element={<Login />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="forgot-password" element={<RecoverPassword />} />
+            <Route
+              path="login"
+              element={
+                <PublicRoute>
+                  <Login />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="signup"
+              element={
+                <PublicRoute>
+                  <SignUp />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="forgot-password"
+              element={
+                <PublicRoute>
+                  <RecoverPassword />
+                </PublicRoute>
+              }
+            />
           </Route>
         </Routes>
       </ModalProvider>
