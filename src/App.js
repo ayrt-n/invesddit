@@ -20,27 +20,65 @@ import Layout from './components/Layout';
 import AuthLayout from './components/AuthLayout';
 import RecoverPassword from './components/RecoverPassword';
 import PublicRoute from './components/common/PublicRoute';
+import PrivateRoute from './components/common/PrivateRoute';
 
 function App() {
   return (
     <AccountProvider>
       <ModalProvider>
         <Routes>
+          {/* Regular Routes - Includes both public and private routes */}
           <Route path="/" element={<Layout />}>
             <Route index element={<Homepage />} />
-            <Route path="submit" element={<CreatePostPage />} />
-            <Route path="verify-account" element={<VerifyAccount />} />
-            <Route path="communities/new" element={<CreateCommunityPage />} />
             <Route path="c/:community_id" element={<CommunityDashboard />}>
               <Route index element={<CommunityFeed />} />
               <Route path="posts/:post_id" element={<Post />} />
             </Route>
-            <Route path="c/:community_id/settings" element={<CommunitySettings />} />
-            <Route path="profile/settings" element={<ProfileSettings/>} />
             <Route path="profile/:username" element={<Profile />} />
             <Route path="search" element={<SearchResults />} />
-            <Route path="notifications" element={<NotificationDashboard />} />
+            <Route
+              path="submit"
+              element={
+                <PrivateRoute>
+                  <CreatePostPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="communities/new"
+              element={
+                <PrivateRoute>
+                  <CreateCommunityPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="c/:community_id/settings"
+              element={
+                <PrivateRoute>
+                  <CommunitySettings />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="profile/settings"
+              element={
+                <PrivateRoute>
+                  <ProfileSettings/>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="notifications"
+              element={
+                <PrivateRoute>
+                  <NotificationDashboard />
+                </PrivateRoute>
+              }
+            />
           </Route>
+
+          {/* Routes related to authentication which require different layout */}
           <Route path="/" element={<AuthLayout />}>
             <Route
               path="login"
@@ -63,6 +101,14 @@ function App() {
               element={
                 <PublicRoute>
                   <RecoverPassword />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="verify-account"
+              element={
+                <PublicRoute>
+                  <VerifyAccount />
                 </PublicRoute>
               }
             />
