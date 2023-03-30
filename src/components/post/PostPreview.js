@@ -42,10 +42,10 @@ function PostPreview({ post, communityView, updatePostVoteStatus }) {
         {/* Render preview of content based on post type */}
         {
           post.type === 'TextPost' ?
-          <Link to={postLink}><TextPostPreview body={post.body} /></Link> :
+          <Link to={postLink}><TextPostPreview body={post.content} /></Link> :
           post.type === 'MediaPost' ?
-          <MediaPostPreview media={post.image} /> :
-          <LinkPostPreview link={post.body} />
+          <MediaPostPreview media={post.content} /> :
+          <LinkPostPreview link={post.content} />
         }
 
         {/* Render Post actions (comment count link) */}

@@ -29,10 +29,10 @@ function PostContent({ post, deletePost, updatePost }) {
             updatePostContent={updatePost}
           /> :
         post.type === 'TextPost' ?
-          <TextContent body={post.body} /> :
+          <TextContent body={post.content} /> :
         post.type === 'MediaPost' ?
-          <MediaContent media={post.image} /> :
-          <LinkContent link={post.body} />
+          <MediaContent media={post.content} /> :
+          <LinkContent link={post.content} />
       }
 
       {/* Footer with different post actions/links */}
