@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/invesddit/static/css/main.e02bfd4d.css",
-    "main.js": "/invesddit/static/js/main.ade8a2ec.js",
+    "main.js": "/invesddit/static/js/main.934bc053.js",
     "static/media/stock-banner.jpg": "/invesddit/static/media/stock-banner.0061882ecf72344897aa.jpg",
     "static/media/invesddit-brand.png": "/invesddit/static/media/invesddit-brand.ffa33cb1fe25a9726c97.png",
     "static/media/hot-unselected.png": "/invesddit/static/media/hot-unselected.2e1c6f8720599a08d0b4.png",
@@ -12,10 +12,10 @@
     "static/media/invesddit-logo.svg": "/invesddit/static/media/invesddit-logo.61c120bc49698f36f017298c59aeef52.svg",
     "index.html": "/invesddit/index.html",
     "main.e02bfd4d.css.map": "/invesddit/static/css/main.e02bfd4d.css.map",
-    "main.ade8a2ec.js.map": "/invesddit/static/js/main.ade8a2ec.js.map"
+    "main.934bc053.js.map": "/invesddit/static/js/main.934bc053.js.map"
   },
   "entrypoints": [
     "static/css/main.e02bfd4d.css",
-    "static/js/main.ade8a2ec.js"
+    "static/js/main.934bc053.js"
   ]
 }
