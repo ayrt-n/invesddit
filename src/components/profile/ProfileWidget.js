@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import format from 'date-fns/format';
 import defaultAvatar from '../../assets/icons/invesddit-logo.svg';
 import { getAccount } from '../../services/accountService';
+import Avatar from '../Avatar';
 
 function ProfileWidget({ username }) {
   const [account, setAccount] = useState(null);
@@ -19,7 +20,7 @@ function ProfileWidget({ username }) {
       <div className="border-[1px] border-post-border rounded-[4px] p-[12px] bg-canvas-light break-words overflow-visible">
         <div className="h-[94px] rounded-t-[4px] w-[calc(100%-2px)] bg-blue-300 bg-center bg-no-repeat bg-cover absolute top-[1px] left-[1px]" style={{backgroundImage: `url(${account.banner})`}} />
         <div className="relative rounded-full bg-inherit h-[86px] w-[86px] ml-[-3px] mt-[16px] p-[4px]">
-          <img className="h-full w-full rounded-full" src={account.avatar || defaultAvatar} alt="user avatar" />
+          <Avatar classNames="h-full w-full" src={account.avatar || defaultAvatar} alt="user avatar" />
         </div>
         <h1 className="text-[16px] leading-[20px] font-medium my-[4px]">
           {account.username}

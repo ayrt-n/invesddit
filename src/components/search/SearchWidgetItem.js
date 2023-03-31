@@ -2,13 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PillButton from '../PillButton';
 import defaultAvatar from '../../assets/icons/invesddit-logo.svg';
+import Avatar from '../Avatar';
 
 function SearchWidgetItem({ title, subtitle, avatar, link }) {
   return (
     <div className="border-b-[1px] border-post-border p-[16px]">
       <Link to={link}>
         <div className="flex items-center justify-between">
-          <img className="rounded-full h-[36px] w-[36px] overflow-hidden rounde-full align-middle shrink-0" src={avatar || defaultAvatar} alt="community avatar" />
+          <Avatar classNames="h-[36px] w-[36px] shrink-0" src={avatar || defaultAvatar} alt="user uploaded avatar" />
           <div className="grow px-[8px] overflow-hidden break-words">
             <div className="flex flex-col items-baseline">
               <h6 className="w-full nowrap overflow-hidden text-ellipsis text-[12px] leading-[16px] font-bold hover:underline">

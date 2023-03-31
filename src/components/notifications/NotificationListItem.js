@@ -4,6 +4,7 @@ import defaultAvatar from '../../assets/icons/invesddit-logo.svg';
 import { Link } from 'react-router-dom';
 import { readNotification } from '../../services/notificationService';
 import AccountContext from '../../contexts/account/AccountContext';
+import Avatar from '../Avatar';
 
 function NotificationListItem({ notification, underlined }) {
   const { setCurrentAccount } = useContext(AccountContext )
@@ -31,7 +32,7 @@ function NotificationListItem({ notification, underlined }) {
     <li className={"overflow-hidden list-none " + bgStyles + " " + underlineStyle}>
       <Link onClick={handleClick} to={`/c/${notification.details.community}/posts/${notification.details.post_id}`} className="flex p-[16px]">
         <span className="pr-[8px] relative shrink-0">
-          <img className="rounded-full h-[32px] w-[32px] object-cover" src={notification.details.avatar || defaultAvatar} alt="" />
+          <Avatar classNames="h-[32px] w-[32px]" src={notification.details.avatar || defaultAvatar} alt="notification avatar" />
           <span className="bg-canvas-light border-[1px] border-nav-border rounded-full h-[20px] left-[12px] absolute w-[20px] top-[18px] shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
             <svg className="text-primary-400 w-[11px] h-[11px] absolute top-[4px] left-[3px] leading-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <title>comment</title>

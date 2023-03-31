@@ -4,6 +4,7 @@ import CommunityTooltip from './CommunityTooltip';
 import AccountTooltip from './AccountTooltip';
 import { Link } from 'react-router-dom';
 import defaultCommunityAvatar from '../../assets/icons/invesddit-logo.svg';
+import Avatar from '../Avatar';
 
 function PostMetaText({ community, account, createdAt }) {
   const createdAtDate = Date.parse(createdAt);
@@ -40,7 +41,7 @@ function PostMetaText({ community, account, createdAt }) {
           <>
             <div onClick={(e) => e.stopPropagation()}>
               <Link to={`/c/${community.sub_dir}`}>
-                <img src={community.avatar || defaultCommunityAvatar} className="rounded-full h-[20px] w-[20px] align-middle mr-[4px] bg-canvas-light" alt="community avatar" />
+                <Avatar src={community.avatar || defaultCommunityAvatar} classNames="h-[20px] w-[20px] mr-[4px] bg-canvas-light" alt={`avatar for c/${community.sub_dir}`} />
               </Link>
             </div>
             <div onClick={(e) => e.stopPropagation()} className="relative" onMouseOver={() => handleMouseEnter(setCommunityMenuOpen)} onMouseLeave={() => handleMouseLeave(setCommunityMenuOpen)}>
