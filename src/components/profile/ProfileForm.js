@@ -35,7 +35,7 @@ function ProfileForm({ profile }) {
           </p>
         </div>
         <div className="flex flex-wrap">
-          <div className="w-[120px] mr-[12px] h-full overflow-hidden bg-canvas-light">
+          <div className="w-[120px] mr-[12px] h-[120px] overflow-hidden bg-canvas-light">
             <ImageInput
               id="avatar"
               name="avatar"
