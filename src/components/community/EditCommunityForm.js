@@ -7,6 +7,7 @@ import ImageInput from '../forms/ImageInput';
 import defaultAvatar from '../../assets/icons/invesddit-logo.svg';
 import { useNavigate } from 'react-router-dom';
 import { updateCommunity } from '../../services/communityService';
+import ErrorMessage from '../forms/ErrorMessage';
 
 function EditCommunityForm({ community }) {
   const navigate = useNavigate();
@@ -20,6 +21,14 @@ function EditCommunityForm({ community }) {
 
     if (values.description.length > 500) {
       errors.description = 'Cannot be greater than 300 characters'
+    }
+
+    if (values.avatar && values.avatar.size / 1_000_000 > 2) {
+      errors.avatar = "Avatar cannot be greater than 2mb"
+    }
+
+    if (values.banner && values.banner.size / 1_000_000 > 5) {
+      errors.banner = "Banner cannot be greater than 5mb"
     }
    
     return errors;
@@ -118,6 +127,12 @@ function EditCommunityForm({ community }) {
                 />
               </div>
             </div>
+            {formik.errors.avatar ? (
+              <ErrorMessage containerStyles={{paddingLeft: 0}}>{formik.errors.avatar}</ErrorMessage>
+              ) : null}
+            {formik.errors.banner ? (
+              <ErrorMessage containerStyles={{paddingLeft: 0}}>{formik.errors.banner}</ErrorMessage>
+              ) : null}
           </div>
 
           <div className="px-[16px] pb-[16px]">

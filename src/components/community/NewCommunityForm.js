@@ -28,6 +28,14 @@ function NewCommunityForm() {
       errors.description = 'Description cannot be greater than 500 characters';
     }
 
+    if (values.avatar && values.avatar.size / 1_000_000 > 2) {
+      errors.avatar = "Avatar cannot be greater than 2mb"
+    }
+
+    if (values.banner && values.banner.size / 1_000_000 > 5) {
+      errors.banner = "Banner cannot be greater than 5mb"
+    }
+   
     return errors;
   };
 
@@ -142,6 +150,12 @@ function NewCommunityForm() {
               />
             </div>
           </div>
+          {formik.errors.avatar ? (
+              <ErrorMessage containerStyles={{paddingLeft: 0}}>{formik.errors.avatar}</ErrorMessage>
+              ) : null}
+          {formik.errors.banner ? (
+            <ErrorMessage containerStyles={{paddingLeft: 0}}>{formik.errors.banner}</ErrorMessage>
+            ) : null}
         </div>
 
         <div className="px-[16px] pb-[16px]">

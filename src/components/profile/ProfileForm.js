@@ -4,8 +4,23 @@ import { useFormik } from 'formik';
 import ImageInput from '../forms/ImageInput';
 import PillButton from '../PillButton';
 import { updateAccountProfile } from '../../services/accountService';
+import ErrorMessage from '../forms/ErrorMessage';
 
 function ProfileForm({ profile }) {
+  const validate = (values) => {
+    const errors = {};
+
+    if (values.avatar && values.avatar.size / 1_000_000 > 2) {
+      errors.avatar = "Avatar cannot be greater than 2mb"
+    }
+
+    if (values.banner && values.banner.size / 1_000_000 > 5) {
+      errors.banner = "Banner cannot be greater than 5mb"
+    }
+
+    return errors;
+  };
+
   const handleSubmit = (values) => {
     updateAccountProfile(values).then(data => {
       window.location.reload()
@@ -21,6 +36,7 @@ function ProfileForm({ profile }) {
       banner: '',
     },
     onSubmit: handleSubmit,
+    validate: validate,
   });
 
   return (
@@ -34,6 +50,8 @@ function ProfileForm({ profile }) {
             Images must be .png or .jpg format.
           </p>
         </div>
+
+        {/* Avatar and banner Input */}
         <div className="flex flex-wrap">
           <div className="w-[120px] mr-[12px] h-[120px] overflow-hidden bg-canvas-light">
             <ImageInput
@@ -54,7 +72,17 @@ function ProfileForm({ profile }) {
             />
           </div>
         </div>
+
+        {/* Avatar and banner errors */}
+        {formik.errors.avatar ? (
+          <ErrorMessage containerStyles={{paddingLeft: 0}}>{formik.errors.avatar}</ErrorMessage>
+          ) : null}
+        {formik.errors.banner ? (
+          <ErrorMessage containerStyles={{paddingLeft: 0}}>{formik.errors.banner}</ErrorMessage>
+          ) : null}
       </div>
+
+      {/* Save Changes button */}
       <div className="w-full">
         <div className="flex items-center justify-between">
           <div>
