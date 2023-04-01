@@ -35,12 +35,19 @@ function LoginForm({ links }) {
 
     login(values.email, values.password)
     .then((data) => {
-      console.log(data);
       if (data.success) {
         navigate('/');
         window.location.reload();
       } else {
-        setErrorMessage(data['field-error'][1]);
+        setErrorMessage(() => {
+          // Return error message with first letter capitalized
+          if (data['field-error']) {
+            return data['field-error'][1].charAt(0).toUpperCase() + data['field-error'][1].slice(1);
+          }
+          
+          return data['error'];
+        })
+
         setSubmitting(false);
       }
     })
