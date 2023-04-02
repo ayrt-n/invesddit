@@ -121,9 +121,27 @@ function updatePost(postId, values) {
   });
 }
 
+function searchPosts(params = {}) {
+  const searchParams = new URLSearchParams(params);
+
+  return fetch(`${API_URL}/api/v1/search/posts?${searchParams}`, {
+    method: 'GET',
+    mode: 'cors',
+    headers: defaultHeaders()
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw response.text().then(text => { throw new Error(text) });
+    }
+  })
+}
+
 export {
   getPost,
   createPost,
   deletePost,
   updatePost,
+  searchPosts,
 }

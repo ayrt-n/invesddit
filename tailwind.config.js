@@ -17,6 +17,8 @@ module.exports = {
         'nav-icon-active': 'rgba(26,26,27,0.15)',
         'post-sidebar': '#F8F9FA',
         'comment-controls': '#F6F7F8',
+        'controls-hover': '#ECEDEE',
+        'controls-active': '#E3E4E4',
         'meta-text': '#7c7c7c',
         'icon-hover': 'rgba(26,26,27,0.1)',
         'upvote': '#FF4500',

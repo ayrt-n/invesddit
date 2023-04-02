@@ -71,9 +71,27 @@ function getAccount(username) {
   });
 }
 
+function searchAccounts(params = {}) {
+  const searchParams = new URLSearchParams(params);
+
+  return fetch(`${API_URL}/api/v1/search/accounts?${searchParams}`, {
+    method: 'GET',
+    mode: 'cors',
+    headers: defaultHeaders()
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw response.text().then(text => { throw new Error(text) });
+    }
+  })
+}
+
 export {
   getCurrentAccount,
   getCurrentAccountCommunities,
   updateAccountProfile,
   getAccount,
+  searchAccounts,
 }

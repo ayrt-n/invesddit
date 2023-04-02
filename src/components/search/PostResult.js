@@ -1,26 +1,22 @@
 import React from 'react';
 import PostMetaText from '../post/PostMetaText';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Highlighter from 'react-highlight-words';
 
 function PostResult({ post, searchTerm }) {
-  const navigate = useNavigate();
   const postLink = `/c/${post.community.sub_dir}/posts/${post.id}`;
 
-  // On click, navigate to the post
-  // Used over anchor/link because of nested links/buttons within the post
-  const handleClick = () => {
-    navigate(postLink);
-  };
-
   return (
-    <div onClick={handleClick} className="-mt-[1px] border-[1px] border-post-border hover:border-post-border-hover hover:z-10 cursor-pointer first:rounded-t-[4px] last:rounded-b-[4px] relative">
+    <div className="-mt-[1px] border-[1px] border-post-border hover:border-post-border-hover hover:z-10 cursor-pointer first:rounded-t-[4px] last:rounded-b-[4px] relative">
+      {/* Link overlay to allow user to click anywhere on post and navigate to the post */}
+      <Link tabIndex="0" to={postLink} className="absolute top-0 bottom-0 right-0 left-0 h-full w-full z-1" />
+
       <div className="flex flex-col">
         <div className="px-[8px] pt-[8px]">
           <PostMetaText account={post.account} community={post.community} createdAt={post.created_at} />
         </div>
         <div className="px-[16px] -mt-[8px] flex justify-between">
-          <h3 className="text-[16px] font-medium leading-[22px] break-all">
+          <h3 className="text-[16px] font-medium leading-[22px] break-words">
             <Highlighter
               searchWords={[searchTerm]}
               textToHighlight={post.title}

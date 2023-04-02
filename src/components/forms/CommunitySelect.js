@@ -3,7 +3,7 @@ import AsyncSelect from 'react-select/async';
 import { components } from 'react-select';
 import defaultAvatar from '../../assets/icons/invesddit-logo.svg';
 import { getCurrentAccountCommunities } from '../../services/accountService';
-import { getCommunities } from '../../services/communityService';
+import { searchCommunities } from '../../services/communityService';
 
 // Custom placeholder
 const CommunityPlaceholder = (props) => {
@@ -81,8 +81,8 @@ function CommunitySelect({ value, onChange }) {
     })
   }, []);
 
-  const searchCommunities = (value) => {
-    return getCommunities(value).then(data => {
+  const loadCommunities = (value) => {
+    return searchCommunities({ q: value }).then(data => {
       const yourCommunities = { label: 'Your Communities', options: [] };
       const otherCommunities = { label: 'Other', options: [] };
 
@@ -113,7 +113,7 @@ function CommunitySelect({ value, onChange }) {
   return (
     <AsyncSelect
       defaultOptions={[{label: 'Your Communities', options: accountCommunities}]}
-      loadOptions={searchCommunities}
+      loadOptions={loadCommunities}
       value={value}
       onChange={(value) => onChange(value.value)}
       styles={{

@@ -87,8 +87,10 @@ function updateCommunity(values) {
   })
 }
 
-function getCommunities(q) {
-  return fetch(`${API_URL}/api/v1/communities?q=${q}`, {
+function searchCommunities(params = {}) {
+  const searchParams = new URLSearchParams(params);
+
+  return fetch(`${API_URL}/api/v1/search/communities?${searchParams}`, {
     method: 'GET',
     mode: 'cors',
     headers: defaultHeaders()
@@ -108,5 +110,5 @@ export {
   leaveCommunity,
   createCommunity,
   updateCommunity,
-  getCommunities,
+  searchCommunities,
 }

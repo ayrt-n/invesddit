@@ -1,12 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import SearchWidget from './SearchWidget';
 import SearchWidgetItem from './SearchWidgetItem';
 import SearchWidgetLoading from './SearchWidgetLoading';
 
 function AccountsWidget({ accounts, loading }) {
+  const [ , setSearchParams] = useSearchParams();
   if (loading) return <SearchWidgetLoading header="Accounts" />;
   
+  const handleClick = () => {
+    setSearchParams(searchParams => {
+      searchParams.set('type', 'accounts');
+      return searchParams;
+    })
+  };
+
   return (
     <SearchWidget header="Accounts">
       {accounts.length > 0 ?
@@ -20,9 +28,9 @@ function AccountsWidget({ accounts, loading }) {
             />
           ))}
           <div className="p-[16px]">
-            <Link to="/" className="text-[14px] leading-[18px] text-primary-500 font-medium">
-              See more communities
-            </Link>
+            <button onClick={handleClick} className="text-[14px] leading-[18px] text-primary-500 font-medium">
+              See more accounts
+            </button>
           </div>
         </> :
         <div className="p-[16px]">

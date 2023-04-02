@@ -1,7 +1,7 @@
 import React from 'react';
 import EmptyFeed from '../EmptyFeed'
 
-function EmptyPostsSearch({ searchTerm }) {
+function EmptySearch({ searchTerm }) {
   return (
     <EmptyFeed>
       <div className="m-[16px] text-[18px] font-medium leading-[22px]">
@@ -14,4 +14,4 @@ function EmptyPostsSearch({ searchTerm }) {
   );
 }
 
-export default EmptyPostsSearch;
+export default EmptySearch;
