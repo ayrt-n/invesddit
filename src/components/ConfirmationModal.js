@@ -12,9 +12,9 @@ function ConfirmationModal({ header, message, actionText, callback, closeModal }
       <header className="border-b-[1px] border-nav-border p-[16px]">
         <div className="flex">
           <div className="flex-[1_1_100%] w-full">
-            <div className="text-[16px] font-semibold leading-[20px]">
+            <h1 className="text-[16px] font-semibold leading-[20px]">
               {header}
-            </div>
+            </h1>
           </div>
           <div className="flex-[0_0]">
             <button onClick={closeModal} aria-label="close modal" className="text-feed-text">
