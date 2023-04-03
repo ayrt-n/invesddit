@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FeedSidebarFooter() {
+function GithubWidget() {
   return (
     <div className="mt-[16px] bg-canvas-light p-[12px] rounded-[4px] border-[1px] border-post-border font-noto">
       <div className="text-[14px] leading-[21px] flex items-center">
@@ -18,4 +18,4 @@ function FeedSidebarFooter() {
   );
 }
 
-export default FeedSidebarFooter;
+export default GithubWidget;
