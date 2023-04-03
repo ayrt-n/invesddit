@@ -1,7 +1,7 @@
 import React from 'react';
 import PillButton from './PillButton';
 
-function ConfirmationModel({ header, message, actionText, callback, closeModal }) {
+function ConfirmationModal({ header, message, actionText, callback, closeModal }) {
   const handleConfirm = () => {
     callback();
     closeModal();
@@ -42,4 +42,4 @@ function ConfirmationModel({ header, message, actionText, callback, closeModal }
   );
 }
 
-export default ConfirmationModel;
+export default ConfirmationModal;

@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import ModalContext from '../contexts/modal/ModalContext';
-import ConfirmationModel from './ConfirmationModal';
+import ConfirmationModal from './ConfirmationModal';
 
 function ConfirmationButton({ onClick, modalHeader, modalMessage, modalActionText, children, ...props }) {
   const { openModal, closeModal } = useContext(ModalContext);
 
   const handleClick = (e) => { 
     openModal(
-      <ConfirmationModel
+      <ConfirmationModal
         header={modalHeader}
         message={modalMessage}
         actionText={modalActionText}
