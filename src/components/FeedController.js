@@ -26,7 +26,7 @@ function FeedController() {
     <div className="bg-canvas-light border-[1px] border-post-border rounded-[4px] mb-[16px] py-[10px] px-[12px] flex items-center">
       <div className="items-center flex cursor-pointer text-[14px] font-noto ">
         {/* Sory by Hot */}
-        <button onClick={() => handleClick('hot')} className={`inline-flex py-[6px] px-[8px] rounded-[20px] font-bold leading-[17px] items-center justify-center w-auto mr-[8px] hover:bg-gray-200 focus:bg-gray-300 ${sortBy === 'hot' ? 'bg-gray-100 text-gray-100 hover:text-gray-200 focus:text-gray-300' : 'bg-inherit text-feed-text'}`}>
+        <button onClick={() => handleClick('hot')} aria-label="Sort feed by hot" className={`inline-flex py-[6px] px-[8px] rounded-[20px] font-bold leading-[17px] items-center justify-center w-auto mr-[8px] hover:bg-gray-200 focus:bg-gray-300 ${sortBy === 'hot' ? 'bg-gray-100 text-gray-100' : 'bg-inherit text-feed-text'}`}>
           {sortBy === 'hot' ?
             <img src={hotSelected} alt="rocketship emoji" className="w-[20px] h-[20px] mr-[8px] leading-[20px]" /> :
             <img src={hotUnselected} alt="rocketship emoji" className="w-[20px] h-[20px] mr-[8px] leading-[20px]" />
@@ -35,7 +35,7 @@ function FeedController() {
         </button>
 
         {/* Sort by New */}
-        <button onClick={() => handleClick('new')} className={`inline-flex py-[6px] px-[8px] rounded-[20px] font-bold leading-[17px] items-center justify-center w-auto mr-[8px] hover:bg-gray-200 focus:bg-gray-300 ${sortBy === 'new' ? 'bg-gray-100 text-gray-100 hover:text-gray-200 focus:text-gray-300' : 'bg-inherit text-feed-text'}`}>
+        <button onClick={() => handleClick('new')} aria-label="Sort feed by new" className={`inline-flex py-[6px] px-[8px] rounded-[20px] font-bold leading-[17px] items-center justify-center w-auto mr-[8px] hover:bg-gray-200 focus:bg-gray-300 ${sortBy === 'new' ? 'bg-gray-100 text-gray-100' : 'bg-inherit text-feed-text'}`}>
           {sortBy === 'new' ?
             <img src={newSelected} alt="star emoji" className="w-[20px] h-[20px] mr-[8px] leading-[20px]" /> :
             <img src={newUnselected} alt="star emoji" className="w-[20px] h-[20px] mr-[8px] leading-[20px]" />
@@ -44,7 +44,7 @@ function FeedController() {
         </button>
 
         {/* Sort by Top */}
-        <button onClick={() => handleClick('top')} className={`inline-flex py-[6px] px-[8px] rounded-[20px] font-bold leading-[17px] items-center justify-center w-auto mr-[8px] hover:bg-gray-200 focus:bg-gray-300 ${sortBy === 'top' ? 'bg-gray-100 text-gray-100 hover:text-gray-200 focus:text-gray-300' : 'bg-inherit text-feed-text'}`}>
+        <button onClick={() => handleClick('top')} aria-label="Sort feed by top" className={`inline-flex py-[6px] px-[8px] rounded-[20px] font-bold leading-[17px] items-center justify-center w-auto mr-[8px] hover:bg-gray-200 focus:bg-gray-300 ${sortBy === 'top' ? 'bg-gray-100 text-gray-100' : 'bg-inherit text-feed-text'}`}>
           {sortBy === 'top' ?
             <img src={topSelected} alt="chart emoji" className="w-[20px] h-[20px] mr-[8px] leading-[20px]" /> :
             <img src={topUnselected} alt="chart emoji" className="w-[20px] h-[20px] mr-[8px] leading-[20px]" />
