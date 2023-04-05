@@ -10,9 +10,9 @@ export default function formatCount(number) {
     return `${Math.round(integer / 1000 * 10) / 10}k`;
   } else if (integer >= 100_000) {
     // Return integer in 000s (e.g., 230590 => 231k)
-    return `${Math.round(integer / 1000)} k`;
+    return `${Math.round(integer / 1000)}k`;
   } else {
     // Return integer
-    return Math.round(integer);
+    return `${Math.round(integer)}`;
   }
 }
