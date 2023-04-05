@@ -2,6 +2,7 @@ import React from 'react';
 import PillButton from '../PillButton';
 import ProtectedLink from '../ProtectedLink';
 import format from 'date-fns/format'
+import formatCount from '../common/formatCount';
 
 function AboutCommunityWidget({ description, createdAt, membershipCount }) {
   const createdAtDate = Date.parse(createdAt);
@@ -27,7 +28,7 @@ function AboutCommunityWidget({ description, createdAt, membershipCount }) {
         </div>
         <hr className="h-[1px] my-[16px]" />
         <div className="text-[16px] font-medium leading-[20px]">
-          {membershipCount}
+          {formatCount(membershipCount)}
         </div>
         <div className="text-[12px] leading-[16px] text-meta-text">
           Members
