@@ -3,6 +3,7 @@ import PillButton from '../PillButton';
 import { Link } from 'react-router-dom';
 import defaultCommunityAvatar from '../../assets/icons/invesddit-logo.svg';
 import Avatar from '../Avatar';
+import formatCount from '../common/formatCount';
 
 function CommunityTooltip({ community }) {
   return (
@@ -16,14 +17,14 @@ function CommunityTooltip({ community }) {
         </div>
         <div className="py-[8px]">
           <div className="text-[16px] font-medium leading-[20px]">
-            {community.memberships_count}
+            {formatCount(community.memberships_count)}
           </div>
           <div className="text-[12px] leading-[16px] text-meta-text">
             Members
           </div>
         </div>
         {community.description &&
-          <div className="text-[12px] leading-[16px] break-words py-[8px]">
+          <div className="text-[12px] leading-[16px] break-words py-[8px]" data-testid="description">
             {community.description}
           </div>
         }
