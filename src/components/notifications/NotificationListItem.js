@@ -29,7 +29,7 @@ function NotificationListItem({ notification, underlined }) {
   };
 
   return (
-    <li className={"overflow-hidden list-none " + bgStyles + " " + underlineStyle}>
+    <li className={"overflow-hidden list-none " + bgStyles + " " + underlineStyle} data-testid="notification">
       <Link onClick={handleClick} to={`/c/${notification.details.community}/posts/${notification.details.post_id}`} className="flex p-[16px]">
         <span className="pr-[8px] relative shrink-0">
           <Avatar classNames="h-[32px] w-[32px]" src={notification.details.avatar || defaultAvatar} alt="notification avatar" />
