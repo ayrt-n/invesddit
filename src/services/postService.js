@@ -109,7 +109,7 @@ function updatePost(postId, values) {
     mode: 'cors',
     headers: defaultHeaders(),
     body: JSON.stringify({
-      'body': values.body
+      'body': values.content
     })
   })
   .then(response => {

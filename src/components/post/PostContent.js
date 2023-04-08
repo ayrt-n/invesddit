@@ -24,7 +24,7 @@ function PostContent({ post, deletePost, updatePost }) {
         isEditing ?
           <EditPostForm
             postId={post.id}
-            body={post.body}
+            content={post.content}
             closeEdit={() => setIsEditing(false)}
             updatePostContent={updatePost}
           /> :
