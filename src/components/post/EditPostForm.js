@@ -5,11 +5,14 @@ import PillButton from '../PillButton';
 import { updatePost } from '../../services/postService';
 
 function EditPostForm({ postId, content, updatePostContent, closeEdit }) {
+  // Prevent a form submit and close the edit form
   const closeForm = (event) => {
     event.preventDefault();
     closeEdit();
   }
 
+  // Submit request to update the post. If update successful, use the values submit to
+  // update the post state
   const handleSubmit = (values) => {
     updatePost(postId, values).then(() => {
       updatePostContent(values);
