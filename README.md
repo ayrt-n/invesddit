@@ -6,11 +6,11 @@ Invesddit is a finance related content aggregation and discussion website. While
 
 As part of the final project for [The Odin Project](https://www.theodinproject.com/lessons/javascript-javascript-final-project), I was tasked with replicating one of my favorite websites as closely as possible. For my final project I wanted to build a competitor to these finance forums with an updated user interface and rich set of features, all inspired by one of my favorite websites - Reddit.
 
-As a result, Invesddit was born!
-
-![alt text](https://github.com/ayrt-n/invesddit/blob/main/demo/readme-hero-example.png "Screenshot of Invesddit main page")
+As a result, Invesddit was born! 
 
 This repo is for the React frontend portion of the project. You can find more information on the backend Ruby on Rails API [here](https://github.com/ayrt-n/invesddit-api).
+
+![alt text](https://github.com/ayrt-n/invesddit/blob/main/demo/readme-hero-example.png "Screenshot of Invesddit main page")
 
 ## Set up
 
