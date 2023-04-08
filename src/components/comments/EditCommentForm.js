@@ -4,15 +4,15 @@ import TextareaInput from '../forms/TextareaInput';
 import PillButton from '../PillButton';
 import { updateComment } from '../../services/commentService';
 
-function EditCommentForm({ commentId, body, updateCommentContent, closeEdit }) {
+function EditCommentForm({ comment, updateCommentContent, closeEdit }) {
   const closeForm = (event) => {
     event.preventDefault();
     closeEdit();
   }
 
   const handleSubmit = (values) => {
-    updateComment(commentId, values).then(data => {
-      updateCommentContent(data);
+    updateComment(comment.id, values).then(() => {
+      updateCommentContent({ ...comment, ...values });
       closeEdit();
     })
     .catch(err => {
@@ -32,7 +32,7 @@ function EditCommentForm({ commentId, body, updateCommentContent, closeEdit }) {
 
   return (
     <Formik
-      initialValues={{body: body}}
+      initialValues={{body: comment.body}}
       onSubmit={handleSubmit}
       validate={validate}
     >

@@ -96,8 +96,7 @@ function Comment({ comment, addNestedComment, updateComment }) {
 
         {isEditing ?
           <EditCommentForm
-            commentId={comment.id}
-            body={comment.body}
+            comment={comment}
             closeEdit={() => setIsEditing(false)}
             updateCommentContent={handleUpdate}
           /> :
