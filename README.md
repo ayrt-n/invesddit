@@ -8,7 +8,7 @@ As part of the final project for [The Odin Project](https://www.theodinproject.c
 
 As a result, Invesddit was born! 
 
-This repo is for the React frontend portion of the project. You can find more information on the backend Ruby on Rails API [here](https://github.com/ayrt-n/invesddit-api).
+This repo is for the React frontend portion of the Invesddit. You can find more information on the backend Ruby on Rails API [here](https://github.com/ayrt-n/invesddit-api).
 
 ![alt text](https://github.com/ayrt-n/invesddit/blob/main/demo/readme-hero-example.png "Screenshot of Invesddit main page")
 
