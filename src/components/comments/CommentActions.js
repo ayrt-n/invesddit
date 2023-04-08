@@ -15,7 +15,7 @@ function CommentActions({ voted, score, id, accountId, toggleReply, deleteCommen
       // The score changes by either +1 (in the case of a new vote, i.e., voted was null)
       // +2 (in the case of a change from downvote to upvote, i.e., voted was downvote),
       // or zero (in the case of no change)
-      setChaneInScore(() => (voted === 'upvote' ? 0 : voted === null ? 1 : 2));
+      setChaneInScore(() => (voted === 'upvote' ? 0 : !voted ? 1 : 2));
       setUsersVote('upvote');
     })
     .catch(err => console.error(err));
@@ -26,7 +26,7 @@ function CommentActions({ voted, score, id, accountId, toggleReply, deleteCommen
       // The score changes by either -1 (in the case of a new vote, i.e., voted was null),
       // -2 (in the case of a change from upvote to downvote, i.e., voted was upvote),
       // or zero (in the case of no change)
-      setChaneInScore(() => (voted === 'downvote' ? 0 : voted === null ? -1 : -2));
+      setChaneInScore(() => (voted === 'downvote' ? 0 : !voted ? -1 : -2));
       setUsersVote('downvote');
     })
     .catch(err => console.error(err));
@@ -36,7 +36,7 @@ function CommentActions({ voted, score, id, accountId, toggleReply, deleteCommen
     deleteVote('comments', id).then(() => {
       // Change in score is either zero (voted was originally null),
       // +1 (voted was originally upvote), or -1 (voted was originally downvote)
-      setChaneInScore(() => (voted === null ? 0 : voted === 'upvote' ? -1 : 1));
+      setChaneInScore(() => (!voted ? 0 : voted === 'upvote' ? -1 : 1));
       setUsersVote(null);
     })
     .catch(err => console.error(err));
