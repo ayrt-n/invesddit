@@ -10,6 +10,8 @@ As a result, Invesddit was born!
 
 ![alt text](https://github.com/ayrt-n/invesddit/blob/main/demo/readme-hero-example.png "Screenshot of Invesddit main page")
 
+This repo is for the React frontend portion of the project. You can find more information on the backend Ruby on Rails API [here](https://github.com/ayrt-n/invesddit-api).
+
 ## Set up
 
 ### Using Web Brower
