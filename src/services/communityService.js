@@ -23,7 +23,7 @@ function joinCommunity(community) {
   })
   .then(response => {
     if (response.ok) {
-      return response.json();
+      return response;
     } else {
       throw response.text().then(text => { throw new Error(text) });
     }
