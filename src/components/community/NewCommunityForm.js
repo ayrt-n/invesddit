@@ -19,6 +19,9 @@ function NewCommunityForm() {
     if (values.sub_dir && values.sub_dir.length > 20) {
       errors.sub_dir = 'Name cannot be greater than 20 characters';
     }
+    if (!/^[a-zA-Z]+$/.test(values.sub_dir)) {
+      errors.sub_dir = 'May only contain letters';
+    }
 
     if (values.title && values.title.length > 20) {
       errors.title = 'Title cannot be greater than 20 characters';
