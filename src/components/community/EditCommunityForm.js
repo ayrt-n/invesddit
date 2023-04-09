@@ -35,8 +35,8 @@ function EditCommunityForm({ community }) {
   };
 
   const handleSubmit = (values) => {
-    updateCommunity(values).then((data) => {
-      navigate(`/c/${data.data.sub_dir}/`);
+    updateCommunity(values).then(() => {
+      navigate(`/c/${community.sub_dir}/`);
     })
     .catch((err) => {
       console.error(err);
