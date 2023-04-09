@@ -16,9 +16,9 @@ function CommunityHomepage() {
     .catch(err => console.error(err));
   }, [community_id]);
 
-  const setRole = (value) => {
+  const updateCommunity = (values) => {
     setCommunity((prev) => {
-      return {...prev, current_role: value }
+      return {...prev, ...values }
     })
   };
 
@@ -29,8 +29,9 @@ function CommunityHomepage() {
       <CommunityHeader
         title={community.title || community.sub_dir}
         id={community_id}
-        role={community.current_role}
-        setRole={setRole}
+        isMember={community.is_member}
+        membershipCount={community.memberships_count}
+        updateCommunity={updateCommunity}
         avatar={community.avatar}
         banner={community.banner}
       />
@@ -44,7 +45,7 @@ function CommunityHomepage() {
 
           {/* Feed Sidebar */}
           <div className="w-[312px] ml-[24px] hidden md:block">
-            {community.current_role === 'admin' ?
+            {community.is_admin ?
               <PillButton
                 as={Link}
                 to="settings"

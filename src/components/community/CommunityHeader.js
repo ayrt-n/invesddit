@@ -6,19 +6,19 @@ import { joinCommunity, leaveCommunity } from '../../services/communityService';
 import { Link } from 'react-router-dom';
 import Avatar from '../Avatar';
 
-function CommunityHeader({ title, id, role, setRole, avatar, banner }) {
+function CommunityHeader({ title, id, isMember, membershipCount, updateCommunity, avatar, banner }) {
   const [leaveText, setLeaveText] = useState('Joined');
 
   const requestJoinCommunity = () => {
     joinCommunity(id).then(() => {
-      setRole('member');
+      updateCommunity({ is_member: true, memberships_count: membershipCount + 1 });
     })
     .catch(err => console.error(err));
   };
 
   const requestLeaveCommunity = () => {
     leaveCommunity(id).then(() => {
-      setRole(null);
+      updateCommunity({ is_member: false, memberships_count: membershipCount - 1 });
     })
     .catch(err => console.error(err));
   };
@@ -45,7 +45,7 @@ function CommunityHeader({ title, id, role, setRole, avatar, banner }) {
                 </h2>
               </div>
               <div className="mr-[26px]">
-                {role ?
+                {isMember ?
                   <PillButton
                     variant="inverted"
                     additionalClasses="w-[96px]"
