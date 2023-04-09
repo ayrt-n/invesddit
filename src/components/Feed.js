@@ -4,7 +4,7 @@ import { usePostFeed } from '../hooks/usePostFeed';
 import PostLoading from './post/PostLoading';
 import PostPreview from './post/PostPreview';
 
-function Feed({ subdir, emptyFeed="No results found" }) {
+function Feed({ subdir, communityView, emptyFeed="No results found" }) {
   // Set current page and get search params for feed queries
   const [page, setPage] = useState(1);
   const [searchParams] = useSearchParams();
@@ -72,11 +72,11 @@ function Feed({ subdir, emptyFeed="No results found" }) {
           if (posts.length === index + 1) {
             return (
               <div ref={lastPostRef} key={post.id}>
-                <PostPreview post={post} updatePostVoteStatus={updatePostVoteStatus} />
+                <PostPreview post={post} updatePostVoteStatus={updatePostVoteStatus} communityView={communityView} />
               </div>
             )
           } else {
-            return <PostPreview post={post} key={post.id} updatePostVoteStatus={updatePostVoteStatus} />
+            return <PostPreview post={post} key={post.id} communityView={communityView} updatePostVoteStatus={updatePostVoteStatus} />
           }
         }) :
         emptyFeed

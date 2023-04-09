@@ -13,6 +13,7 @@ function CommunityFeed() {
       <Feed
         subdir={`api/v1/communities/${community_id}/posts`}
         emptyFeed={<EmptyCommunityFeed />}
+        communityView
       />
     </>
   );
