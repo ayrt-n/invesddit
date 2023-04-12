@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
 import logo from '../../assets/icons/invesddit-logo.svg'
+import brand from '../../assets/icons/invesddit-brand.png';
 import PillButton from '../PillButton';
 import NavDropdown from './NavDropdown';
-import NavDropdownMenu from './NavDropdownMenu';
 import { isLoggedIn } from '../../services/authService';
-import brand from '../../assets/icons/invesddit-brand.png';
 import ModalContext from '../../contexts/modal/ModalContext';
 import OnboardModal from '../OnboardModal';
 import SearchBar from './SearchBar';
