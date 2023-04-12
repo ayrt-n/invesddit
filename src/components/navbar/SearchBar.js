@@ -25,7 +25,7 @@ function SearchBar() {
               </svg>
             </div>
           </label>
-          <input value={search} onChange={handleChange} autoComplete="off" id="q" name="q" type="search" placeholder="Search Invesddit" className="bg-comment-controls text-[14px] leading-[14px] mr-[16px] outline-none w-full group-hover:bg-canvas-light focus:bg-canvas-light placeholder-feed-text" />
+          <input aria-label="search" value={search} onChange={handleChange} autoComplete="off" id="q" name="q" type="search" placeholder="Search Invesddit" className="bg-comment-controls text-[14px] leading-[14px] mr-[16px] outline-none w-full group-hover:bg-canvas-light focus:bg-canvas-light placeholder-feed-text" />
       </form>
     </div>
   );
