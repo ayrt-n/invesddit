@@ -10,7 +10,6 @@ import OnboardModal from '../OnboardModal';
 import SearchBar from './SearchBar';
 import AccountContext from '../../contexts/account/AccountContext';
 import Notifications from './Notifications';
-import { useDropdown } from '../../hooks/useDropdown';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
@@ -19,9 +18,6 @@ function Navbar() {
 
   // Use modal context to open sign up or login modals
   const { openModal, closeModal } = useContext(ModalContext);
-
-  // useDropdown hook to power nav dropdown menu
-  const [dropdownOpen, setDropdownOpen, dropdownRef] = useDropdown();
 
   return (
     <header className="min-h-[48px] px-[20px] bg-canvas-light border-b-[1px] border-nav-border flex items-center fixed w-full z-10 justify-between fixed">
@@ -40,10 +36,7 @@ function Navbar() {
         {isLoggedIn() ?
           <>
             <Notifications currentAccount={currentAccount} />
-            <div ref={dropdownRef} onClick={() => setDropdownOpen(!dropdownOpen)}>
-              <NavDropdown currentAccount={currentAccount} />
-              {dropdownOpen ? <NavDropdownMenu currentAccount={currentAccount} logOut={logOut} /> : null}
-            </div>
+            <NavDropdown currentAccount={currentAccount} logOut={logOut} />
           </> :
           <>
             <PillButton onClick={() => openModal(<OnboardModal closeModal={closeModal} initialState="signup"/>)} variant="inverted" additionalClasses="ml-[4px] text-[14px] whitespace-nowrap">
