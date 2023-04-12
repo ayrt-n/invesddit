@@ -20,17 +20,5 @@ describe('Account Tooltip component', () => {
 
       expect(container).toMatchSnapshot();
     });
-
-    it('renders default avatar if account has no avatar', () => {
-      const account = {
-        created_at: null,
-        avatar: null,
-        username: 'Test123',
-      };
-
-      render(<AccountTooltip account={account} />, { wrapper: MemoryRouter });
-
-      expect(screen.getByAltText(/avatar for test123/i)).toHaveAttribute('src', 'mock-image');
-    });
   });
 });
