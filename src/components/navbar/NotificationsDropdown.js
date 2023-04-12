@@ -2,7 +2,7 @@ import React from 'react';
 import { useDropdown } from '../../hooks/useDropdown';
 import NotificationsMenu from './NotificationsMenu';
 
-function Notifications({ currentAccount }) {
+function NotificationsDropdown({ currentAccount }) {
   const [dropdownOpen, setDropdownOpen, dropdownRef] = useDropdown();
 
   if (!currentAccount) return null
@@ -26,4 +26,4 @@ function Notifications({ currentAccount }) {
   );
 }
 
-export default Notifications;
+export default NotificationsDropdown;

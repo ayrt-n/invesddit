@@ -9,7 +9,7 @@ import ModalContext from '../../contexts/modal/ModalContext';
 import OnboardModal from '../OnboardModal';
 import SearchBar from './SearchBar';
 import AccountContext from '../../contexts/account/AccountContext';
-import Notifications from './Notifications';
+import NotificationsDropdown from './NotificationsDropdown';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
@@ -35,7 +35,7 @@ function Navbar() {
       <div className="flex items-center ml-[8px] pl-[8px] border-l-[1px] border-nav-border">
         {isLoggedIn() ?
           <>
-            <Notifications currentAccount={currentAccount} />
+            <NotificationsDropdown currentAccount={currentAccount} />
             <NavDropdown currentAccount={currentAccount} logOut={logOut} />
           </> :
           <>
