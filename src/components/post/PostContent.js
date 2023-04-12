@@ -14,9 +14,9 @@ function PostContent({ post, deletePost, updatePost }) {
       {/* Post meta text, including commmunity and post author */}
       <PostMetaText community={post.community} account={post.account} createdAt={post.created_at} />
       <div className="px-[8px]">
-        <div className="text-[18px] font-medium leading-[22px] break-word">
+        <h1 className="text-[18px] font-medium leading-[22px] break-word">
           {post.title}
-        </div>
+        </h1>
       </div>
       
       {/* Render either post edit form, or text/media/link post content */}
