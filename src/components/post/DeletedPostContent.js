@@ -26,9 +26,9 @@ function DeletedPostContent({ post }) {
 
       {/* Post Title */}
       <div className="px-[8px]">
-        <div className="text-[18px] font-medium leading-[22px] break-all">
+        <h1 className="text-[18px] font-medium leading-[22px] break-all">
           {post.title}
-        </div>
+        </h1>
       </div>
 
       {/* Deleted Content Message */}
