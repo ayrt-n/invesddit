@@ -31,3 +31,26 @@ After setting up the backend and starting the server, clone this repo into a fre
 A browser window should now open up with the application running on the frontend. If your browser does not automatically open, simply open a browser tab and navigate to http://localhost:3000
 
 You should now have your own copy of Invesddit running locally on your own machine!
+
+## Features / Demo
+
+One of the goals for this project was to replicate a number of features offered by Reddit in order to help improve the user experience offered by the typical finance-related forums. The following section will highlight some of the main features:
+
+### Infinite Scroll Pagination
+
+### Skeleton Loaders
+
+### Account and Community Tooltips
+
+### Realtime Updates and Dynamic User Interactions
+
+### Recent Post Tracker
+
+### Feed Controller and Sorting
+
+### Keyword Search
+
+### Infinitely Nested Comment System
+
+### Protected User Actions
+
