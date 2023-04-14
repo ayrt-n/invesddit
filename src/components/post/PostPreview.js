@@ -26,7 +26,6 @@ function PostPreview({ post, communityView, updatePostVoteStatus }) {
         {/* If communityView then don't render information on the community */}
         <PostMetaText
           community={communityView ? null : post.community}
-          avatar={communityView ? null : post.community.avatar}
           account={post.account}
           createdAt={post.created_at}
         />
