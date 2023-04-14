@@ -1,45 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import PostSidebar from './PostSidebar';
 import CommentSection from '../comments/CommentSection';
-import { getPost, deletePost } from '../../services/postService';
+import { deletePost } from '../../services/postService';
 import { addRecentPost } from '../../services/recentPostTracker';
 import DeletedPostContent from './DeletedPostContent';
 import PostContent from './PostContent';
+import PostLoading from './PostLoading';
+import usePost from '../../hooks/usePost';
 
 function Post() {
-  const { post_id } = useParams();
-  const { community_id } = useParams();
-  const [post, setPost] = useState(null);
+  const { post_id, community_id } = useParams();
+  const [post, updatePost] = usePost(post_id);
   const navigate = useNavigate();
 
-  // Query API to set post state and track post via recent posts
+  // If post successfully loaded, add to recent post tracker
   useEffect(() => {
-    getPost(post_id).then(data => {
-      addRecentPost({ ...data.data, community: { sub_dir: community_id } });
-      setPost(data.data);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-  }, [post_id, community_id]);
+    if (post?.data) { addRecentPost({ ...post.data, community: { sub_dir: community_id }}) }
+  }, [post, community_id]);
 
-  // Update post, e.g., after editting
-  const updatePost = (updatedPost) => {
-    setPost((prev) => {
-      return {...prev, ...updatedPost}
-    });
-  };
-  
-  // Update post vote status and score in "real time"
-  const updatePostVoteStatus = (_id, status, changeInScore) => {
-    setPost((prev) => {
-      const updatedScore = parseInt(prev.score) + changeInScore;
-      return { ...prev, vote_status: status, score: updatedScore };
-    });
-  };
-
-  // Open modal to confirm deleting post
   // If successfully deleted, navigate back to community page
   const deleteCurrentPost = () => {
     deletePost(post_id).then(() => {
@@ -50,24 +29,26 @@ function Post() {
     });
   };
 
-  if (!post) return null;
+  if (post.isLoading) return <PostLoading />;
 
   return (
     <div className="bg-canvas-light border-[1px] border-post-border mb-[10px] rounded-[4px]">
       <div className="flex">
         {/* Render Post Sidebar */}
         <PostSidebar
-          id={post.id}
-          score={post.score}
-          voted={post.vote_status}
-          updatePostVoteStatus={updatePostVoteStatus}
+          post={post.data}
+          updatePost={updatePost}
         />
 
         {/* If post status is deleted, render DeletedPostContent */}
         {/* Otherwise, render all components associated with a post */}
-        {post.status === 'deleted' ?
-          <DeletedPostContent post={post} /> :
-          <PostContent post={post} deletePost={deleteCurrentPost} updatePost={updatePost} />
+        {post.data.status === 'deleted' ?
+          <DeletedPostContent post={post.data} /> :
+          <PostContent
+            post={post.data}
+            deletePost={deleteCurrentPost}
+            updatePost={updatePost}
+          />
         }
       </div>
 

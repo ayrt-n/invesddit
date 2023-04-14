@@ -16,9 +16,7 @@ function PostPreview({ post, communityView, updatePostVoteStatus }) {
       <Link tabIndex="0" to={postLink} className="absolute top-0 bottom-0 right-0 left-0 h-full w-full z-1" />
 
       <PostSidebar
-        id={post.id}
-        score={post.score}
-        voted={post.vote_status}
+        post={post}
         updatePostVoteStatus={updatePostVoteStatus}
         preview
       />
