@@ -49,6 +49,8 @@ function Feed({ subdir, communityView, emptyFeed="No results found" }) {
 
   return (
     <>
+      {/* If first page and loading, show several loaders */}
+      {/* Else, render either the post feed or an empty feed message/component */}
       {isLoading && page === 1 ?
         <>
           <PostLoading />
@@ -70,6 +72,7 @@ function Feed({ subdir, communityView, emptyFeed="No results found" }) {
         emptyFeed
       }
 
+      {/* If not first page and loading, show a single loader under posts */}
       {isLoading && page !== 1 ?
         <PostLoading /> :
         null
