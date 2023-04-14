@@ -40,6 +40,10 @@ One of the goals for this project was to replicate a number of features offered 
 
 ### Skeleton Loaders
 
+While waiting for resources to load (posts, comments, etc), users are displayed simplified skeleton loaders of the resource being requested to let them know that the application is working on their request.
+
+![alt text](https://github.com/ayrt-n/invesddit/blob/main/demo/skeleton-loader.gif "Gif of invesddit feed loading")
+
 ### Account and Community Tooltips
 
 ### Realtime Updates and Dynamic User Interactions
@@ -54,3 +58,6 @@ One of the goals for this project was to replicate a number of features offered 
 
 ### Protected User Actions
 
+Like reddit, much of the applications functionality is not hidden to users whether logged in or not. However, if a user is not logged in and tries to perform an action which requires authorization, they will trigger an onboarding modal, prompting them to create an account and/or log in.
+
+![alt text](https://github.com/ayrt-n/invesddit/blob/main/demo/protected-cta.gif "Gif of user trying to use protected resources and triggering onboarding modal")
