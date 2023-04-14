@@ -16,7 +16,7 @@ function PostSidebar({ post, updatePost, preview }) {
 
     // Make api request to upvote, if success then update post state
     upvote('posts', post.id).then(() => {
-      updatePost({ vote_status: 'upvote', score: parseInt(post.score) + changeInScore });
+      updatePost({ ...post, vote_status: 'upvote', score: parseInt(post.score) + changeInScore });
     })
     .catch(err => console.error(err));
   };
@@ -28,7 +28,7 @@ function PostSidebar({ post, updatePost, preview }) {
 
     // Make api request to upvote, if success then update post state
     downvote('posts', post.id).then(() => {
-      updatePost({ vote_status: 'downvote', score: parseInt(post.score) + changeInScore });
+      updatePost({ ...post, vote_status: 'downvote', score: parseInt(post.score) + changeInScore });
     })
     .catch(err => console.error(err));
   };
@@ -39,7 +39,7 @@ function PostSidebar({ post, updatePost, preview }) {
 
     // Make api request to upvote, if success then update post state
     deleteVote('posts', post.id).then(() => {
-      updatePost({ vote_status: null, score: parseInt(post.score) + changeInScore })
+      updatePost({ ...post, vote_status: null, score: parseInt(post.score) + changeInScore })
     })
     .catch(err => console.error(err));
   };

@@ -5,8 +5,10 @@ import PostLoading from './post/PostLoading';
 import PostPreview from './post/PostPreview';
 
 function Feed({ subdir, communityView, emptyFeed="No results found" }) {
-  // Set current page and get search params for feed queries
+  // Set page state for pagination 
   const [page, setPage] = useState(1);
+
+  // Get Search Params for feed query
   const [searchParams] = useSearchParams();
   const feedParams = useMemo(() => (
     {
@@ -22,7 +24,7 @@ function Feed({ subdir, communityView, emptyFeed="No results found" }) {
 
   const {
     posts,
-    setPosts,
+    updatePosts,
     isLoading,
     hasMore
   } = usePostFeed(subdir, feedParams, page);
@@ -45,20 +47,6 @@ function Feed({ subdir, communityView, emptyFeed="No results found" }) {
     [isLoading, hasMore]
   );
 
-  // Update the vote count in real time
-  const updatePostVoteStatus = (id, status, changeInScore) => {
-    setPosts((prev) => (
-      prev.map((post) => {
-        if (post.id === id) {
-          const updatedScore = parseInt(post.score) + changeInScore;
-          return { ...post, vote_status: status, score: updatedScore };
-        } else {
-          return post;
-        }
-      })
-    ));
-  };
-
   return (
     <>
       {isLoading && page === 1 ?
@@ -72,11 +60,11 @@ function Feed({ subdir, communityView, emptyFeed="No results found" }) {
           if (posts.length === index + 1) {
             return (
               <div ref={lastPostRef} key={post.id}>
-                <PostPreview post={post} updatePostVoteStatus={updatePostVoteStatus} communityView={communityView} />
+                <PostPreview post={post} updatePost={updatePosts} communityView={communityView} />
               </div>
             )
           } else {
-            return <PostPreview post={post} key={post.id} communityView={communityView} updatePostVoteStatus={updatePostVoteStatus} />
+            return <PostPreview post={post} key={post.id} communityView={communityView} updatePost={updatePosts} />
           }
         }) :
         emptyFeed

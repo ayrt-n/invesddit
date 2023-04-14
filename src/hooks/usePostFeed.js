@@ -11,6 +11,7 @@ export function usePostFeed(subdir, feedParams, pageNumber) {
     setPosts([]);
   }, [subdir]);
  
+  // Query for page of posts whenever subdir or params change
   useEffect(() => {
     setIsLoading(true);
 
@@ -26,7 +27,14 @@ export function usePostFeed(subdir, feedParams, pageNumber) {
       }
     })
     .catch(err => console.error(err));
-  }, [subdir, feedParams, pageNumber, hasMore])
+  }, [subdir, feedParams, pageNumber, hasMore]);
 
-  return { posts, setPosts, isLoading, hasMore }
+  // Update post within list of posts
+  const updatePosts = (updatedPost) => {
+    setPosts((prev) => (
+      prev.map((post) => (post.id === updatedPost.id ? updatedPost : post))
+    ));
+  };
+
+  return { posts, updatePosts, isLoading, hasMore }
 }
