@@ -77,3 +77,11 @@ To allow for deep discussions, users are able to comment on posts and reply to o
 Like reddit, much of the applications functionality is not hidden to users whether logged in or not. However, if a user is not logged in and tries to perform an action which requires authorization, they will trigger an onboarding modal, prompting them to create an account and/or log in.
 
 ![alt text](https://github.com/ayrt-n/invesddit/blob/main/demo/protected-cta.gif "Gif of user trying to use protected resources and triggering onboarding modal")
+
+### Complex Forms and Async Select
+
+Throughout the application, there are a number of different forms integrated into the application, the most difficult of which to implement was the create post form, in particular the custom async select input.
+
+Using this form, users are presented their communities (e.g., ones they are an admin or member of) as a default list. However, if they start typing, it will query the backend API to search for communities which match their search, as well as split those options into 'Your communities' and 'Other communities' for the user to select. A lot of this was possible with the help of react-select, however, a good amount of customization was required to get this functioning similar to Reddit.
+
+![alt text](https://github.com/ayrt-n/invesddit/blob/main/demo/async-select.gif "Gif of user navigating create post form")
