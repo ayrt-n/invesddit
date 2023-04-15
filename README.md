@@ -52,6 +52,10 @@ Community and account tooltips included on each post to help users easily view m
 
 ### Realtime Updates and Dynamic User Interactions
 
+To make Invesddit feel dynamic and responsive, user interactions provide real time updates to the user interface through the use of React state. The example below shows a user liking and commenting on a post, as well as liking the comment. Once a request is made to the backend API and a success response is received, the application will update the state appropriately to show users "realtime" updates and avoid reloading the entire page.
+
+![alt text](https://github.com/ayrt-n/invesddit/blob/main/demo/realtime-updates.gif "Gif of user liking and commenting on a post")
+
 ### Recent Post Tracker
 
 ### Feed Controller and Sorting
