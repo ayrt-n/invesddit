@@ -7,7 +7,7 @@ import MediaPostPreview from './MediaPostPreview';
 import LinkPostPreview from './LinkPostPreview';
 import { Link } from 'react-router-dom';
 
-function PostPreview({ post, communityView, updatePostVoteStatus }) {
+function PostPreview({ post, communityView, updatePost }) {
   const postLink = `/c/${post.community.sub_dir}/posts/${post.id}`;
 
   return (
@@ -16,10 +16,8 @@ function PostPreview({ post, communityView, updatePostVoteStatus }) {
       <Link tabIndex="0" to={postLink} className="absolute top-0 bottom-0 right-0 left-0 h-full w-full z-1" />
 
       <PostSidebar
-        id={post.id}
-        score={post.score}
-        voted={post.vote_status}
-        updatePostVoteStatus={updatePostVoteStatus}
+        post={post}
+        updatePost={updatePost}
         preview
       />
       
@@ -28,10 +26,10 @@ function PostPreview({ post, communityView, updatePostVoteStatus }) {
         {/* If communityView then don't render information on the community */}
         <PostMetaText
           community={communityView ? null : post.community}
-          avatar={communityView ? null : post.community.avatar}
           account={post.account}
           createdAt={post.created_at}
         />
+
         {/* Render Post title and Post body preview */}
         <div className="px-[8px]">
           <div className="text-[18px] font-medium leading-[22px] break-word">

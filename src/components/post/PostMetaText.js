@@ -3,8 +3,7 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import CommunityTooltip from './CommunityTooltip';
 import AccountTooltip from './AccountTooltip';
 import { Link } from 'react-router-dom';
-import defaultCommunityAvatar from '../../assets/icons/invesddit-logo.svg';
-import Avatar from '../Avatar';
+import { CommunityAvatar } from '../Avatar';
 
 function PostMetaText({ community, account, createdAt }) {
   const createdAtDate = Date.parse(createdAt);
@@ -39,12 +38,12 @@ function PostMetaText({ community, account, createdAt }) {
       <div className="text-[12px] leading-[16px] mx-[8px] mb-[8px] flex items-center">
         {community &&
           <>
-            <div onClick={(e) => e.stopPropagation()}>
+            <div>
               <Link to={`/c/${community.sub_dir}`}>
-                <Avatar src={community.avatar || defaultCommunityAvatar} classNames="h-[20px] w-[20px] mr-[4px] bg-canvas-light" alt={`avatar for c/${community.sub_dir}`} />
+                <CommunityAvatar src={community.avatar} classNames="h-[20px] w-[20px] mr-[4px] bg-canvas-light" alt={`avatar for c/${community.sub_dir}`} />
               </Link>
             </div>
-            <div onClick={(e) => e.stopPropagation()} className="relative" onMouseOver={() => handleMouseEnter(setCommunityMenuOpen)} onMouseLeave={() => handleMouseLeave(setCommunityMenuOpen)}>
+            <div className="relative" onMouseOver={() => handleMouseEnter(setCommunityMenuOpen)} onMouseLeave={() => handleMouseLeave(setCommunityMenuOpen)}>
               <Link to={`/c/${community.sub_dir}`}>
                 <span className="font-bold hover:underline">
                   {`c/${community.sub_dir}`}
@@ -62,7 +61,7 @@ function PostMetaText({ community, account, createdAt }) {
         <span className="mr-[3px] text-meta-text">
           Posted by
         </span>
-        <div onClick={(e) => e.stopPropagation()} className="relative" onMouseOver={() => handleMouseEnter(setAccountMenuOpen)} onMouseLeave={() => handleMouseLeave(setAccountMenuOpen)}>
+        <div className="relative" onMouseOver={() => handleMouseEnter(setAccountMenuOpen)} onMouseLeave={() => handleMouseLeave(setAccountMenuOpen)}>
           <Link to={`/profile/${account.username}`}>
             <span className="mr-[3px] text-meta-text hover:underline">
               {`u/${account.username}`}
