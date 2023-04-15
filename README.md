@@ -38,6 +38,10 @@ One of the goals for this project was to replicate a number of features offered 
 
 ### Infinite Scroll Pagination
 
+Should Invesddit grow and start to accumulate a significant number of posts, we would want to avoid unnecessarily loading all of these posts at one time. To help with this, we've implemented pagination on the backend and infinite scroll pagination on the frontend to allow users to keep scrolling and lazily loading more posts once they reach the bottom of the feed.
+
+![alt text](https://github.com/ayrt-n/invesddit/blob/main/demo/infinite-scroll.gif "Gif of user scrolling and loading posts")
+
 ### Skeleton Loaders
 
 While waiting for resources to load (posts, comments, etc), users are displayed simplified skeleton loaders of the resource being requested to let them know that the application is working on their request.
