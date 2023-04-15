@@ -64,6 +64,10 @@ To make Invesddit feel dynamic and responsive, user interactions provide real ti
 
 ### Infinitely Nested Comment System
 
+To allow for deep discussions, users are able to comment on posts and reply to other comments. Like Reddit, the comment system allows for infinitely nested commenting, allowing for users to reply to replies to replies on replies, etc... Given the comment section can get unwieldy, you are also able to collapse and uncollapse comment threads to hide comments you are no longer interested in.
+
+![alt text](https://github.com/ayrt-n/invesddit/blob/main/demo/nested-comments.gif "Gif example of user commenting and collapsing comment thread")
+
 ### Protected User Actions
 
 Like reddit, much of the applications functionality is not hidden to users whether logged in or not. However, if a user is not logged in and tries to perform an action which requires authorization, they will trigger an onboarding modal, prompting them to create an account and/or log in.
