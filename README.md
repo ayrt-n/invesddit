@@ -66,6 +66,10 @@ To make Invesddit feel dynamic and responsive, user interactions provide real ti
 
 ### Keyword Search
 
+On the backend, I've implemented keyword search across a number of different resources, including posts, communities, and accounts. On the frontend, I've implemented a similar search UI as Reddit, with the ability to restrict search to just communities or accounts. For posts, relevant text is highlighted thanks to the react-highlight package.
+
+![alt text](https://github.com/ayrt-n/invesddit/blob/main/demo/keyword-search.gif "Gif of user searching Invesddit")
+
 ### Infinitely Nested Comment System
 
 To allow for deep discussions, users are able to comment on posts and reply to other comments. Like Reddit, the comment system allows for infinitely nested commenting, allowing for users to reply to replies to replies on replies, etc... Given the comment section can get unwieldy, you are also able to collapse and uncollapse comment threads to hide comments you are no longer interested in.
