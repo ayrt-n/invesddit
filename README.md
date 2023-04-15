@@ -46,6 +46,10 @@ While waiting for resources to load (posts, comments, etc), users are displayed 
 
 ### Account and Community Tooltips
 
+Community and account tooltips included on each post to help users easily view more information about the community or the author of the post. Tooltips only displayed if hovered for a certain amount of time using JavaScript to avoid opening tooltip if user accidentally hovers.
+
+![alt text](https://github.com/ayrt-n/invesddit/blob/main/demo/tooltips.gif "Gif example of community and account tooltips on hover")
+
 ### Realtime Updates and Dynamic User Interactions
 
 ### Recent Post Tracker
