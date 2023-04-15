@@ -62,7 +62,11 @@ To make Invesddit feel dynamic and responsive, user interactions provide real ti
 
 ### Recent Post Tracker
 
-### Feed Controller and Sorting
+To help users find old posts they've viewed, I've implemented recent post tracking using the localStorage API. When a user loads a post, the post and relevant details will get saved to localStorage. These recent posts (up to five at a time), are then displayed on the users home page with links to those posts.
+
+Users are able to clear recent posts by clicking on the "Clear" button at the bottom of the recent posts widget (as seen below).
+
+![alt text](https://github.com/ayrt-n/invesddit/blob/main/demo/recent-posts.png "screenshot of recent posts widget")
 
 ### Keyword Search
 
