@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import RecentPost from './RecentPost';
-import { clearRecentPosts } from '../services/recentPostTracker';
+import { getRecentPosts, clearRecentPosts } from '../services/recentPostTracker';
 
-function RecentPostsWidget({ recentPosts, clear }) {
+function RecentPostsWidget() {
+  const [recentPosts, setRecentPosts] = useState(getRecentPosts());
+
   const handleClick = () => {
     clearRecentPosts();
-    clear();
+    setRecentPosts([]);
   }
 
   if (!recentPosts || recentPosts.length < 1) return null;
