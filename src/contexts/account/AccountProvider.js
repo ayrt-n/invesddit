@@ -24,7 +24,11 @@ function AccountProvider({ children }) {
 
   // Keep track of loggedIn state when navigating between React router
   useEffect(() => {
-    setToken(getAccountToken());
+    const accountToken = getAccountToken();
+
+    if (token !== accountToken) {
+      setToken(accountToken);
+    }
   }, [navigate])
 
   // Logout function - remove token from localStage, set current account null
