@@ -3,10 +3,11 @@ import PillButton from '../PillButton';
 import { Link } from 'react-router-dom';
 import { CommunityAvatar } from '../Avatar';
 import formatCount from '../common/formatCount';
+import TooltipWrapper from '../tooltips/TooltipWrapper';
 
 function CommunityTooltip({ community }) {
   return (
-    <div onClick={(e) => e.stopPropagation()} className="absolute top-full bg-canvas-light rounded-[4px] shadow-[0_1px_3px_0px_rgba(0,0,0,0.2)] max-w-[380px] min-w-[240px] z-50 cursor-auto">
+    <TooltipWrapper>
       <div className="p-[12px]">
         <div className="w-full flex">
           <CommunityAvatar src={community.avatar} classNames="h-[32px] w-[32px] mr-[8px] shrink-0 bg-canvas-light" alt={`avatar for c/${community.sub_dir}`} />
@@ -31,7 +32,7 @@ function CommunityTooltip({ community }) {
           View Community
         </PillButton>
       </div>
-    </div>
+    </TooltipWrapper>
   );
 }
 
