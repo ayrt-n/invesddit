@@ -29,7 +29,7 @@ function AccountProvider({ children }) {
     if (token !== accountToken) {
       setToken(accountToken);
     }
-  }, [navigate])
+  }, [token, navigate])
 
   // Logout function - remove token from localStage, set current account null
   const logOut = useCallback(() => {
