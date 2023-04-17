@@ -1,18 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PillButton from '../PillButton';
 import ProfileForm from './ProfileForm';
-import { getCurrentAccount } from '../../services/accountService';
+import useFetch from '../../hooks/useFetch';
 
 function ProfileSettings() {
-  const [profile, setProfile] = useState(null);
+  const [profile] = useFetch('api/v1/account/edit')
 
-  useEffect(() => {
-    getCurrentAccount().then(data => {
-      setProfile(data.data);
-    });
-  }, [])
-
-  if (!profile) return null;
+  if (profile.isLoading) return null;
 
   return (
     <div className="min-h-[calc(100vh-48px)] bg-canvas-light pb-[40px]">
@@ -30,7 +24,7 @@ function ProfileSettings() {
             <h3 className="text-[10px] text-meta-text font-bold leading-[12px] border-b-[1px] border-nav-border pb-[6px] mb-[32px]">
               PROFILE INFORMATION
             </h3>
-            <ProfileForm profile={profile} />
+            <ProfileForm profile={profile.data} />
           </div>
           <div className="px-[20px]">
             <h2 className="text-[20px] font-medium leading-[24px] py-[40px]">
@@ -45,7 +39,7 @@ function ProfileSettings() {
                   Email address
                 </h3>
                 <p className="text-meta-text text-[12px] leading-[16px] lowercase">
-                  {profile.email}
+                  {profile.data.email}
                 </p>
               </div>
               <div className="flex grow justify-end items-center">
