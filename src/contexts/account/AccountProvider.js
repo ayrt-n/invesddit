@@ -8,10 +8,10 @@ import { useNavigate } from 'react-router-dom';
 function AccountProvider({ children }) {
   const navigate = useNavigate();
   const [currentAccount, setCurrentAccount] = useState(null);
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(getAccountToken());
 
-  // Set current account if user is logged in, otherwise set equal to null
-  // Update on changes to token
+  // Query for and save state for current account (username, avatar, etc) if logged in
+  // Otherwise, set equal to null
   useEffect(() => {
     if (isLoggedIn()) {
       getCurrentAccount().then((data) => {
@@ -23,6 +23,7 @@ function AccountProvider({ children }) {
   }, [token]);
 
   // Keep track of loggedIn state when navigating between React router
+  // Helpful if user logs out or changes accounts in different tab
   useEffect(() => {
     const accountToken = getAccountToken();
 
@@ -31,7 +32,7 @@ function AccountProvider({ children }) {
     }
   }, [token, navigate])
 
-  // Logout function - remove token from localStage, set current account null
+  // Logout function - remove token from localStage, set current account null and reload
   const logOut = useCallback(() => {
     logout();
     setCurrentAccount(null);
