@@ -1,32 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import format from 'date-fns/format';
-import defaultAvatar from '../../assets/icons/invesddit-logo.svg';
-import { getAccount } from '../../services/accountService';
-import Avatar from '../Avatar';
+import { UserAvatar } from '../Avatar';
+import useFetch from '../../hooks/useFetch';
+import SkeletonLoader from '../SkeletonLoader';
 
 function ProfileWidget({ username }) {
-  const [account, setAccount] = useState(null);
+  const [account] = useFetch(`api/v1/accounts/${username}`);
 
-  useEffect(() => {
-    getAccount(username).then(data => {
-      setAccount(data.data);
-    })
-  }, [username])
-
-  if (!account) return null;
+  if (account.isLoading) return (
+    <div className="relative">
+      <div className="border-[1px] border-post-border rounded-[4px] p-[12px] bg-canvas-light break-words overflow-visible">
+        <div className="h-[94px] rounded-t-[4px] w-[calc(100%-2px)] bg-blue-300 bg-center bg-no-repeat bg-cover absolute top-[1px] left-[1px]" />
+        <div className="relative rounded-full bg-inherit h-[86px] w-[86px] ml-[-3px] mt-[16px] p-[4px]">
+          <SkeletonLoader classNames="h-[78px] w-[78px] rounded-full" />
+        </div>
+        <SkeletonLoader classNames="h-[14px] w-[150px] my-[4px]" />
+        <SkeletonLoader classNames="h-[10px] w-[65px] mt-[4px]" />
+        <div className="my-[8px]" />
+        <div className="mb-[12px]">
+          <SkeletonLoader classNames="h-[12px] w-[100px]" />
+          <div className="flex items-center mt-[2px]">
+            <SkeletonLoader classNames="h-[10px] w-[50px]" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="relative">
       <div className="border-[1px] border-post-border rounded-[4px] p-[12px] bg-canvas-light break-words overflow-visible">
-        <div className="h-[94px] rounded-t-[4px] w-[calc(100%-2px)] bg-blue-300 bg-center bg-no-repeat bg-cover absolute top-[1px] left-[1px]" style={{backgroundImage: `url(${account.banner})`}} />
+        <div className="h-[94px] rounded-t-[4px] w-[calc(100%-2px)] bg-blue-300 bg-center bg-no-repeat bg-cover absolute top-[1px] left-[1px]" style={{backgroundImage: `url(${account.data.banner})`}} />
         <div className="relative rounded-full bg-inherit h-[86px] w-[86px] ml-[-3px] mt-[16px] p-[4px]">
-          <Avatar classNames="h-full w-full" src={account.avatar || defaultAvatar} alt="user avatar" />
+          <UserAvatar classNames="h-full w-full" src={account.data.avatar} alt="user avatar" />
         </div>
         <h1 className="text-[16px] leading-[20px] font-medium my-[4px]">
-          {account.username}
+          {account.data.username}
         </h1>
         <p className="font-medium text-[12px] leading-[16px] mt-[4px]">
-          u/{account.username}
+          u/{account.data.username}
         </p>
         <div className="my-[8px]" />
         <div className="mb-[12px]">
@@ -40,7 +52,7 @@ function ProfileWidget({ username }) {
             </svg>
             <span className="text-[12px] leading-[16px] ml-[4px] text-meta-text">
               {format(
-                 Date.parse(account.created_at),
+                 Date.parse(account.data.created_at),
                  'MMMM d, yyyy'
                )
               }
