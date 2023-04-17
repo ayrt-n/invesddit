@@ -17,12 +17,12 @@ jest.mock('../../ProtectedButton', () => ({ onClick, children }) => (
 
 describe('Community Header component', () => {
   describe('renders component', () => {
-    it('renders with join button if user has no role', () => {
+    it('renders with join button if user is not member', () => {
       render(
         <CommunityHeader
           title="Test title"
           id="TEST"
-          role={null}
+          isMember={false}
         />,
         { wrapper: MemoryRouter }
       );
@@ -35,32 +35,12 @@ describe('Community Header component', () => {
     it('renders with joined button if user is member', () => {
       render(
         <CommunityHeader
-          role="member"
+          isMember={true}
         />,
         { wrapper: MemoryRouter }
       );
 
       expect(screen.getByRole('button', { name: /joined/i })).toBeInTheDocument();
-    });
-
-    it('renders default avatar if no avatar provided', () => {
-      render(
-        <CommunityHeader id="TEST" />,
-        { wrapper: MemoryRouter }
-      );
-
-      const avatar = screen.getByAltText(/community logo for TEST/i)
-      expect(avatar).toHaveAttribute('src', 'mock-image');
-    });
-
-    it('renders avatar if provided', () => {
-      render(
-        <CommunityHeader id="TEST" avatar="cool-avatar" />,
-        { wrapper: MemoryRouter }
-      );
-
-      const avatar = screen.getByAltText(/community logo for TEST/i)
-      expect(avatar).toHaveAttribute('src', 'cool-avatar');
     });
   });
 
@@ -68,7 +48,7 @@ describe('Community Header component', () => {
     describe('when already joined', () => {
       it('changes the text to leave when moused over', async () => {
         const user = userEvent.setup();
-        render(<CommunityHeader role="member" />, { wrapper: MemoryRouter });
+        render(<CommunityHeader isMember={true} />, { wrapper: MemoryRouter });
 
         const button = screen.getByRole('button', { name: /joined/i });
         await user.hover(button);
@@ -76,34 +56,34 @@ describe('Community Header component', () => {
         expect(button).toHaveTextContent(/leave/i);
       });
 
-      it('sends request to leave community and updates the role on click', async () => {
+      it('sends request to leave community and updates membership', async () => {
         const user = userEvent.setup();
-        const mockSetRole = jest.fn();
+        const mockUpdate = jest.fn();
         leaveCommunity.mockReturnValue(Promise.resolve());
 
-        render(<CommunityHeader id="TEST" setRole={mockSetRole} role="member" />, { wrapper: MemoryRouter });
+        render(<CommunityHeader id="TEST" updateCommunity={mockUpdate} isMember={true} membershipCount={10} />, { wrapper: MemoryRouter });
 
         const button = screen.getByRole('button', { name: /joined/i });
         await user.click(button);
 
         await waitFor(() => expect(leaveCommunity).toBeCalledWith("TEST"));
-        expect(mockSetRole).toHaveBeenCalledWith(null);
+        expect(mockUpdate).toHaveBeenCalledWith({ is_member: false, memberships_count: 9 });
       });
     });
 
     describe('when not joined', () => {
-      it ('sends request to join community and updates the role on click', async () => {
+      it ('sends request to join community and updates membership', async () => {
         const user = userEvent.setup();
-        const mockSetRole = jest.fn();
+        const mockUpdate = jest.fn();
         joinCommunity.mockReturnValue(Promise.resolve());
 
-        render(<CommunityHeader id="TEST" setRole={mockSetRole} />, { wrapper: MemoryRouter });
+        render(<CommunityHeader id="TEST" updateCommunity={mockUpdate} membershipCount={10} />, { wrapper: MemoryRouter });
 
         const button = screen.getByRole('button', { name: /join/i });
         await user.click(button);
 
         await waitFor(() => expect(joinCommunity).toBeCalledWith("TEST"));
-        expect(mockSetRole).toHaveBeenCalledWith("member");
+        expect(mockUpdate).toHaveBeenCalledWith({ is_member: true, memberships_count: 10 + 1 });
       });
     });
   });

@@ -49,7 +49,7 @@ describe('Community Settings component', () => {
           description: 'Test description',
           memberships_count: 2,
           title: 'Test title',
-          current_role: 'tester',
+          is_admin: true,
           sub_dir: 'TEST'
         }
       };

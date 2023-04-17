@@ -6,15 +6,15 @@ import { MemoryRouter } from 'react-router-dom';
 import { getCommunity } from '../../../services/communityService';
 
 // Mock complicated components
-jest.mock('../CommunityHeader', () => ({ title, id, role, avatar, banner, setRole }) => {
+jest.mock('../CommunityHeader', () => ({ title, id, isMember, avatar, banner, updateCommunity }) => {
   return (
     <div>
       <div data-testid="title">{title}</div>
       <div data-testid="id">{id}</div>
-      <div data-testid="role">{role}</div>
+      <div data-testid="isMember">{isMember}</div>
       <img src={avatar} alt="test avatar" />
       <img src={banner} alt="test banner" />
-      <button onClick={() => setRole('new role')}>Change role</button>
+      <button onClick={() => updateCommunity('updated')}>Change role</button>
     </div>
   );
 });
@@ -53,7 +53,7 @@ describe('Community Dashboard component', () => {
           description: 'Test description',
           memberships_count: 2,
           title: 'Test title',
-          current_role: 'tester'
+          is_member: 'true',
         }
       };
       getCommunity.mockReturnValueOnce(new Promise((resolve, _reject) => {
@@ -67,7 +67,7 @@ describe('Community Dashboard component', () => {
       await waitFor(() => expect(getCommunity).toBeCalled());
       expect(screen.getByTestId('id')).toHaveTextContent('TEST');
       expect(screen.getByTestId('title')).toHaveTextContent(apiResponse.data.title);
-      expect(screen.getByTestId('role')).toHaveTextContent(apiResponse.data.current_role);
+      expect(screen.getByTestId('isMember')).toHaveTextContent(apiResponse.data.is_member);
       expect(screen.getByTestId('description')).toHaveTextContent(apiResponse.data.description);
       expect(screen.getByTestId('createdAt')).toHaveTextContent(apiResponse.data.created_at);
       expect(screen.getByTestId('membershipCount')).toHaveTextContent(apiResponse.data.memberships_count);
@@ -88,7 +88,7 @@ describe('Community Dashboard component', () => {
           description: 'Test description',
           memberships_count: 2,
           title: 'Test title',
-          current_role: 'admin' // USER SET TO ADMIN HERE!
+          is_admin: true
         }
       };
       getCommunity.mockReturnValueOnce(new Promise((resolve, _reject) => {
