@@ -53,9 +53,9 @@ function Feed({ subdir, communityView, emptyFeed="No results found" }) {
       {/* Else, render either the post feed or an empty feed message/component */}
       {isLoading && page === 1 ?
         <>
-          <PostLoading />
-          <PostLoading />
-          <PostLoading />
+          <PostLoading isPreview />
+          <PostLoading isPreview />
+          <PostLoading isPreview />
         </> :
         posts.length > 0 ?
         posts.map((post, index) => {
@@ -74,7 +74,7 @@ function Feed({ subdir, communityView, emptyFeed="No results found" }) {
 
       {/* If not first page and loading, show a single loader under posts */}
       {isLoading && page !== 1 ?
-        <PostLoading /> :
+        <PostLoading isPreview /> :
         null
       }
     </>
