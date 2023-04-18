@@ -29,26 +29,28 @@ function Post() {
     });
   };
 
-  if (post.isLoading) return <PostLoading />;
-
   return (
     <div className="bg-canvas-light border-[1px] border-post-border mb-[10px] rounded-[4px]">
       <div className="flex">
-        {/* Render Post Sidebar */}
-        <PostSidebar
-          post={post.data}
-          updatePost={updatePost}
-        />
+        {post.isLoading ?
+          <PostLoading /> :
+          <>
+            <PostSidebar
+              post={post.data}
+              updatePost={updatePost}
+            />
 
-        {/* If post status is deleted, render DeletedPostContent */}
-        {/* Otherwise, render all components associated with a post */}
-        {post.data.status === 'deleted' ?
-          <DeletedPostContent post={post.data} /> :
-          <PostContent
-            post={post.data}
-            deletePost={deleteCurrentPost}
-            updatePost={updatePost}
-          />
+            {/* If post status is deleted, render DeletedPostContent */}
+            {/* Otherwise, render all components associated with a post */}
+            {post.data.status === 'deleted' ?
+              <DeletedPostContent post={post.data} /> :
+              <PostContent
+                post={post.data}
+                deletePost={deleteCurrentPost}
+                updatePost={updatePost}
+              />
+            }
+          </>
         }
       </div>
 
