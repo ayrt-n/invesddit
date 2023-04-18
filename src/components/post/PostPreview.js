@@ -2,10 +2,10 @@ import React from 'react';
 import PostActions from './PostActions';
 import PostMetaText from './PostMetaText';
 import PostSidebar from './PostSidebar';
-import TextPostPreview from './TextPostPreview';
-import MediaPostPreview from './MediaPostPreview';
-import LinkPostPreview from './LinkPostPreview';
 import { Link } from 'react-router-dom';
+import TextContent from './TextContent';
+import MediaContent from './MediaContent';
+import LinkContent from './LinkContent';
 
 function PostPreview({ post, communityView, updatePost }) {
   const postLink = `/c/${post.community.sub_dir}/posts/${post.id}`;
@@ -38,12 +38,13 @@ function PostPreview({ post, communityView, updatePost }) {
         </div>
 
         {/* Render preview of content based on post type */}
+        {/* Need to wrap Text Content in another link to make clickable */}
         {
           post.type === 'TextPost' ?
-          <Link to={postLink}><TextPostPreview body={post.content} /></Link> :
+          <Link to={postLink}><TextContent body={post.content} isPreview /></Link> :
           post.type === 'MediaPost' ?
-          <MediaPostPreview media={post.content} /> :
-          <LinkPostPreview link={post.content} />
+          <MediaContent media={post.content} isPreview /> :
+          <LinkContent link={post.content} isPreview />
         }
 
         {/* Render Post actions (comment count link) */}

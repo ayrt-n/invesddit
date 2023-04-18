@@ -1,9 +1,12 @@
 import React from 'react';
 
-function LinkContent({ link }) {
+function LinkContent({ link, isPreview }) {
+  const fullLinkClasses = "ml-[8px] mt-[12px] mb-[10px] pr-[16px]"
+  const previewClasses = "px-[8px] my-[5px]"
+
   return (
-    <div className="ml-[8px] mt-[12px] mb-[10px] pr-[16px] font-noto">
-      <a className="hover:underline text-[12px] leading-[16px] text-link-text flex align-center" href={link} rel="noopener noreferrer" target="_blank">
+    <div className={`font-noto ${isPreview ? previewClasses : fullLinkClasses}`}>
+      <a className="relative hover:underline text-[12px] leading-[16px] text-link-text flex align-center" href={link} rel="noopener noreferrer" target="_blank">
         {link}
         <svg className="pl-[4px] inline-block w-[16px] h-[16px] min-w-[16px] min-h-[16px] align-middle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>open-in-new</title>
