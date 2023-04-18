@@ -3,10 +3,10 @@ import CommentMetaText from './CommentMetaText';
 import CommentActions from './CommentActions';
 import CollapsedCommentHeader from './CollapsedCommentHeader';
 import CommentSidebar from './CommentSidebar';
-import CommentReplyForm from './CommentReplyForm';
 import { deleteComment as deleteCommentAPI } from '../../services/commentService';
 import EditCommentForm from './EditCommentForm';
 import useToggle from '../../hooks/useToggle';
+import CommentForm from './CommentForm';
 
 function Comment({ comment, addNestedComment, updateComment }) {
   // State and toggles to edit comment, collapse/uncollapse thread and open reply form
@@ -100,6 +100,7 @@ function Comment({ comment, addNestedComment, updateComment }) {
           </div>
         }
 
+        {/* Comment actions dropdown, including actions for voting, editing, or deleting */}
         <CommentActions
           score={comment.score}
           voted={comment.vote_status}
@@ -110,8 +111,22 @@ function Comment({ comment, addNestedComment, updateComment }) {
           toggleReply={toggleReply}
         />
 
-        {replyOpen ? <CommentReplyForm postId={comment.post_id} commentId={comment.id} addComment={handleSubmitNestedComment} /> : null}
+        {/* Form to reply to comment, rendered if toggled open */}
+        {replyOpen ?
+            <div className="flex w-full">
+              <div className="my-[16px] ml-[22px] p-[2px] grow">
+                <CommentForm
+                  postId={comment.post_id}
+                  commentId={comment.id}
+                  addComment={handleSubmitNestedComment}
+                  autoFocus
+                />
+              </div>
+            </div> :
+            null
+          }
 
+        {/* If has nested comments, map through and render */}
         {hasNestedComment ?
           comment.comments.map((comment) => <Comment comment={comment} key={comment.id} addNestedComment={handleSubmitNestedComment} updateComment={handleUpdate} />) :
           null
