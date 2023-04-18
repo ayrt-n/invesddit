@@ -5,6 +5,9 @@ import ProtectedButton from '../ProtectedButton';
 import { createComment } from '../../services/commentService';
 
 function CommentForm({ postId, commentId, autoFocus, addComment }) {
+  // Call to action if unauthorized user tries to post comment
+  const callToAction = 'You can comment on any post with an Invesddit account.'
+
   const validate = (values) => {
     const errors = {};
     if (!values.body) { errors.body = 'Required' }
@@ -21,9 +24,6 @@ function CommentForm({ postId, commentId, autoFocus, addComment }) {
       console.error(err);
     });
   };
-
-  // Call to action if unauthorized user tries to post comment
-  const callToAction = 'You can comment on any post with an Invesddit account.'
 
   return (
     <div className="border-[1px] border-post-border rounded-[4px] focus-within:border-post-border-hover">
