@@ -5,15 +5,20 @@ import defaultHeaders from '../services/defaultHeaders';
 const API_URL = config.urls.API_URL;
 
 export default function useFetch(path, params) {
+  // Construct path based on provided path and params
+  const fetchParams = new URLSearchParams(params);
+  const fullPath = `${API_URL}/${path}?${fetchParams}`;
+
+  // Set up fetch states
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   // Query for data
   useEffect(() => {
-    const fetchParams = new URLSearchParams(params)
-
-    fetch(`${API_URL}/${path}?${fetchParams}`, {
+    setIsLoading(true);
+    
+    fetch(fullPath, {
       method: 'GET',
       mode: 'cors',
       headers: defaultHeaders()
@@ -33,7 +38,7 @@ export default function useFetch(path, params) {
     .catch(err => {
       console.error(err);
     })
-  }, [path, params]);
+  }, [fullPath]);
 
   return [
     {
