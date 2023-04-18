@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CommentMetaText from './CommentMetaText';
 import CommentActions from './CommentActions';
 import CollapsedCommentHeader from './CollapsedCommentHeader';
@@ -6,25 +6,23 @@ import CommentSidebar from './CommentSidebar';
 import CommentReplyForm from './CommentReplyForm';
 import { deleteComment as deleteCommentAPI } from '../../services/commentService';
 import EditCommentForm from './EditCommentForm';
+import useToggle from '../../hooks/useToggle';
 
 function Comment({ comment, addNestedComment, updateComment }) {
-  // State and toggle to switch to edit mode
-  const [isEditing, setIsEditing] = useState(false);
+  // State and toggles to edit comment, collapse/uncollapse thread and open reply form
+  const [isEditing, toggleEditting] = useToggle(); 
+  const [collapsed, toggleCollapse] = useToggle();
+  const [replyOpen, toggleReply] = useToggle();
 
-  // State and toggle to collapse/uncollapse comment thread
-  const [collapsed, setCollapsed] = useState(false);
-  const toggleCollapse = () => { setCollapsed((prev) => !prev) };
-
-  // State and toggle to open/close the reply to comment form
-  const [replyOpen, setReplyOpen] = useState(false);
-  const toggleReply = () => { setReplyOpen((prev) => !prev) };
+  // Check if any nested comments
+  const hasNestedComment = comment.comments.length > 0;
 
   // Close reply form and submit this comment along with nested comments
   // (including the new/updated comment) to addNestedComment
   // This will bubble up through comment thread until it reaches the CommentSection and
   // will proceed to update the comment state from there
   const handleSubmitNestedComment = (newComment) => {
-    setReplyOpen(false);
+    if (replyOpen) toggleReply();
 
     addNestedComment(
       {
@@ -79,9 +77,6 @@ function Comment({ comment, addNestedComment, updateComment }) {
     });
   };
 
-  // Check if any nested comments
-  const hasNestedComment = comment.comments.length > 0;
-
   return (
     <div className="pt-[8px] pl-[8px] flex">
       {/* Comment Header / Meta Text depending on collapsed state */}
@@ -97,7 +92,7 @@ function Comment({ comment, addNestedComment, updateComment }) {
         {isEditing ?
           <EditCommentForm
             comment={comment}
-            closeEdit={() => setIsEditing(false)}
+            closeEdit={toggleEditting}
             updateCommentContent={handleUpdate}
           /> :
           <div className="my-[2px] text-[14px] leading-[21px] break-words ">
@@ -111,7 +106,7 @@ function Comment({ comment, addNestedComment, updateComment }) {
           id={comment.id}
           accountId={comment.account?.id}
           deleteComment={deleteCurrentComment}
-          editComment={() => setIsEditing(true)}
+          editComment={toggleEditting}
           toggleReply={toggleReply}
         />
 
