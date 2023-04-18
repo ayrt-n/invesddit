@@ -1,27 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import CommentController from './CommentController';
 import CommentForm from './CommentForm';
 import Comment from './Comment';
-import { getComments } from '../../services/commentService';
 import NoCommentsMessage from './NoCommentsMessage';
+import useFetch from '../../hooks/useFetch';
+import CommentLoading from './CommentLoading';
 
 function CommentSection({ postId }) {
-  const [comments, setComments] = useState(null);
   const [sortBy, setSortBy] = useState('best');
-
-  // UseEffect to query API and get all comments sorted by criteria (default: best)
-  useEffect(() => {
-    let searchParams = { sort_by: sortBy }
-
-    getComments(postId, searchParams).then(data => {
-      setComments(data.data);
-    });
-  }, [postId, sortBy]);
+  const [comments, setComments] = useFetch(`api/v1/posts/${postId}/comments`, { sort_by: sortBy });
 
   // Add new top-level comment to list
   const addComment = (newComment) => {
     setComments((prev) => {
-      return [ newComment, ...prev ]
+      return [newComment, ...prev]
     })
   };
 
@@ -34,9 +26,7 @@ function CommentSection({ postId }) {
         return comment;
       });
     });
-  }
-
-  if (!comments) return null;
+  };
 
   return (
     <>
@@ -47,9 +37,15 @@ function CommentSection({ postId }) {
         <CommentController sortBy={sortBy} setSortBy={setSortBy} />
       </div>
       <div className="pr-[16px] pb-[16px] mt-[16px] mr-[16px] ml-[10px]">
-        {comments.length > 0 ?
+        {comments.isLoading ?
+        <>
+          <CommentLoading />
+          <CommentLoading />
+          <CommentLoading />
+        </> :
+        comments.data.length > 0 ?
           <>
-            {comments.map((comment) => {
+            {comments.data.map((comment) => {
               return (
                 <div className="mt-[16px]" key={comment.id}>
                   <Comment
