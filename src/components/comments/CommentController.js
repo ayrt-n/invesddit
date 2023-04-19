@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
+import { useDropdown } from '../../hooks/useDropdown';
 
 function CommentController({ sortBy, setSortBy }) {
-  const menuRef = useRef(null);
-  const [menuOpen, setMenuOpen] = useState(false);
-  
+  // Set up menu dropdown via useDropdown hook
+  const [menuOpen, setMenuOpen, menuRef] = useDropdown();
+
   // Toggle menu open/closed
   const toggleMenu = () => {
     setMenuOpen(prev => !prev)
@@ -14,22 +15,6 @@ function CommentController({ sortBy, setSortBy }) {
     setSortBy(option);
     setMenuOpen(false);
   };
-
-  // Handle clicks outside of menu
-  useEffect(() => {
-    // Event listener to determine if clicked outside of menu and to close menu
-    function handleClickOutside(e) {
-      if(menuRef.current && menuOpen && !menuRef.current.contains(e.target)){
-        setMenuOpen(false);
-      }
-    }
-
-    // Bind event listener and return to remove after unmounting
-    document.addEventListener('mousedown', handleClickOutside);
-    return (
-      () => { document.removeEventListener('mousedown', handleClickOutside); }
-    );
-  });
 
   return (
     <div className="py-[4px] pr-[8px]">
