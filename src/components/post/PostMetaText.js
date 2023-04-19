@@ -3,8 +3,8 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { Link } from 'react-router-dom';
 import { CommunityAvatar } from '../Avatar';
 import HoverableTooltip from '../tooltips/HoverableTooltip';
-import CommunityTooltip from './CommunityTooltip';
-import AccountTooltip from './AccountTooltip';
+import CommunityTooltip from '../tooltips/CommunityTooltip';
+import AccountTooltip from '../tooltips/AccountTooltip';
 
 function PostMetaText({ community, account, createdAt }) {
   const createdAtDate = Date.parse(createdAt);

@@ -1,6 +1,6 @@
 import React from 'react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import AccountTooltip from '../post/AccountTooltip';
+import AccountTooltip from '../tooltips/AccountTooltip';
 import { Link } from 'react-router-dom';
 import HoverableTooltip from '../tooltips/HoverableTooltip';
 

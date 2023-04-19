@@ -3,7 +3,7 @@ import PillButton from '../PillButton';
 import { Link } from 'react-router-dom';
 import { CommunityAvatar } from '../Avatar';
 import formatCount from '../common/formatCount';
-import TooltipWrapper from '../tooltips/TooltipWrapper';
+import TooltipWrapper from './TooltipWrapper';
 
 function CommunityTooltip({ community }) {
   return (

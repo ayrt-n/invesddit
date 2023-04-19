@@ -3,7 +3,7 @@ import PillButton from '../PillButton';
 import { Link } from 'react-router-dom';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { UserAvatar } from '../Avatar';
-import TooltipWrapper from '../tooltips/TooltipWrapper';
+import TooltipWrapper from './TooltipWrapper';
 
 function AccountTooltip({ account }) {
   const createdAtDate = Date.parse(account.created_at);
