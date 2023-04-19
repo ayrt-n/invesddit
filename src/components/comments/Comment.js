@@ -3,7 +3,7 @@ import CommentMetaText from './CommentMetaText';
 import CommentActions from './CommentActions';
 import CollapsedCommentHeader from './CollapsedCommentHeader';
 import CommentSidebar from './CommentSidebar';
-import { deleteComment as deleteCommentAPI } from '../../services/commentService';
+import { deleteComment as deleteCommentRequest } from '../../services/commentService';
 import EditCommentForm from './EditCommentForm';
 import useToggle from '../../hooks/useToggle';
 import CommentForm from './CommentForm';
@@ -17,52 +17,24 @@ function Comment({ comment, addNestedComment, updateComment }) {
   // Check if any nested comments
   const hasNestedComment = comment.comments.length > 0;
 
-  // Close reply form and submit this comment along with nested comments
-  // (including the new/updated comment) to addNestedComment
-  // This will bubble up through comment thread until it reaches the CommentSection and
-  // will proceed to update the comment state from there
-  const handleSubmitNestedComment = (newComment) => {
+  // Close reply form, add current comment id to the stack trace and pass new comment plus stack trace to addNestedComment 
+  const handleSubmitNestedComment = (newComment, stackTrace=[]) => {
     if (replyOpen) toggleReply();
 
-    addNestedComment(
-      {
-        ...comment,
-        comments: [
-          newComment,
-          ...comment.comments.filter((c) => c.id !== newComment.id)
-        ]
-      }
-    );
+    stackTrace.push(comment.id)
+    addNestedComment(newComment, stackTrace)
   };
 
-  // Handle update of existing comment/comment threads
-  // This will bubble up through comment thread until it reaches the CommentSection and
-  // will proceed to update the comment state from there
-  const handleUpdate = (replacementComment) => {
-    // If current comment is the comment to be replaced then replace and pass upwards
-    if (comment.id === replacementComment.id) {
-      updateComment(replacementComment);
+  // Add current comment id to the stack trace and pass updated comment plus stack trace to updateComment
+  const handleUpdate = (updatedComment, stackTrace=[]) => {
+    stackTrace.push(comment.id);
+    updateComment(updatedComment, stackTrace);
+  };
 
-      return;
-    }
-
-    // Otherwise, pass the current comment with the replacement comment as nested comment to maintain the changes
-    updateComment(
-      {
-        ...comment,
-        comments: comment.comments.map((c) => {
-                    if (c.id === replacementComment.id) return replacementComment;
-
-                    return c;
-                  })
-      }
-    );
-  }
-
-  // Queries API to delete the current comment (i.e., the comment that this component has rendered)
-  const deleteCurrentComment = () => {
-    // If successfully deleted, pass a mock deleted comment to function to update the commentSection state
-    deleteCommentAPI(comment.id).then(() => {
+  // Queries API to delete the current comment
+  // If successfully deleted, update comment with deleted values
+  const deleteComment = () => {
+    deleteCommentRequest(comment.id).then(() => {
       handleUpdate(
         {
           ...comment,
@@ -106,7 +78,7 @@ function Comment({ comment, addNestedComment, updateComment }) {
           voted={comment.vote_status}
           id={comment.id}
           accountId={comment.account?.id}
-          deleteComment={deleteCurrentComment}
+          deleteComment={deleteComment}
           editComment={toggleEditting}
           toggleReply={toggleReply}
         />
