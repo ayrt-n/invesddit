@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import useFetch from '../../hooks/useFetch';
 import { Link, Outlet, useParams } from 'react-router-dom';
 import CommunityHeader from './CommunityHeader';
 import AboutCommunityWidget from './AboutCommunityWidget';
-import { getCommunity } from '../../services/communityService';
 import PillButton from '../PillButton';
 
 function CommunityHomepage() {
   let { community_id } = useParams();
-  const [community, setCommunity] = useState(null);
-  
-  useEffect(() => {
-    getCommunity(community_id).then(data => {
-      setCommunity(data.data);
-    })
-    .catch(err => console.error(err));
-  }, [community_id]);
+  const [community, setCommunity] = useFetch(`api/v1/communities/${community_id}`)
 
   const updateCommunity = (values) => {
     setCommunity((prev) => {
@@ -22,18 +15,18 @@ function CommunityHomepage() {
     })
   };
 
-  if (!community) return null;
+  if (community.isLoading) return null;
 
   return (
     <div>
       <CommunityHeader
-        title={community.title || community.sub_dir}
+        title={community.data.title || community.data.sub_dir}
         id={community_id}
-        isMember={community.is_member}
-        membershipCount={community.memberships_count}
+        isMember={community.data.is_member}
+        membershipCount={community.data.memberships_count}
         updateCommunity={updateCommunity}
-        avatar={community.avatar}
-        banner={community.banner}
+        avatar={community.data.avatar}
+        banner={community.data.banner}
       />
 
       <div className="py-[20px] md:px-[24px]">
@@ -45,7 +38,7 @@ function CommunityHomepage() {
 
           {/* Feed Sidebar */}
           <div className="w-[312px] ml-[24px] hidden md:block">
-            {community.is_admin ?
+            {community.data.is_admin ?
               <PillButton
                 as={Link}
                 to="settings"
@@ -60,9 +53,9 @@ function CommunityHomepage() {
               null
             }
             <AboutCommunityWidget
-              description={community.description}
-              createdAt={community.created_at}
-              membershipCount={community.memberships_count}
+              description={community.data.description}
+              createdAt={community.data.created_at}
+              membershipCount={community.data.memberships_count}
             />
           </div>
         </div>
