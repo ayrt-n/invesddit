@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen, render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import DeletedPostContent from '../DeletedPostContent';
+import DeletedContent from '../DeletedContent';
 
 jest.mock('../PostActions', () => ({ commentCount }) => (
   <div data-testid="comments">{commentCount}</div>
@@ -16,7 +16,7 @@ describe('Deleted Post Content component', () => {
         created_at: "2023-04-08T15:11:02.831Z",
       };
 
-      render(<DeletedPostContent post={post} />);
+      render(<DeletedContent post={post} />);
 
       expect(screen.getByRole('heading', { name: /test title/i })).toBeInTheDocument();
       expect(screen.getByTestId('comments')).toHaveTextContent(post.comments_count);

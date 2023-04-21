@@ -2,7 +2,7 @@ import React from 'react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import PostActions from './PostActions';
 
-function DeletedPostContent({ post }) {
+function DeletedContent({ post }) {
   const createdAtDate = Date.parse(post.created_at);
 
   return (
@@ -58,4 +58,4 @@ function DeletedPostContent({ post }) {
   );
 }
 
-export default DeletedPostContent;
+export default DeletedContent;

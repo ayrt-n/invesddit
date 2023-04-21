@@ -5,10 +5,17 @@ import MediaContent from './MediaContent';
 import LinkContent from './LinkContent';
 import PostActions from './PostActions';
 import EditPostForm from './EditPostForm';
+import DeletedContent from './DeletedContent';
 
 function PostContent({ post, deletePost, updatePost }) {
   const [isEditing, setIsEditing] = useState(false);
 
+  // If post is deleted, render special case of deleted post
+  if (post.status === 'deleted') return (
+    <DeletedContent post={post} />
+  );
+
+  // Otherwise, render out post
   return (
     <div className="w-full">
       {/* Post meta text, including commmunity and post author */}

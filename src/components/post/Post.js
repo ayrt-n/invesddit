@@ -4,7 +4,6 @@ import PostSidebar from './PostSidebar';
 import CommentSection from '../comments/CommentSection';
 import { deletePost } from '../../services/postService';
 import { addRecentPost } from '../../services/recentPostTracker';
-import DeletedPostContent from './DeletedPostContent';
 import PostContent from './PostContent';
 import PostLoading from './PostLoading';
 import usePost from '../../hooks/usePost';
@@ -16,7 +15,7 @@ function Post() {
 
   // If post successfully loaded, add to recent post tracker
   useEffect(() => {
-    if (post?.data) { addRecentPost({ ...post.data, community: { sub_dir: community_id }}) }
+    if (!post.isLoading) { addRecentPost({ ...post.data, community: { sub_dir: community_id }}) }
   }, [post, community_id]);
 
   // If successfully deleted, navigate back to community page
@@ -40,16 +39,11 @@ function Post() {
               updatePost={updatePost}
             />
 
-            {/* If post status is deleted, render DeletedPostContent */}
-            {/* Otherwise, render all components associated with a post */}
-            {post.data.status === 'deleted' ?
-              <DeletedPostContent post={post.data} /> :
-              <PostContent
-                post={post.data}
-                deletePost={deleteCurrentPost}
-                updatePost={updatePost}
-              />
-            }
+            <PostContent
+              post={post.data}
+              deletePost={deleteCurrentPost}
+              updatePost={updatePost}
+            />
           </>
         }
       </div>
