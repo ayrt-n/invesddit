@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import defaultCommunityAvatar from '../../assets/icons/invesddit-logo.svg';
 import PillButton from '../PillButton';
 import ProtectedButton from '../ProtectedButton';
 import { joinCommunity, leaveCommunity } from '../../services/communityService';
 import { Link } from 'react-router-dom';
-import Avatar from '../Avatar';
+import { CommunityAvatar } from '../Avatar';
 
 function CommunityHeader({ title, id, isMember, membershipCount, updateCommunity, avatar, banner }) {
   const [leaveText, setLeaveText] = useState('Joined');
@@ -34,7 +33,7 @@ function CommunityHeader({ title, id, isMember, membershipCount, updateCommunity
       <div className="w-full bg-canvas-light">
         <div className="max-w-[984px] px-[16px] mx-auto flex">
           <div className="mb-[12px] mt-[-14px] flex">
-            <Avatar src={avatar || defaultCommunityAvatar} alt={`community logo for ${id}`} classNames="h-[72px] w-[72px] shrink-0 border-[4px] border-canvas-light bg-canvas-light" />
+            <CommunityAvatar src={avatar} alt={`community logo for ${id}`} classNames="h-[72px] w-[72px] shrink-0 border-[4px] border-canvas-light bg-canvas-light" />
             <div className="mt-[24px] pl-[16px] inline-flex items-start flex-1 justify-between w-full">
               <div className="inline-block pr-[24px]">
                 <h1 className="text-[28px] font-bold leading-[32px] pr-[2px] pb-[4px]">
