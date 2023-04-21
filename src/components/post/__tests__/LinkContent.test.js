@@ -13,4 +13,16 @@ describe('Link Content component', () => {
     expect(link).toHaveTextContent(linkProp);
     expect(link).toHaveAttribute('href', linkProp);
   });
+
+  describe('when preview', () => {
+    it('renders link preview content correctly', () => {
+      const linkProp = "www.google.com"
+      render(<LinkContent link={linkProp} isPreview />);
+      
+      const link = screen.getByRole('link')
+  
+      expect(link).toHaveTextContent(linkProp);
+      expect(link).toHaveAttribute('href', linkProp);
+    })
+  });
 });

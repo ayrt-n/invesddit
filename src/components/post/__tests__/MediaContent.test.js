@@ -14,4 +14,15 @@ describe('Media Content component', () => {
     expect(image).toHaveAttribute('src', media);
     expect(link).toHaveAttribute('href', media);
   });
+
+  describe('when preview', () => {
+    it('renders media preview content correctly', () => {
+      const media = 'fake.com/image.jpg'
+      render(<MediaContent media={media} isPreview />);
+  
+      const image = screen.getByAltText('user post');
+      
+      expect(image).toHaveAttribute('src', media);
+    });
+  });
 });
