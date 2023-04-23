@@ -5,16 +5,16 @@ function Modal({ isOpen, content, closeModal }) {
   // Disable keyboard interactions with all non-modal elements on mount
   useEffect(() => {
     const rootDiv = document.getElementById('root');
-    rootDiv.ariaHidden = "true"
+    if (rootDiv) rootDiv.ariaHidden = "true"
 
     return(() => {
       const rootDiv = document.getElementById('root');
-      rootDiv.ariaHidden = "false"
+      if (rootDiv) rootDiv.ariaHidden = "false"
     })
   }, [])
 
+  // Add listener to close modal if esc key presssed
   useEffect(() => {
-    // Add listener to close modal if esc key pressed
     const escapeKey = (e) => {
       if (e.key === 'Escape') {
         closeModal();
@@ -23,16 +23,21 @@ function Modal({ isOpen, content, closeModal }) {
 
     document.addEventListener('keydown', escapeKey);
 
-    // Prevent screen from scrolling while modal is open
+    return (() => {
+      document.removeEventListener('keydown', escapeKey);
+    });
+  }, [isOpen, closeModal])
+
+  // Prevent screen from scrolling while modal is open
+  useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     }
 
     return (() => {
       document.body.style.overflow = 'unset';
-      document.removeEventListener('keydown', escapeKey);
     });
-  }, [isOpen, closeModal])
+  }, [isOpen])
 
   if (isOpen) return ReactDOM.createPortal(
     <div role="dialog" aria-modal="true" className="fixed top-0 left-0 h-screen w-full z-[50]" style={{ background: "rgba(0,0,0,0.4)" }}>
