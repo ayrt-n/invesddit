@@ -3,7 +3,7 @@ import defaultHeaders from './defaultHeaders';
 
 const API_URL = config.urls.API_URL;
 
-function login(email, password) {
+function submitLogin(email, password) {
   return fetch(`${API_URL}/login`, {
     method: 'POST',
     mode: 'cors',
@@ -12,21 +12,6 @@ function login(email, password) {
       'login': email,
       'password': password
     })
-  })
-  .then(response => {
-    if (response.ok && response.headers.get('authorization')) {
-      localStorage.setItem(
-        'account',
-        JSON.stringify({
-          authorization: response.headers.get('authorization')
-        })
-      );
-    }
-
-    return response.json();
-  })
-  .catch((err) => {
-    console.error(err);
   });
 }
 
@@ -94,11 +79,11 @@ function resetPasswordRequest(email) {
 }
 
 export {
-  login,
   isLoggedIn,
   logout,
   createAccount,
   verifyAccount,
   getAccountToken,
   resetPasswordRequest,
+  submitLogin
 }

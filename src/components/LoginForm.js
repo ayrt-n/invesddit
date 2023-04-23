@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Formik } from 'formik';
 import LoginInput from './forms/LoginInput';
-import { login } from '../services/authService';
+import { submitLogin } from '../services/authService';
 import LoginButton from './forms/LoginButton';
-import { useNavigate } from 'react-router-dom';
 import ErrorMessage from './forms/ErrorMessage';
+import AuthContext from '../contexts/authentication/AuthContext';
 
 function LoginForm({ links }) {
-  const navigate = useNavigate();
+  const auth = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState(null);
 
   // Validate email and password, return errors if present
@@ -33,24 +33,24 @@ function LoginForm({ links }) {
   const handleLogin = (values, { setSubmitting }) => {
     setErrorMessage('');
 
-    login(values.email, values.password)
-    .then((data) => {
-      if (data.success) {
-        navigate('/');
+    submitLogin(values.email, values.password)
+    .then((response) => {
+      if (response.ok && response.headers.get('authorization')) {
+        auth.login({ authorization: response.headers.get('authorization') });
         window.location.reload();
       } else {
-        setErrorMessage(() => {
-          // Return error message with first letter capitalized
-          if (data['field-error']) {
-            return data['field-error'][1].charAt(0).toUpperCase() + data['field-error'][1].slice(1);
+        return response.json().then(err => setErrorMessage(() => {
+          if (err['field-error']) {
+            return err['field-error'][1].charAt(0).toUpperCase() + err['field-error'][1].slice(1);
           }
           
-          return data['error'];
-        })
-
-        setSubmitting(false);
+          return err['error'];
+        }));
       }
     })
+    .catch(err => {
+      console.error(err);
+    });
   };
 
   return (
@@ -83,3 +83,12 @@ function LoginForm({ links }) {
 }
 
 export default LoginForm;
+
+// setErrorMessage(() => {
+//           // Return error message with first letter capitalized
+//           if (data['field-error']) {
+//             return data['field-error'][1].charAt(0).toUpperCase() + data['field-error'][1].slice(1);
+//           }
+          
+//           return data['error'];
+//         })
