@@ -1,54 +1,29 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import AccountContext from './AccountContext';
 import { getCurrentAccount } from '../../services/accountService';
-import { isLoggedIn, getAccountToken } from '../../services/authService';
-import { logout } from '../../services/authService';
-import { useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 function AccountProvider({ children }) {
-  const navigate = useNavigate();
-  const [currentAccount, setCurrentAccount] = useState(null);
-  const [token, setToken] = useState(getAccountToken());
+  const auth = useAuth();
+  const [currentAccount, setCurrentAccount] = useState({
+    data: null,
+    isLoading: true,
+  });
 
-  // Query for and save state for current account (username, avatar, etc) if logged in
-  // Otherwise, set equal to null
   useEffect(() => {
-    if (isLoggedIn()) {
+    setCurrentAccount(prev => ({ ...prev, isLoading: true }));
+
+    if (auth.isAuthenticated) {
       getCurrentAccount().then((data) => {
-        setCurrentAccount(data.data);
+        setCurrentAccount({ data: data.data, isLoading: false });
       });
     } else {
-      setCurrentAccount(null);
+      setCurrentAccount({ data: null, isLoading: false });
     }
-  }, [token]);
-
-  // Keep track of loggedIn state when navigating between React router
-  // Helpful if user logs out or changes accounts in different tab
-  useEffect(() => {
-    const accountToken = getAccountToken();
-
-    if (token !== accountToken) {
-      setToken(accountToken);
-    }
-  }, [token, navigate])
-
-  // Logout function - remove token from localStage, set current account null and reload
-  const logOut = useCallback(() => {
-    logout();
-    setCurrentAccount(null);
-    setToken(null);
-    window.location.reload();
-  }, []);
-
-  // Memoized provider values
-  const providerValues = useMemo(() => ({
-    currentAccount,
-    setCurrentAccount,
-    logOut,
-  }), [currentAccount, setCurrentAccount, logOut]);
+  }, [auth]);
 
   return (
-    <AccountContext.Provider value={providerValues}>
+    <AccountContext.Provider value={{currentAccount, setCurrentAccount}}>
       {children}
     </AccountContext.Provider>
   );
