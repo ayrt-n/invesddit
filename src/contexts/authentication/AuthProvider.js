@@ -2,9 +2,7 @@ import { useState, useEffect } from 'react';
 import AuthContext from './AuthContext';
 
 function AuthProvider({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    !!localStorage.getItem('account')
-  );
+  const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('account'));
 
   const login = (account) => {
     localStorage.setItem('account', JSON.stringify(account));
@@ -14,6 +12,7 @@ function AuthProvider({ children }) {
   const logOut = () => {
     localStorage.removeItem('account');
     setIsAuthenticated(false);
+    window.location.reload();
   }
 
   // Keep track of changes to localStorage to keep state up-to-date across tabs/windows
