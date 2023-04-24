@@ -1,14 +1,14 @@
-import React, { useState, useRef, useContext, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import NotificationListItem from './NotificationListItem';
 import { getNotifications } from '../../services/notificationService';
 import { readAllNotification } from '../../services/notificationService';
-import AccountContext from '../../contexts/account/AccountContext';
 import usePagination from '../../hooks/usePagination';
 import NotificationLoading from './NotificationLoading';
 import EmptyNotifications from './EmptyNotifications';
+import useCurrentAccount from '../../hooks/useCurrentAccount';
 
 function NotificationDashboard() {
-  const { currentAccount, setCurrentAccount } = useContext(AccountContext);
+  const { currentAccount, setCurrentAccount } = useCurrentAccount();
   const [page, setPage] = useState(1);
   const {
     list,
@@ -35,7 +35,7 @@ function NotificationDashboard() {
 
   const markAllAsRead = () => {
     // If no unread notifications, return immediately and do not call API
-    if (list.length === 0 || currentAccount.notifications === 0) return;
+    if (list.length === 0 || (currentAccount.data && currentAccount.data.notifications === 0)) return;
 
     readAllNotification().then(() => {
       // Set notification read status to true
@@ -51,8 +51,6 @@ function NotificationDashboard() {
     })
     .catch(err => console.error(err));
   };
-
-  if (!list) return null;
 
   return (
     <div className="py-[20px] px-[24px]">

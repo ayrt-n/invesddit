@@ -15,7 +15,7 @@ function NavDropdownMenu({ currentAccount, logOut }) {
     });
   }, []);
   
-  if (!currentAccount) return null;
+  if (currentAccount.isLoading) return null;
 
   return (
     <div className="fixed top-[50px] right-[20px] max-h-[80%] w-[252px] bg-canvas-light rounded-[4px] border-[1px] border-nav-border py-[8px] overflow-y-auto overflow-x-hidden z-[80]">
@@ -32,7 +32,7 @@ function NavDropdownMenu({ currentAccount, logOut }) {
               My Stuff
             </span>
         </NavDropdownHeader>
-        <NavDropdownItem to={`/profile/${currentAccount.username}`}>
+        <NavDropdownItem to={`/profile/${currentAccount.data.username}`}>
           Profile
         </NavDropdownItem>
         <NavDropdownItem to="profile/settings">

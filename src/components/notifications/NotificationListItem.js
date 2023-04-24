@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import defaultAvatar from '../../assets/icons/invesddit-logo.svg';
 import { Link } from 'react-router-dom';
 import { readNotification } from '../../services/notificationService';
-import AccountContext from '../../contexts/account/AccountContext';
 import Avatar from '../Avatar';
+import useCurrentAccount from '../../hooks/useCurrentAccount';
 
 function NotificationListItem({ notification, underlined }) {
-  const { setCurrentAccount } = useContext(AccountContext )
+  const { setCurrentAccount } = useCurrentAccount();
 
   const createdAt = Date.parse(notification.created_at);
   const bgStyles = !notification.read ? "bg-blue-highlight" : "";

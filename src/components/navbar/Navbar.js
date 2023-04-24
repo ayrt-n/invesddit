@@ -3,20 +3,16 @@ import logo from '../../assets/icons/invesddit-logo.svg'
 import brand from '../../assets/icons/invesddit-brand.png';
 import PillButton from '../PillButton';
 import NavDropdown from './NavDropdown';
-import { isLoggedIn } from '../../services/authService';
 import ModalContext from '../../contexts/modal/ModalContext';
 import OnboardModal from '../OnboardModal';
 import SearchBar from './SearchBar';
-import AccountContext from '../../contexts/account/AccountContext';
 import NotificationsDropdown from './NotificationsDropdown';
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 function Navbar() {
-  // Account context for notifications and dropdown menu
-  const { currentAccount, logOut } = useContext(AccountContext);
-
-  // Use modal context to open sign up or login modals
   const { openModal, closeModal } = useContext(ModalContext);
+  const auth = useAuth();
 
   return (
     <header className="min-h-[48px] px-[20px] bg-canvas-light border-b-[1px] border-nav-border flex items-center fixed w-full z-10 justify-between fixed">
@@ -32,10 +28,10 @@ function Navbar() {
         </div>
       </div>
       <div className="flex items-center ml-[8px] pl-[8px] border-l-[1px] border-nav-border">
-        {isLoggedIn() ?
+        {auth.isAuthenticated ?
           <>
-            <NotificationsDropdown currentAccount={currentAccount} />
-            <NavDropdown currentAccount={currentAccount} logOut={logOut} />
+            <NotificationsDropdown />
+            <NavDropdown logOut={auth.logOut} />
           </> :
           <>
             <PillButton onClick={() => openModal(<OnboardModal closeModal={closeModal} initialState="signup"/>)} variant="inverted" additionalClasses="ml-[4px] text-[14px] whitespace-nowrap">

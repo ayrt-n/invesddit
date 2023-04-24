@@ -7,15 +7,17 @@ import Feed from './Feed';
 import EmptyHomeFeed from './EmptyHomeFeed';
 import CreatePostWidget from './CreatePostWidget';
 import FeedController from './FeedController';
-import { isLoggedIn } from '../services/authService';
+import useAuth from '../hooks/useAuth';
 
 function Homepage() {
+  const auth = useAuth();
+
   return (
     <div className="py-[20px] md:px-[24px]">
       <div className="mx-auto max-w-min flex">
         {/* Main Post Feed */}
         <div className="w-[640px]">
-          {isLoggedIn() ? <CreatePostWidget /> : null }
+          {auth.isAuthenticated ? <CreatePostWidget /> : null }
           <FeedController />
 
           <Feed

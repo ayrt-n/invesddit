@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
-import { isLoggedIn } from '../../services/authService';
+import AuthContext from '../../contexts/authentication/AuthContext';
 
 function PublicRoute({ children }) {
-  return isLoggedIn() ? <Navigate to="/" /> : children
+  const auth = useContext(AuthContext);
+
+  return auth.isAuthenticated ? <Navigate to="/" /> : children
 }
 
 export default PublicRoute;

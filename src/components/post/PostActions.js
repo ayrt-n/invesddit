@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import AccountContext from '../../contexts/account/AccountContext';
-import { isLoggedIn } from '../../services/authService';
+import useCurrentAccount from '../../hooks/useCurrentAccount';
 import PostDropdown from './PostDropdown';
 
 function PostActions({ showPostDropdown, postLink, accountId, commentCount, deletePost, editPost }) {
-  const { currentAccount } = useContext(AccountContext);
+  const { currentAccount } = useCurrentAccount();
 
   return (
     <div className="flex min-h-[40px] items-center text-[12px] font-bold leading-[16px] pl-[4px] pr-[8px] flex-grow text-meta-text mb-[2px]">
@@ -20,7 +19,7 @@ function PostActions({ showPostDropdown, postLink, accountId, commentCount, dele
       </Link>
 
       {/* If showPostDropdown, logged in and current user is post author, show additional actions button */}
-      {(showPostDropdown && isLoggedIn() && currentAccount.id === accountId) ?
+      {(showPostDropdown && currentAccount.data && currentAccount.data.id === accountId) ?
         <PostDropdown
           deletePost={deletePost}
           editPost={editPost}

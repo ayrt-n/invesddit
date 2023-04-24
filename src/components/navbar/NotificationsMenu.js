@@ -1,13 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getNotifications } from '../../services/notificationService';
 import NotificationListItem from '../notifications/NotificationListItem';
 import { readAllNotification } from '../../services/notificationService';
-import AccountContext from '../../contexts/account/AccountContext';
 import EmptyNotifications from '../notifications/EmptyNotifications';
+import useCurrentAccount from '../../hooks/useCurrentAccount';
 
 function NotificationsMenu({ closeDropdown }) {
-  const { currentAccount, setCurrentAccount } = useContext(AccountContext )
+  const { currentAccount, setCurrentAccount } = useCurrentAccount();
   const [notifications, setNotifications] = useState(null);
 
   // Query for and display the first five notifications
@@ -19,7 +19,7 @@ function NotificationsMenu({ closeDropdown }) {
 
   const markAllAsRead = () => {
     // If no unread notifications, return immediately and do not call API
-    if (notifications.length === 0 || currentAccount.notifications === 0) return;
+    if (notifications.length === 0 || (currentAccount.data && currentAccount.data.notifications === 0)) return;
 
     readAllNotification().then(() => {
       // Set notification read status to true

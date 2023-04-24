@@ -1,18 +1,20 @@
 import React from 'react';
+import useCurrentAccount from '../../hooks/useCurrentAccount';
 import { useDropdown } from '../../hooks/useDropdown';
 import NotificationsMenu from './NotificationsMenu';
 
-function NotificationsDropdown({ currentAccount }) {
+function NotificationsDropdown() {
+  const { currentAccount } = useCurrentAccount();
   const [dropdownOpen, setDropdownOpen, dropdownRef] = useDropdown();
 
-  if (!currentAccount) return null
+  if (currentAccount.isLoading) return null
 
   return (
     <div ref={dropdownRef} className="relative">
-      {currentAccount.notifications === 0 ?
+      {currentAccount.data.notifications === 0 ?
         null :
         <span className="bg-[#ff4500] font-sans rounded-[12px] text-[#fff] font-bold text-[10px] min-w-[16px] h-[16px] px-[4px] leading-[16px] absolute w-auto flex items-center justify-center top-0 z-[1] left-[20px]">
-          {currentAccount.notifications}
+          {currentAccount.data.notifications}
         </span>
       }
       <button aria-label='notifications menu' onClick={() => setDropdownOpen(!dropdownOpen)} className="mr-[8px] h-[32px] w-[32px] relative rounded-[4px] hover:bg-nav-icon-hov active:bg-nav-icon-active">
