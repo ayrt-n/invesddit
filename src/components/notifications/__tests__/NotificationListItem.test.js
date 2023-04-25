@@ -1,9 +1,8 @@
 import React from 'react';
-import { screen, render } from '@testing-library/react';
+import { render, screen } from '../../../utils/test-utils';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import NotificationListItem from '../NotificationListItem';
-import AccountContext from '../../../contexts/account/AccountContext';
 import { readNotification } from '../../../services/notificationService';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -11,16 +10,6 @@ import { MemoryRouter } from 'react-router-dom';
 jest.mock('../../../services/notificationService', () => ({
   readNotification: jest.fn()
 }));
-
-// Custom render which uses account context
-const customRender = (childComponent, {providerProps, ...renderOptions}) => {
-  return render(
-    <AccountContext.Provider {...providerProps}>
-      {childComponent}
-    </AccountContext.Provider>,
-    renderOptions
-  );
-};
 
 // Test notification to pass as prop
 const notification = {
@@ -57,13 +46,10 @@ const unreadNotification = {
 describe('Notification List Item component', () => {
   describe('renders component', () => {
     it('renders notification correctly', () => {
-      const providerProps = {
-        value: { setCurrentAccount: null }
-      };
-  
-      customRender(
-        <NotificationListItem notification={notification} />,
-        { providerProps, wrapper: MemoryRouter }
+      render(
+        <MemoryRouter>
+          <NotificationListItem notification={notification} />
+        </MemoryRouter>
       );
   
       expect(screen.getByRole('link')).toHaveAttribute(
@@ -74,17 +60,12 @@ describe('Notification List Item component', () => {
       expect(screen.getByText(notification.details.body)).toBeInTheDocument();
     });
 
-    it('renders with blue background if notification is unread', () => {
-      const providerProps = {
-        value: { setCurrentAccount: null }
-      };
-  
-      customRender(
-        <>
+    it('renders with blue background if notification is unread', () => {  
+      render(
+        <MemoryRouter>
           <NotificationListItem notification={notification} />
           <NotificationListItem notification={unreadNotification} />
-        </>,
-        { providerProps, wrapper: MemoryRouter }
+        </MemoryRouter>
       );
 
       const notifications = screen.getAllByTestId('notification');
@@ -94,16 +75,11 @@ describe('Notification List Item component', () => {
     });
 
     it('renders bottom border if specified', () => {
-      const providerProps = {
-        value: { setCurrentAccount: null }
-      };
-  
-      customRender(
-        <>
+      render(
+        <MemoryRouter>
           <NotificationListItem notification={notification} />
           <NotificationListItem underlined notification={notification} />
-        </>,
-        { providerProps, wrapper: MemoryRouter }
+        </MemoryRouter>,
       );
 
       const notifications = screen.getAllByTestId('notification');
@@ -118,19 +94,19 @@ describe('Notification List Item component', () => {
 
         readNotification.mockReturnValueOnce(Promise.resolve(''));
         const mockSetAccount = jest.fn();
-        const providerProps = {
-          value: {
-            setCurrentAccount: mockSetAccount,
-            currentAccount: {
-              otherInfo: 'Test',
-              notifications: 9
-            }
+        const accountValues = {
+          setCurrentAccount: mockSetAccount,
+          currentAccount: {
+            otherInfo: 'Test',
+            notifications: 9
           }
         };
     
-        customRender(
-          <NotificationListItem notification={unreadNotification} />,
-          { providerProps, wrapper: MemoryRouter }
+        render(
+          <MemoryRouter>
+            <NotificationListItem notification={unreadNotification} />
+          </MemoryRouter>,
+          { accountValues }
         );
 
         const notificationLink = screen.getByRole('link');
@@ -144,19 +120,19 @@ describe('Notification List Item component', () => {
         const user = userEvent.setup();
 
         const mockSetAccount = jest.fn();
-        const providerProps = {
-          value: {
-            setCurrentAccount: mockSetAccount,
-            currentAccount: {
-              otherInfo: 'Test',
-              notifications: 9
-            }
+        const accountValues = {
+          setCurrentAccount: mockSetAccount,
+          currentAccount: {
+            otherInfo: 'Test',
+            notifications: 9
           }
         };
     
-        customRender(
-          <NotificationListItem notification={notification} />,
-          { providerProps, wrapper: MemoryRouter }
+        render(
+          <MemoryRouter>
+            <NotificationListItem notification={notification} />
+          </MemoryRouter>,
+          { accountValues }
         );
 
         const notificationLink = screen.getByRole('link');

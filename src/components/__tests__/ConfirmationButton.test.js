@@ -1,35 +1,17 @@
 import React from 'react';
-import { screen, render } from '@testing-library/react'
+import { render, screen } from '../../utils/test-utils';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import ModalContext from '../../contexts/modal/ModalContext';
 import ConfirmationButton from '../ConfirmationButton';
 import ConfirmationModal from '../ConfirmationModal';
-
-const customRender = (childComponent, {providerProps, ...renderOptions}) => {
-  return render(
-    <ModalContext.Provider {...providerProps}>
-      {childComponent}
-    </ModalContext.Provider>,
-    renderOptions
-  );
-};
 
 describe('Confirmation Button component', () => {
   describe('renders component', () => {
     it('renders button with attributes / props', () => {
-      const providerProps = {
-        value: { openModal: null, closeModal: null }
-      };
-
-      customRender(
-        <ConfirmationButton
-          onClick="test"
-          className="test"
-        >
+      render(
+        <ConfirmationButton onClick="test" className="test">
           Test
-        </ConfirmationButton>,
-        { providerProps }
+        </ConfirmationButton>
       );
       
       const button = screen.getByRole('button', { name: /test/i });
@@ -44,11 +26,7 @@ describe('Confirmation Button component', () => {
       const mockOpenModal = jest.fn();
       const user = userEvent.setup();
 
-      const providerProps = {
-        value: { openModal: mockOpenModal, closeModal: "Test close" }
-      };
-
-      customRender(
+      render(
         <ConfirmationButton
           modalHeader="Test header"
           modalMessage="Test message"
@@ -57,7 +35,7 @@ describe('Confirmation Button component', () => {
         >
           Test
         </ConfirmationButton>,
-        { providerProps }
+        {modalValues: { openModal: mockOpenModal, closeModal: "Test close" }}
       );
       
       const button = screen.getByRole('button', { name: /test/i });

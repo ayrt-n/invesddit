@@ -1,13 +1,7 @@
 import React from 'react';
-import { screen, render } from '@testing-library/react';
+import { render, screen } from '../../../utils/test-utils';
 import '@testing-library/jest-dom';
 import PublicRoute from '../PublicRoute';
-import { isLoggedIn } from '../../../services/authService';
-
-// Mock auth service
-jest.mock('../../../services/authService', () => ({
-  isLoggedIn: jest.fn(),
-}));
 
 // Mock navigation component
 jest.mock('react-router-dom', () => {
@@ -19,24 +13,22 @@ jest.mock('react-router-dom', () => {
 
 describe('Public Router component', () => {
   it('renders children if user not logged in', () => {
-    isLoggedIn.mockReturnValueOnce(false);
-
     render(
       <PublicRoute>
         <div data-testid="child" />
-      </PublicRoute>
+      </PublicRoute>,
+      {authValues: { isAuthenticated: false }}
     )
 
     expect(screen.getByTestId('child')).toBeInTheDocument();
   });
 
   it('renders navigate if user logged in', () => {
-    isLoggedIn.mockReturnValueOnce(true);
-
     render(
       <PublicRoute>
         <div data-testid="child" />
-      </PublicRoute>
+      </PublicRoute>,
+      {authValues: { isAuthenticated: true }}
     )
 
     expect(screen.getByTestId('navigate')).toBeInTheDocument();

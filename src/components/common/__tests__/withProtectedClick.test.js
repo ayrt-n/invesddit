@@ -1,45 +1,27 @@
 import React from 'react';
-import { screen, render } from '@testing-library/react';
+import { render, screen } from '../../../utils/test-utils';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import { isLoggedIn } from '../../../services/authService';
-import ModalContext from '../../../contexts/modal/ModalContext';
 import withProtectedClick from '../withProtectedClick';
 import OnboardModal from '../../OnboardModal';
-
-// Mock auth service
-jest.mock('../../../services/authService', () => ({
-  isLoggedIn: jest.fn(),
-}));
-
-// Custom render with Modal Context
-const customRender = (childComponent, {providerProps, ...renderOptions}) => {
-  return render(
-    <ModalContext.Provider {...providerProps}>
-      {childComponent}
-    </ModalContext.Provider>,
-    renderOptions
-  );
-};
 
 describe('withProtectedClick HoC', () => {
   describe('when user is not logged in', () => {
     it('opens modal with the specified call to action', async () => {
       // Set up
       const user = userEvent.setup();
-      isLoggedIn.mockReturnValueOnce(false);
       const TestButton = withProtectedClick('button')
       const mockOpenModal = jest.fn();
-      const providerProps = {
-        value: { openModal: mockOpenModal, closeModal: null }
-      };
 
       // Render test button with protected click
-      customRender(
+      render(
         <TestButton callToAction="Test CTA">
           Test
         </TestButton>,
-        {providerProps}
+        {
+          modalValues: { openModal: mockOpenModal, closeModal: null },
+          authValues: { isAuthenticated: false }
+        }
       );
 
       await user.click(screen.getByRole('button', { name: /test/i }));
@@ -53,19 +35,18 @@ describe('withProtectedClick HoC', () => {
     it('does not call onClick method', async () => {
       // Set up
       const user = userEvent.setup();
-      isLoggedIn.mockReturnValueOnce(false);
       const TestButton = withProtectedClick('button')
       const mockClick = jest.fn();
-      const providerProps = {
-        value: { openModal: jest.fn(), closeModal: null }
-      };
 
       // Render test button with protected click
-      customRender(
+      render(
         <TestButton onClick={mockClick}>
           Test
         </TestButton>,
-        {providerProps}
+        {
+          modalValues: { openModal: jest.fn(), closeModal: null },
+          authValues: { isAuthenticated: false }
+        }
       );
 
       await user.click(screen.getByRole('button', { name: /test/i }));
@@ -78,19 +59,18 @@ describe('withProtectedClick HoC', () => {
     it('does not open modal', async () => {
       // Set up
       const user = userEvent.setup();
-      isLoggedIn.mockReturnValueOnce(true);
       const TestButton = withProtectedClick('button')
       const mockOpenModal = jest.fn();
-      const providerProps = {
-        value: { openModal: mockOpenModal, closeModal: null }
-      };
 
       // Render test button with protected click
-      customRender(
+      render(
         <TestButton>
           Test
         </TestButton>,
-        {providerProps}
+        {
+          modalValues: { openModal: mockOpenModal, closeModal: null },
+          authValues: { isAuthenticated: true }
+        }
       );
 
       await user.click(screen.getByRole('button', { name: /test/i }));
@@ -101,19 +81,18 @@ describe('withProtectedClick HoC', () => {
     it('does not call onClick method', async () => {
       // Set up
       const user = userEvent.setup();
-      isLoggedIn.mockReturnValueOnce(true);
       const TestButton = withProtectedClick('button')
       const mockClick = jest.fn();
-      const providerProps = {
-        value: { openModal: jest.fn(), closeModal: null }
-      };
 
       // Render test button with protected click
-      customRender(
+      render(
         <TestButton onClick={mockClick}>
           Test
         </TestButton>,
-        {providerProps}
+        {
+          modalValues: { openModal: jest.fn(), closeModal: null },
+          authValues: { isAuthenticated: true }
+        }
       );
 
       await user.click(screen.getByRole('button', { name: /test/i }));
