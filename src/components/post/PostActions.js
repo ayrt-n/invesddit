@@ -19,7 +19,7 @@ function PostActions({ showPostDropdown, postLink, accountId, commentCount, dele
       </Link>
 
       {/* If showPostDropdown, logged in and current user is post author, show additional actions button */}
-      {(showPostDropdown && currentAccount.data && currentAccount.data.id === accountId) ?
+      {(showPostDropdown && currentAccount && currentAccount.data && currentAccount.data.id === accountId) ?
         <PostDropdown
           deletePost={deletePost}
           editPost={editPost}

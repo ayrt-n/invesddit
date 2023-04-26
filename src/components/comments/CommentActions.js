@@ -94,7 +94,7 @@ function CommentActions({ voted, score, id, accountId, toggleReply, deleteCommen
 
       {/* Comment dropdown menu for edit/delete */}
       {/* If logged in and current user is comment author, show additional actions button */}
-      {(currentAccount.data && currentAccount.data.id === accountId) ?
+      {(currentAccount && currentAccount.data && currentAccount.data.id === accountId) ?
         <CommentDropdown
           deleteComment={deleteComment}
           editComment={editComment}
