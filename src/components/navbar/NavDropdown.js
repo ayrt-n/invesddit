@@ -8,7 +8,7 @@ function NavDropdown({ logOut }) {
   const { currentAccount } = useCurrentAccount();
   const [dropdownOpen, setDropdownOpen, dropdownRef] = useDropdown();
 
-  if (currentAccount.isLoading) return <div>HIIIII!!!</div>;
+  if (currentAccount.isLoading) return null;
   
   return (
     <div ref={dropdownRef} onClick={() => setDropdownOpen(!dropdownOpen)}>

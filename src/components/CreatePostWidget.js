@@ -6,7 +6,7 @@ import useCurrentAccount from '../hooks/useCurrentAccount';
 function CreatePostWidget() {
   const { currentAccount } = useCurrentAccount();
 
-  if (currentAccount.isLoading) return <div>HI!!!</div>;
+  if (currentAccount.isLoading) return null;
 
   return (
     <div className="bg-canvas-light rounded-[4px] border-[1px] border-post-border flex mb-[16px] p-[8px]">
