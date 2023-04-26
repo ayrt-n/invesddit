@@ -10,7 +10,7 @@ function PostMetaText({ community, account, createdAt }) {
   const createdAtDate = Date.parse(createdAt);
 
   return (
-    <div className="py-[8px] grow">
+    <div className="py-[8px] grow" data-testid="metaText">
       <div className="text-[12px] leading-[16px] mx-[8px] mb-[8px] flex items-center">
         {community &&
           <>
