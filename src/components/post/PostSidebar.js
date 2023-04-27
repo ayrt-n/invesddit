@@ -62,7 +62,7 @@ function PostSidebar({ post, updatePost, preview }) {
       }
 
       {/* Posts total score (upvotes - downvotes) */}
-      <div className={`my-[4px] text-[12px] leading-[16px] font-bold text-center ${post.vote_status ? `text-${post.vote_status}` : ''}`}>
+      <div className={`my-[4px] text-[12px] leading-[16px] font-bold text-center ${post.vote_status ? `text-${post.vote_status}` : ''}`} data-testid="score">
         {post.score}
       </div>
 

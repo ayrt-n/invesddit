@@ -6,7 +6,7 @@ function TextContent({ body, isPreview }) {
 
   return (
     <div className={isPreview ? previewClasses : fullTextClasses}>
-      <div className="text-[14px] leading-[21px] break-word whitespace-pre-line font-noto">
+      <div className="text-[14px] leading-[21px] break-word whitespace-pre-line font-noto" data-testid="textPostContent">
         {body}
       </div>
     </div>
