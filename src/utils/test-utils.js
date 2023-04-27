@@ -2,18 +2,18 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import AuthContext from '../contexts/authentication/AuthContext';
 import AccountContext from '../contexts/account/AccountContext';
-import ModalContext from '../contexts/modal/ModalContext';
+import ModalProvider from '../contexts/modal/ModalProvider';
 
 // Custom render method to wrap all renders in React context
 // Easily set context values for authenticated and account via authContext and accountContext args
-function customRender(childComponent, {authValues, accountValues, modalValues, ...options} = {}) {
+function customRender(childComponent, {authValues, accountValues, ...options} = {}) {
   function ProviderWrapper({children}) {
     return (
       <AuthContext.Provider value={authValues || {}}>
         <AccountContext.Provider value={accountValues || {}}>
-          <ModalContext.Provider value={modalValues || {}}>
+          <ModalProvider>
             {children}
-          </ModalContext.Provider>
+          </ModalProvider>
         </AccountContext.Provider>
       </AuthContext.Provider>
     );
