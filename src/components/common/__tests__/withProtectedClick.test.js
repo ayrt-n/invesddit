@@ -3,7 +3,10 @@ import { render, screen } from '../../../utils/test-utils';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import withProtectedClick from '../withProtectedClick';
-import OnboardModal from '../../OnboardModal';
+
+jest.mock('../../OnboardModal.js', () => ({ callToAction }) => (
+  <h1>{callToAction}</h1>
+));
 
 describe('withProtectedClick HoC', () => {
   describe('when user is not logged in', () => {
@@ -11,25 +14,19 @@ describe('withProtectedClick HoC', () => {
       // Set up
       const user = userEvent.setup();
       const TestButton = withProtectedClick('button')
-      const mockOpenModal = jest.fn();
 
       // Render test button with protected click
       render(
         <TestButton callToAction="Test CTA">
           Test
         </TestButton>,
-        {
-          modalValues: { openModal: mockOpenModal, closeModal: null },
-          authValues: { isAuthenticated: false }
-        }
+        {authValues: { isAuthenticated: false }}
       );
 
       await user.click(screen.getByRole('button', { name: /test/i }));
 
-      expect(mockOpenModal).toHaveBeenCalledTimes(1);
-      expect(mockOpenModal).toHaveBeenCalledWith(
-        <OnboardModal callToAction="Test CTA" closeModal={null} />
-      );
+      expect(screen.getByRole('dialog')).toBeInTheDocument();
+      expect(screen.getByRole('heading', /test CTA/i)).toBeInTheDocument();
     });
 
     it('does not call onClick method', async () => {
@@ -43,14 +40,10 @@ describe('withProtectedClick HoC', () => {
         <TestButton onClick={mockClick}>
           Test
         </TestButton>,
-        {
-          modalValues: { openModal: jest.fn(), closeModal: null },
-          authValues: { isAuthenticated: false }
-        }
+        {authValues: { isAuthenticated: false }}
       );
 
       await user.click(screen.getByRole('button', { name: /test/i }));
-
       expect(mockClick).not.toHaveBeenCalled();
     });
   });
@@ -60,25 +53,21 @@ describe('withProtectedClick HoC', () => {
       // Set up
       const user = userEvent.setup();
       const TestButton = withProtectedClick('button')
-      const mockOpenModal = jest.fn();
 
       // Render test button with protected click
       render(
         <TestButton>
           Test
         </TestButton>,
-        {
-          modalValues: { openModal: mockOpenModal, closeModal: null },
-          authValues: { isAuthenticated: true }
-        }
+        {authValues: { isAuthenticated: true }}
       );
 
       await user.click(screen.getByRole('button', { name: /test/i }));
-
-      expect(mockOpenModal).not.toHaveBeenCalled();
+      expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+      expect(screen.queryByRole('heading', /test CTA/i)).not.toBeInTheDocument();
     });
 
-    it('does not call onClick method', async () => {
+    it('calls onClick method', async () => {
       // Set up
       const user = userEvent.setup();
       const TestButton = withProtectedClick('button')
@@ -89,14 +78,10 @@ describe('withProtectedClick HoC', () => {
         <TestButton onClick={mockClick}>
           Test
         </TestButton>,
-        {
-          modalValues: { openModal: jest.fn(), closeModal: null },
-          authValues: { isAuthenticated: true }
-        }
+        {authValues: { isAuthenticated: true }}
       );
 
       await user.click(screen.getByRole('button', { name: /test/i }));
-
       expect(mockClick).toHaveBeenCalledTimes(1);
     });
   });

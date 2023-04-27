@@ -3,7 +3,6 @@ import { render, screen } from '../../utils/test-utils';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import ConfirmationButton from '../ConfirmationButton';
-import ConfirmationModal from '../ConfirmationModal';
 
 describe('Confirmation Button component', () => {
   describe('renders component', () => {
@@ -22,34 +21,26 @@ describe('Confirmation Button component', () => {
   })
 
   describe('clicking button', () => {
-    it('calls openModal with confirmation modal props', async () => {
-      const mockOpenModal = jest.fn();
+    it('does not call onclick until confirmed in modal', async () => {
+      const mockCallback = jest.fn();
       const user = userEvent.setup();
 
       render(
         <ConfirmationButton
           modalHeader="Test header"
           modalMessage="Test message"
-          modalActionText="Test action"
-          onClick="Test callback"
+          modalActionText="Confirm test"
+          onClick={mockCallback}
         >
           Test
-        </ConfirmationButton>,
-        {modalValues: { openModal: mockOpenModal, closeModal: "Test close" }}
+        </ConfirmationButton>
       );
       
-      const button = screen.getByRole('button', { name: /test/i });
-      await user.click(button);
+      await user.click(screen.getByRole('button', { name: /test/i }));
+      expect(mockCallback).not.toHaveBeenCalled();
 
-      expect(mockOpenModal).toHaveBeenCalledWith(
-        <ConfirmationModal
-          header="Test header"
-          message="Test message"
-          actionText="Test action"
-          callback="Test callback"
-          closeModal="Test close"
-        />
-      );
+      await user.click(screen.getByRole('button', { name: /confirm test/i }));
+      expect(mockCallback).toHaveBeenCalledTimes(1);
     });
   });
 });
