@@ -52,4 +52,17 @@ const mediaPost = {
   }
 };
 
-export { textPost, linkPost, mediaPost }
+const deletedPost = {
+  status: 'deleted',
+  id: 1,
+  type: "TextPost",
+  title: 'Test Post',
+  comments_count: 0,
+  created_at: "2023-04-14T13:49:33.617Z",
+  score: 1,
+  content: "[Deleted]",
+  vote_status: null,
+  account: null
+};
+
+export { textPost, linkPost, mediaPost, deletedPost }
