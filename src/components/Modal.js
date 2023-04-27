@@ -1,6 +1,12 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
+if (!document.querySelector('#modal-root')) {
+  const modalRoot = document.createElement('div')
+  modalRoot.setAttribute('id', 'modal-root')
+  document.body.appendChild(modalRoot)
+}
+
 function Modal({ isOpen, content, closeModal }) {
   // Disable keyboard interactions with all non-modal elements on mount
   useEffect(() => {
