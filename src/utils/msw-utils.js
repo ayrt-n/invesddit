@@ -8,4 +8,12 @@ function useLoadingHandler(url) {
   );
 }
 
-export { useLoadingHandler }
+function useEmptyResponse(url) {
+  server.use(
+    rest.get(url, async (req, res, ctx) => {
+      return res(ctx.status(200), ctx.json({data: []}))
+    })
+  );
+}
+
+export { useLoadingHandler, useEmptyResponse }
