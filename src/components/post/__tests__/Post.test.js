@@ -1,10 +1,9 @@
 import React from 'react';
-import { render, screen } from '../../../utils/test-utils';
+import { renderWithMemoryRouter, screen } from '../../../utils/test-utils';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import Post from '../Post';
 import { server, rest } from '../../../mocks/server';
-import { MemoryRouter } from 'react-router-dom';
 import { config } from '../../../services/constants';
 import { textPost, linkPost, mediaPost } from '../../../mocks/data/posts';
 
@@ -32,10 +31,8 @@ describe('Post component', () => {
         })
       );
 
-      render(
-        <MemoryRouter>
-          <Post />
-        </MemoryRouter>,
+      renderWithMemoryRouter(
+        <Post />,
         {authValues: { isAuthenticated: true }}
       );
 
@@ -64,10 +61,8 @@ describe('Post component', () => {
         })
       );
 
-      render(
-        <MemoryRouter>
-          <Post />
-        </MemoryRouter>,
+      renderWithMemoryRouter(
+        <Post />,
         {
           authValues: {isAuthenticated: true},
           accountValues: {currentAccount: {data: {id: mediaPost.account.id}}}
@@ -89,10 +84,8 @@ describe('Post component', () => {
         })
       );
 
-      render(
-        <MemoryRouter>
-          <Post />
-        </MemoryRouter>,
+      renderWithMemoryRouter(
+        <Post />,
         {
           authValues: {isAuthenticated: true},
           accountValues: {currentAccount: {data: {id: linkPost.account.id}}}
@@ -117,10 +110,8 @@ describe('Post component', () => {
         })
       );
 
-      render(
-        <MemoryRouter>
-          <Post />
-        </MemoryRouter>,
+      renderWithMemoryRouter(
+        <Post />,
         {
           authValues: {isAuthenticated: true},
           accountValues: {currentAccount: {data: {id: textPost.account.id}}}
