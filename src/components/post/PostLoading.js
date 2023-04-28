@@ -5,7 +5,7 @@ function PostLoading({ isPreview }) {
   const previewWrapper = "bg-canvas-light border-[1px] border-post-border mb-[10px] flex rounded-[4px] cursor-pointer";
 
   return (
-    <div className={isPreview ? previewWrapper : 'flex w-full'}>
+    <div className={isPreview ? previewWrapper : 'flex w-full'} data-testid="postLoading">
       {/* Fake Post Sidebar */}
       <div className={`${isPreview ? 'bg-post-sidebar' : ''} min-w-[40px] flex flex-col items-center py-[8px] rounded-tl-[4px] rounded-bl-[4px]`}>
         <div className="flex items-center justify-items-center">
