@@ -50,7 +50,7 @@ function Comment({ comment, addNestedComment, updateComment }) {
   };
 
   return (
-    <div className="pt-[8px] pl-[8px] flex">
+    <div className="pt-[8px] pl-[8px] flex" id={`comment${comment.id}`} data-testid={`comment${comment.id}`}>
       {/* Comment Header / Meta Text depending on collapsed state */}
       {collapsed ? 
         <CollapsedCommentHeader comment={comment} toggleCollapse={toggleCollapse} /> :
@@ -85,7 +85,7 @@ function Comment({ comment, addNestedComment, updateComment }) {
 
         {/* Form to reply to comment, rendered if toggled open */}
         {replyOpen ?
-            <div className="flex w-full">
+            <div className="flex w-full" data-testid="replyForm">
               <div className="my-[16px] ml-[22px] p-[2px] grow">
                 <CommentForm
                   postId={comment.post_id}
