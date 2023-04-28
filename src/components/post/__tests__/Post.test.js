@@ -4,6 +4,7 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import Post from '../Post';
 import { server, rest } from '../../../mocks/server';
+import { useLoadingHandler } from '../../../utils/msw-utils';
 import { config } from '../../../services/constants';
 import { textPost, linkPost, mediaPost } from '../../../mocks/data/posts';
 
@@ -22,6 +23,15 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('Post component', () => {
+  describe('loading post', () => {
+    it('renders skeleton loaders in place of post content', () => {
+      useLoadingHandler(`${API_URL}/api/v1/posts/:post_id`);
+      renderWithMemoryRouter(<Post />);
+
+      expect(screen.getByTestId('postLoading')).toBeInTheDocument();
+    });
+  });
+
   describe('voting on post', () => {
     it('updates vote count as user votes', async () => {
       const user = userEvent.setup();
@@ -31,10 +41,7 @@ describe('Post component', () => {
         })
       );
 
-      renderWithMemoryRouter(
-        <Post />,
-        {authValues: { isAuthenticated: true }}
-      );
+      renderWithMemoryRouter(<Post />, {authValues: { isAuthenticated: true }});
 
       const upvote = await screen.findByRole('button', {name: /upvote/i});
       const downvote = await screen.findByRole('button', {name: /downvote/i});
