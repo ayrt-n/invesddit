@@ -23,7 +23,7 @@ function customRender(childComponent, {authValues, accountValues, ...options} = 
   return render(childComponent, {wrapper: ProviderWrapper, ...options});
 }
 
-function renderWithMemoryRouter(childComponent, {routerProps, ...renderOptions}) {
+function renderWithMemoryRouter(childComponent, {routerProps, ...renderOptions} = {}) {
   customRender(
     <MemoryRouter {...routerProps}>
       {childComponent}
