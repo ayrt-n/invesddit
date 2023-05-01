@@ -50,6 +50,9 @@ function LoginForm({ links }) {
     })
     .catch(err => {
       console.error(err);
+    })
+    .finally(() => {
+      setSubmitting(false);
     });
   };
 
