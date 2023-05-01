@@ -21,7 +21,10 @@ function NotificationListItem({ notification, underlined }) {
         setCurrentAccount(prev => (
           {
             ...prev,
-            notifications: parseInt(prev.notifications) - 1
+            data: {
+              ...prev.data,
+              notifications: parseInt(prev.data.notifications) - 1
+            }
           }
         ));
       });

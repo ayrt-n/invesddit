@@ -29,7 +29,10 @@ function NotificationsMenu({ closeDropdown }) {
       setCurrentAccount(prev => (
         {
           ...prev,
-          notifications: 0
+          data: {
+            ...prev.data,
+            notifications: 0
+          }
         }
       ));
     })
