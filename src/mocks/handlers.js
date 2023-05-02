@@ -5,6 +5,7 @@ import commentData from './data/comments.json';
 const API_URL = config.urls.API_URL;
 
 export const handlers = [
+  // Comment Requests
   rest.get(`${API_URL}/api/v1/posts/:post_id/comments`, (req, res, ctx) => {
     return res(
       ctx.status(200),
@@ -39,6 +40,8 @@ export const handlers = [
     )
   }),
 
+  // Post Requests
+
   rest.delete(`${API_URL}/api/v1/posts/:post_id`, async (req, res, ctx) => {
     return res(ctx.status(204));
   }),
@@ -48,6 +51,12 @@ export const handlers = [
   }),
 
   rest.delete(`${API_URL}/api/v1/posts/:post_id/votes`, async (req, res, ctx) => {
+    return res(ctx.status(204));
+  }),
+
+  // Notification Requests
+
+  rest.patch(`${API_URL}/api/v1/notifications/:notification_id`, async (req, res, ctx) => {
     return res(ctx.status(204));
   }),
 ]
