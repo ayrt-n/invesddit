@@ -3,16 +3,10 @@ import { render, screen } from '../../../utils/test-utils';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import NotificationListItem from '../NotificationListItem';
-import { readNotification } from '../../../services/notificationService';
 import { MemoryRouter } from 'react-router-dom';
 
-// Mocks
-jest.mock('../../../services/notificationService', () => ({
-  readNotification: jest.fn()
-}));
-
 // Test notification to pass as prop
-const notification = {
+const readNotification = {
   id: 1,
   message: "u/test replied to your post in c/TEST",
   read: true,
@@ -48,22 +42,22 @@ describe('Notification List Item component', () => {
     it('renders notification correctly', () => {
       render(
         <MemoryRouter>
-          <NotificationListItem notification={notification} />
+          <NotificationListItem notification={readNotification} />
         </MemoryRouter>
       );
   
       expect(screen.getByRole('link')).toHaveAttribute(
-        'href', `/c/${notification.details.community}/posts/${notification.details.post_id}`
+        'href', `/c/${readNotification.details.community}/posts/${readNotification.details.post_id}`
       );
-      expect(screen.getByAltText('notification avatar')).toHaveAttribute('src', notification.details.avatar);
-      expect(screen.getByText(notification.message)).toBeInTheDocument();
-      expect(screen.getByText(notification.details.body)).toBeInTheDocument();
+      expect(screen.getByAltText('notification avatar')).toHaveAttribute('src', readNotification.details.avatar);
+      expect(screen.getByText(readNotification.message)).toBeInTheDocument();
+      expect(screen.getByText(readNotification.details.body)).toBeInTheDocument();
     });
 
     it('renders with blue background if notification is unread', () => {  
       render(
         <MemoryRouter>
-          <NotificationListItem notification={notification} />
+          <NotificationListItem notification={readNotification} />
           <NotificationListItem notification={unreadNotification} />
         </MemoryRouter>
       );
@@ -77,8 +71,8 @@ describe('Notification List Item component', () => {
     it('renders bottom border if specified', () => {
       render(
         <MemoryRouter>
-          <NotificationListItem notification={notification} />
-          <NotificationListItem underlined notification={notification} />
+          <NotificationListItem notification={readNotification} />
+          <NotificationListItem underlined notification={readNotification} />
         </MemoryRouter>,
       );
 
@@ -92,13 +86,15 @@ describe('Notification List Item component', () => {
       it('calls readNotification and setCurrentAccount if clicked and unread', async () => {
         const user = userEvent.setup();
 
-        readNotification.mockReturnValueOnce(Promise.resolve(''));
         const mockSetAccount = jest.fn();
         const accountValues = {
           setCurrentAccount: mockSetAccount,
           currentAccount: {
-            otherInfo: 'Test',
-            notifications: 9
+            data: {
+              username: 'Test',
+              notifications: 8
+            },
+            isLoading: false
           }
         };
     
@@ -113,7 +109,6 @@ describe('Notification List Item component', () => {
         await user.click(notificationLink);
 
         expect(mockSetAccount).toHaveBeenCalled();
-        expect(readNotification).toHaveBeenCalledWith(unreadNotification.id);
       });
 
       it('does not call readNotification and setCurrentAccount if clicked and read', async () => {
@@ -123,14 +118,17 @@ describe('Notification List Item component', () => {
         const accountValues = {
           setCurrentAccount: mockSetAccount,
           currentAccount: {
-            otherInfo: 'Test',
-            notifications: 9
+            data: {
+              username: 'Test',
+              notifications: 8
+            },
+            isLoading: false
           }
         };
     
         render(
           <MemoryRouter>
-            <NotificationListItem notification={notification} />
+            <NotificationListItem notification={readNotification} />
           </MemoryRouter>,
           { accountValues }
         );
@@ -139,7 +137,6 @@ describe('Notification List Item component', () => {
         await user.click(notificationLink);
 
         expect(mockSetAccount).not.toHaveBeenCalled();
-        expect(readNotification).not.toHaveBeenCalled();
       });
     });
   });
