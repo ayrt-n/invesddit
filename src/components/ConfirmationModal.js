@@ -8,7 +8,7 @@ function ConfirmationModal({ header, message, actionText, callback, closeModal }
   }
 
   return (
-    <div className="bg-canvas-light rounded-[4px] overflow-y-hidden overflow-x-hidden">
+    <>
       <header className="border-b-[1px] border-nav-border p-[16px]">
         <div className="flex">
           <div className="flex-[1_1_100%] w-full">
@@ -38,7 +38,7 @@ function ConfirmationModal({ header, message, actionText, callback, closeModal }
           {actionText}
         </PillButton>
       </footer>
-    </div>
+    </>
   );
 }
 

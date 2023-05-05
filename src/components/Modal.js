@@ -46,8 +46,8 @@ function Modal({ isOpen, content, closeModal }) {
   }, [isOpen])
 
   if (isOpen) return ReactDOM.createPortal(
-    <div role="dialog" aria-modal="true" className="fixed top-0 left-0 h-screen w-full z-[50]" style={{ background: "rgba(0,0,0,0.4)" }}>
-      <div className="max-h-[90%] max-w-[400px] w-[90%] fixed top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%] overflow-hidden">
+    <div role="dialog" aria-modal="true" className="fixed top-0 left-0 h-screen w-full z-[50] overflow-y-auto" style={{ background: "rgba(0,0,0,0.4)" }}>
+      <div className="bg-canvas-light rounded-[12px] overflow-y-auto overflow-x-hidden max-h-[90%] max-w-[400px] w-[90%] fixed top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%] scrollbar-hide">
         {content}
       </div>
     </div>,

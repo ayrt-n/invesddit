@@ -52,7 +52,7 @@ function OnboardModal({ initialState, callToAction, closeModal }) {
   );
 
   return (
-    <div className="bg-canvas-light rounded-[12px] overflow-y-hidden overflow-x-hidden">
+    <>
       <div className="flex flex-row-reverse h-[50px] justify-start items-start">
         <button onClick={closeModal} aria-label="close modal" className="mt-[16px] mr-[16px] text-feed-text">
           <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" className="w-[14px] h-[14px]">
@@ -69,7 +69,7 @@ function OnboardModal({ initialState, callToAction, closeModal }) {
         }
       </div>
       <div className="h-[50px]" />
-    </div>
+    </>
   );
 }
 
