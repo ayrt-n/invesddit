@@ -1,10 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import FeedController from '../FeedController';
+import FeedController from '../feed/FeedController';
 import BackToTopWidget from '../BackToTopWidget';
 import ProfileWidget from './ProfileWidget';
 import EmptyProfileFeed from './EmptyProfileFeed';
-import Feed from '../Feed';
+import Feed from '../feed/Feed';
 
 function Profile() {
   let { username } = useParams();

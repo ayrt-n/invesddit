@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useRef, useCallback, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { usePostFeed } from '../hooks/usePostFeed';
-import PostLoading from './post/PostLoading';
-import PostPreview from './post/PostPreview';
+import { usePostFeed } from '../../hooks/usePostFeed';
+import PostLoading from '../post/PostLoading';
+import PostPreview from '../post/PostPreview';
 
 function Feed({ subdir, communityView, emptyFeed="No results found" }) {
   // Set page state for pagination 

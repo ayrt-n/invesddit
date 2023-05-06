@@ -1,5 +1,5 @@
 import React from 'react';
-import EmptyFeed from '../EmptyFeed'
+import EmptyFeed from '../feed/EmptyFeed'
 
 function EmptyProfileFeed({ username }) {
   return (

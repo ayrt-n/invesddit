@@ -5,7 +5,7 @@ import EmptyHomeFeed from '../EmptyHomeFeed';
 import { MemoryRouter } from 'react-router-dom';
 
 // Mock Empty Feed component
-jest.mock('../EmptyFeed', () => ({ children }) => (
+jest.mock('../feed/EmptyFeed', () => ({ children }) => (
   <>
     {children}
   </>

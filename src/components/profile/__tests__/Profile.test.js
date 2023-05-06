@@ -17,13 +17,13 @@ jest.mock('../ProfileWidget', () => ({ username }) => (
   </div>
 ));
 
-jest.mock('../../Feed', () => ({ subdir }) => (
+jest.mock('../../feed/Feed', () => ({ subdir }) => (
     <div data-testid="feed">
       {subdir}
     </div>
 ));
 
-jest.mock('../../FeedController', () => () => (
+jest.mock('../../feed/FeedController', () => () => (
   <div />
 ))
 

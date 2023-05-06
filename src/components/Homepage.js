@@ -3,10 +3,10 @@ import WelcomeWidget from './WelcomeWidget';
 import GithubWidget from './GithubWidget';
 import BackToTopWidget from './BackToTopWidget';
 import RecentPostsWidget from './RecentPostsWidget';
-import Feed from './Feed';
+import Feed from './feed/Feed';
 import EmptyHomeFeed from './EmptyHomeFeed';
 import CreatePostWidget from './CreatePostWidget';
-import FeedController from './FeedController';
+import FeedController from './feed/FeedController';
 import useAuth from '../hooks/useAuth';
 
 function Homepage() {

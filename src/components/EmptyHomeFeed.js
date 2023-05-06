@@ -1,5 +1,5 @@
 import React from 'react';
-import EmptyFeed from './EmptyFeed';
+import EmptyFeed from './feed/EmptyFeed';
 import PillButton from './PillButton';
 import { Link } from 'react-router-dom';
 

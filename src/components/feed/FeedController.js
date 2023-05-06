@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
-import hotSelected from '../assets/icons/hot-selected.png';
-import hotUnselected from '../assets/icons/hot-unselected.png';
-import newSelected from '../assets/icons/new-selected.png';
-import newUnselected from '../assets/icons/new-unselected.png';
-import topSelected from '../assets/icons/top-selected.png';
-import topUnselected from '../assets/icons/top-unselected.png';
-import ContentCard from './ContentCard';
+import hotSelected from '../../assets/icons/hot-selected.png';
+import hotUnselected from '../../assets/icons/hot-unselected.png';
+import newSelected from '../../assets/icons/new-selected.png';
+import newUnselected from '../../assets/icons/new-unselected.png';
+import topSelected from '../../assets/icons/top-selected.png';
+import topUnselected from '../../assets/icons/top-unselected.png';
+import ContentCard from '../ContentCard';
 
 function FeedController() {
   const [searchParams, setSearchParams] = useSearchParams();

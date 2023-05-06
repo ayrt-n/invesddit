@@ -1,8 +1,8 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import FeedController from '../FeedController'
+import FeedController from '../feed/FeedController'
 import EmptyCommunityFeed from './EmptyCommunityFeed'
-import Feed from '../Feed'
+import Feed from '../feed/Feed'
 
 function CommunityFeed() {
   let { community_id } = useParams();
