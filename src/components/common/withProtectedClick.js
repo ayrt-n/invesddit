@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import ModalContext from '../../contexts/modal/ModalContext';
-import OnboardModal from '../OnboardModal';
+import AuthenticationModal from '../AuthenticationModal';
 import AuthContext from '../../contexts/authentication/AuthContext';
 
 // Higher order component used for dealing with clickable elements that require auth
@@ -16,7 +16,7 @@ export default function withProtectedClick(WrappedComponent) {
         if (props.onClick) return props.onClick(event);
       } else {
         event.preventDefault();
-        openModal(<OnboardModal callToAction={callToAction} closeModal={closeModal} />)
+        openModal(<AuthenticationModal callToAction={callToAction} closeModal={closeModal} />)
       }
 
       event.stopPropagation();

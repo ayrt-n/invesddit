@@ -6,7 +6,7 @@ import ErrorMessage from './forms/ErrorMessage';
 import { resetPasswordRequest } from '../services/authService';
 import SuccessMessage from './SuccessMessage';
 
-function RecoverPasswordForm({ links }) {
+function RecoverPasswordForm() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [submit, setSubmit] = useState(false);
 
@@ -70,7 +70,6 @@ function RecoverPasswordForm({ links }) {
               </form>
             )}
           </Formik>
-          {links}
         </>
       }
     </div>

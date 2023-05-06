@@ -6,7 +6,7 @@ import LoginButton from './forms/LoginButton';
 import ErrorMessage from './forms/ErrorMessage';
 import SuccessMessage from './SuccessMessage';
 
-function SignUpForm({ callToAction, links }) {
+function SignUpForm({ callToAction }) {
   const [errorMessage, setErrorMessage] = useState(null);
   const [submit, setSubmit] = useState(false);
 
@@ -98,7 +98,6 @@ function SignUpForm({ callToAction, links }) {
               </form>
             )}
           </Formik>
-          {links}
         </>
       }
     </div>

@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import withProtectedClick from '../withProtectedClick';
 
-jest.mock('../../OnboardModal.js', () => ({ callToAction }) => (
+jest.mock('../../AuthenticationModal.js', () => ({ callToAction }) => (
   <h1>{callToAction}</h1>
 ));
 

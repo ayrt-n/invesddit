@@ -6,7 +6,7 @@ import LoginButton from './forms/LoginButton';
 import ErrorMessage from './forms/ErrorMessage';
 import AuthContext from '../contexts/authentication/AuthContext';
 
-function LoginForm({ links }) {
+function LoginForm() {
   const auth = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -80,7 +80,6 @@ function LoginForm({ links }) {
           </form>
         )}
       </Formik>
-      {links}
     </div>
   );
 }

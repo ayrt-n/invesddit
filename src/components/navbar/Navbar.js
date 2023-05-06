@@ -4,7 +4,7 @@ import brand from '../../assets/icons/invesddit-brand.png';
 import PillButton from '../PillButton';
 import NavDropdown from './NavDropdown';
 import ModalContext from '../../contexts/modal/ModalContext';
-import OnboardModal from '../OnboardModal';
+import AuthenticationModal from '../AuthenticationModal';
 import SearchBar from './SearchBar';
 import NotificationsDropdown from './NotificationsDropdown';
 import { Link } from 'react-router-dom';
@@ -34,10 +34,10 @@ function Navbar() {
             <NavDropdown logOut={auth.logOut} />
           </> :
           <>
-            <PillButton onClick={() => openModal(<OnboardModal closeModal={closeModal} initialState="signup"/>)} variant="inverted" className="ml-[4px] text-[14px] whitespace-nowrap">
+            <PillButton onClick={() => openModal(<AuthenticationModal closeModal={closeModal} initialState="signup"/>)} variant="inverted" className="ml-[4px] text-[14px] whitespace-nowrap">
               Sign up
             </PillButton>
-            <PillButton onClick={() => openModal(<OnboardModal closeModal={closeModal} initialState="login"/>)} className="ml-[4px] text-[14px]">
+            <PillButton onClick={() => openModal(<AuthenticationModal closeModal={closeModal} initialState="login"/>)} className="ml-[4px] text-[14px]">
               Log In
             </PillButton>
           </>
