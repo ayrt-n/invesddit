@@ -86,12 +86,3 @@ function LoginForm({ links }) {
 }
 
 export default LoginForm;
-
-// setErrorMessage(() => {
-//           // Return error message with first letter capitalized
-//           if (data['field-error']) {
-//             return data['field-error'][1].charAt(0).toUpperCase() + data['field-error'][1].slice(1);
-//           }
-          
-//           return data['error'];
-//         })
