@@ -1,8 +1,9 @@
 import React from 'react';
+import ContentCard from './ContentCard';
 
 function PostGuidelineWidget() {
   return (
-    <div className="bg-canvas-light rounded-[4px] my-[15px] p-[12px]">
+    <ContentCard className="my-[15px] p-[12px] border-0">
       <div className="text-[16px] font-medium leading-[20px] border-b-[1px] border-nav-border min-h-[46px] items-center flex">
         Posting to Invesddit
       </div>
@@ -23,7 +24,7 @@ function PostGuidelineWidget() {
           Read the community's rules
         </li>
       </ol>
-    </div>
+    </ContentCard>
   );
 }
 

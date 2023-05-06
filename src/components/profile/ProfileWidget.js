@@ -3,6 +3,7 @@ import format from 'date-fns/format';
 import { UserAvatar } from '../Avatar';
 import useFetch from '../../hooks/useFetch';
 import SkeletonLoader from '../SkeletonLoader';
+import ContentCard from '../ContentCard';
 
 function ProfileWidget({ username }) {
   const [account] = useFetch(`api/v1/accounts/${username}`);
@@ -29,7 +30,7 @@ function ProfileWidget({ username }) {
 
   return (
     <div className="relative">
-      <div className="border-[1px] border-post-border rounded-[4px] p-[12px] bg-canvas-light break-words overflow-visible">
+      <ContentCard className="p-[12px] break-words overflow-visible">
         <div className="h-[94px] rounded-t-[4px] w-[calc(100%-2px)] bg-blue-300 bg-center bg-no-repeat bg-cover absolute top-[1px] left-[1px]" style={{backgroundImage: `url(${account.data.banner})`}} />
         <div className="relative rounded-full bg-inherit h-[86px] w-[86px] ml-[-3px] mt-[16px] p-[4px]">
           <UserAvatar classNames="h-full w-full" src={account.data.avatar} alt="user avatar" />
@@ -59,7 +60,7 @@ function ProfileWidget({ username }) {
             </span>
           </div>
         </div>
-      </div>
+      </ContentCard>
     </div>
   );
 }

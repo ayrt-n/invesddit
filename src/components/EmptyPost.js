@@ -1,8 +1,9 @@
 import React from 'react';
+import ContentCard from './ContentCard';
 
 function EmptyPost() {
   return (
-    <div className="overflow-hidden rounded-[4px] relative border-[1px] border-post-border z-0 bg-post-transparent-20 mb-[-1px] text-feed-text">
+    <ContentCard className="relative z-0 bg-post-transparent-20 mb-[-1px] text-feed-text">
       <div className="w-[40px] ml-[4px] flex flex-col items-center py-[8px] pr-[4px]">
         <div className="flex flex-col items-center">
           <span>
@@ -19,7 +20,7 @@ function EmptyPost() {
         </div>
       </div>
       <div />
-    </div>
+    </ContentCard>
   );
 }
 

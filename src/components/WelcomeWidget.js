@@ -1,12 +1,13 @@
 import React from 'react';
+import ContentCard from './ContentCard';
 import PillButton from './PillButton';
 import ProtectedLink from './ProtectedLink';
 
 function FeedSidebarWelcome() {
   return (
-    <div className="rounded-[4px] border-[1px] border-post-border overflow-hidden">
+    <ContentCard>
       <div className="bg-stock-banner h-[34px] bg-cover bg-position-center bg-no-repeat" />
-      <div className="bg-canvas-light p-[12px]">
+      <div className="p-[12px]">
         <div className="text-[16px] font-semibold leading-[20px] mb-[8px]">
           Home
         </div>
@@ -25,7 +26,7 @@ function FeedSidebarWelcome() {
           </PillButton>
         </div>
       </div>
-    </div>
+    </ContentCard>
   );
 }
 

@@ -8,6 +8,7 @@ import ImageInput from '../forms/ImageInput';
 import PillButton from '../PillButton';
 import defaultAvatar from '../../assets/icons/invesddit-logo.svg';
 import { createCommunity } from '../../services/communityService';
+import ContentCard from '../ContentCard';
 
 function NewCommunityForm() {
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ function NewCommunityForm() {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <div className="bg-canvas-light rounded-[5px] overflow-hidden w-full p-[16px]">
+      <ContentCard className="w-full p-[16px] border-0">
         <div className="mb-[36px]">
           <div className="mb-[12px]">
             <label htmlFor="name" className="text-[16px] font-medium leading-[20px] mb-[4px]">
@@ -172,7 +173,7 @@ function NewCommunityForm() {
             </div>
           </div>
         </div>
-      </div>
+      </ContentCard>
     </form>
   );
 }

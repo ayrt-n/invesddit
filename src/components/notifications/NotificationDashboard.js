@@ -6,6 +6,7 @@ import usePagination from '../../hooks/usePagination';
 import NotificationLoading from './NotificationLoading';
 import EmptyNotifications from './EmptyNotifications';
 import useCurrentAccount from '../../hooks/useCurrentAccount';
+import ContentCard from '../ContentCard';
 
 function NotificationDashboard() {
   const { currentAccount, setCurrentAccount } = useCurrentAccount();
@@ -73,7 +74,7 @@ function NotificationDashboard() {
           </div>
           <div className="py-[20px] flex justify-center mx-auto">
             <div className="flex-[1_1_100%]">
-              <div className="bg-canvas-light rounded-[4px] mx-auto overflow-hidden">
+              <ContentCard className="mx-auto border-0">
                 <ul>
                   {isLoading && page === 1 ?
                     <ul>
@@ -98,7 +99,7 @@ function NotificationDashboard() {
                     <EmptyNotifications />
                   }
                 </ul>
-              </div>
+              </ContentCard>
             </div>
           </div>
         </div>

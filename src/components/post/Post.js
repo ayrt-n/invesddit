@@ -7,6 +7,7 @@ import { addRecentPost } from '../../services/recentPostTracker';
 import PostContent from './PostContent';
 import PostLoading from './PostLoading';
 import usePost from '../../hooks/usePost';
+import ContentCard from '../ContentCard';
 
 function Post() {
   const { post_id, community_id } = useParams();
@@ -29,7 +30,7 @@ function Post() {
   };
 
   return (
-    <div className="bg-canvas-light border-[1px] border-post-border mb-[10px] rounded-[4px]">
+    <ContentCard className="mb-[10px]">
       <div className="flex">
         {post.isLoading ?
           <PostLoading /> :
@@ -50,7 +51,7 @@ function Post() {
 
       {/* Render Comment Section */}
       <CommentSection postId={post_id} />
-    </div>
+    </ContentCard>
   );
 }
 

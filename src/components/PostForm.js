@@ -8,6 +8,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { createPost } from '../services/postService';
 import FileInput from './forms/FileInput';
+import ContentCard from './ContentCard';
 
 function PostForm() {
   const navigate = useNavigate();
@@ -75,7 +76,7 @@ function PostForm() {
       <div className="mb-[8px] w-[300px]">
         <CommunitySelect value={formik.community} onChange={(value) => formik.setFieldValue('community', value)} />
       </div>
-      <div className="bg-canvas-light mb-[15px] rounded-[5px] overflow-hidden w-full">
+      <ContentCard className="mb-[15px] w-full border-0">
         <PostTypeSelector
           value={formik.values.postType}
           onChange={handlePostTypeChange}
@@ -133,7 +134,7 @@ function PostForm() {
             </div>
           </div>
         </div>
-      </div>
+      </ContentCard>
     </form>
   );
 }

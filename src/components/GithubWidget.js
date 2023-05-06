@@ -1,8 +1,9 @@
 import React from 'react';
+import ContentCard from './ContentCard';
 
 function GithubWidget() {
   return (
-    <div className="mt-[16px] bg-canvas-light p-[12px] rounded-[4px] border-[1px] border-post-border font-noto">
+    <ContentCard className="mt-[16px] p-[12px] font-noto">
       <div className="text-[14px] leading-[21px] flex items-center">
         Made with
         <span className="text-red-500 mx-[3px]">♥</span>
@@ -14,7 +15,7 @@ function GithubWidget() {
           </svg>
         </a>
       </div>
-    </div>
+    </ContentCard>
   );
 }
 

@@ -6,6 +6,7 @@ import newSelected from '../assets/icons/new-selected.png';
 import newUnselected from '../assets/icons/new-unselected.png';
 import topSelected from '../assets/icons/top-selected.png';
 import topUnselected from '../assets/icons/top-unselected.png';
+import ContentCard from './ContentCard';
 
 function FeedController() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,7 +24,7 @@ function FeedController() {
   const sortBy = searchParams.get('sort_by') || 'hot';
 
   return (
-    <div className="bg-canvas-light border-[1px] border-post-border rounded-[4px] mb-[16px] py-[10px] px-[12px] flex items-center">
+    <ContentCard className="mb-[16px] py-[10px] px-[12px] flex items-center">
       <div className="items-center flex cursor-pointer text-[14px] font-noto ">
         {/* Sory by Hot */}
         <button onClick={() => handleClick('hot')} aria-label="Sort feed by hot" className={`inline-flex py-[6px] px-[8px] rounded-[20px] font-bold leading-[17px] items-center justify-center w-auto mr-[8px] hover:bg-gray-200 focus:bg-gray-300 ${sortBy === 'hot' ? 'bg-gray-100 text-gray-100' : 'bg-inherit text-feed-text'}`}>
@@ -52,7 +53,7 @@ function FeedController() {
           <span className={`overflow-hidden text-ellipsis mr-[3px] max-h-[54px] text-left ${sortBy === 'top' ? 'text-primary-500' : 'text-feed-text'}`}>Top</span>
         </button>
       </div>
-    </div>
+    </ContentCard>
   );
 }
 

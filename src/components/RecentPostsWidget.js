@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import RecentPost from './RecentPost';
 import { getRecentPosts, clearRecentPosts } from '../services/recentPostTracker';
+import ContentCard from './ContentCard';
 
 function RecentPostsWidget() {
   const [recentPosts, setRecentPosts] = useState(getRecentPosts());
@@ -13,7 +14,7 @@ function RecentPostsWidget() {
   if (!recentPosts || recentPosts.length < 1) return null;
 
   return (
-    <div className="mt-[16px] p-[12px] bg-canvas-light border-post-border border-[1px] rounded-[4px] break-words">
+    <ContentCard className="mt-[16px] p-[12px] break-words">
       <div className="text-[12px] font-bold leading-[12px] pb-[4px]">
         Recent Posts
       </div>
@@ -23,7 +24,7 @@ function RecentPostsWidget() {
       <button className="text-[12px] leading-[16px] text-feed-text w-full text-right" onClick={handleClick}>
         Clear
       </button>
-    </div>
+    </ContentCard>
   );
 }
 
