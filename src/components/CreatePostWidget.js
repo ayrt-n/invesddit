@@ -13,7 +13,7 @@ function CreatePostWidget() {
     <ContentCard className="flex mb-[16px] p-[8px]">
       {/* User Avatar */}
       <Link to={`/profile/${currentAccount.data.username}`} className="w-[38px] h-[38px] rounded-full mr-[8px] basis-[38px]" aria-label={`${currentAccount.data.username}'s profile`}>
-        <UserAvatar classNames="w-[38px] h-[38px]" src={currentAccount.data.avatar} alt={`avatar for ${currentAccount.data.username}`} />
+        <UserAvatar className="w-[38px] h-[38px]" src={currentAccount.data.avatar} alt={`avatar for ${currentAccount.data.username}`} />
       </Link>
 
       {/* Create Text Post Link */}

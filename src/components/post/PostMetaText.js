@@ -16,7 +16,7 @@ function PostMetaText({ community, account, createdAt }) {
           <>
             <div>
               <Link to={`/c/${community.sub_dir}`}>
-                <CommunityAvatar src={community.avatar} classNames="h-[20px] w-[20px] mr-[4px] bg-canvas-light" alt={`avatar for c/${community.sub_dir}`} />
+                <CommunityAvatar src={community.avatar} className="h-[20px] w-[20px] mr-[4px] bg-canvas-light" alt={`avatar for c/${community.sub_dir}`} />
               </Link>
             </div>
             <HoverableTooltip tooltipComponent={<CommunityTooltip community={community} />}>

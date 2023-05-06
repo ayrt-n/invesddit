@@ -9,7 +9,7 @@ function SearchFeedItem({ title, subtitle, avatar, link }) {
     <div className="-mt-[1px] p-[16px] border-[1px] border-post-border hover:border-post-border-hover hover:z-10 cursor-pointer first:rounded-t-[4px] last:rounded-b-[4px] relative">
       <Link to={link}>
         <div className="flex items-center justify-between">
-          <Avatar classNames="h-[36px] w-[36px] shrink-0" src={avatar || defaultAvatar} alt="user uploaded avatar" />
+          <Avatar className="h-[36px] w-[36px] shrink-0" src={avatar || defaultAvatar} alt="user uploaded avatar" />
           <div className="grow px-[8px] overflow-hidden break-words">
             <div className="flex flex-col items-baseline">
               <h6 className="w-full nowrap overflow-hidden text-ellipsis text-[12px] leading-[16px] font-bold hover:underline">

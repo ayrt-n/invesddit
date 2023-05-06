@@ -3,8 +3,7 @@ import NavDropdownHeader from './NavDropdownHeader';
 import NavDropdownItem from './NavDropdownItem';
 import NavDropdownSection from './NavDropdownSection';
 import { getCurrentAccountCommunities } from '../../services/accountService';
-import defaultAvatar from '../../assets/icons/invesddit-logo.svg';
-import Avatar from '../Avatar';
+import { CommunityAvatar } from '../Avatar';
 
 function NavDropdownMenu({ currentAccount, logOut }) {
   // Current account communities
@@ -77,7 +76,7 @@ function NavDropdownMenu({ currentAccount, logOut }) {
         {communities.map((community) => (
           <NavDropdownItem to={`/c/${community.sub_dir}`} key={community.id} withIcon>
             <span className="h-[20px] w-[20px] mr-[12px] flex-none">
-              <Avatar src={community.avatar || defaultAvatar} alt="community avatar" classNames="h-[20px] w-[20px]" />
+              <CommunityAvatar src={community.avatar} alt="community avatar" className="h-[20px] w-[20px]" />
             </span>
             <span className="flex-1 text-[14px] leading-[18px] font-semibold overflow-hidden text-ellipsis text-left w-full">
               {`c/${community.sub_dir}`}

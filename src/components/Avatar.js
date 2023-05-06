@@ -1,21 +1,25 @@
 import React from 'react';
 import defaultUserAvatar from '../assets/icons/invesddit-logo.svg';
 import defaultCommunityAvatar from '../assets/icons/invesddit-logo.svg';
+import classNames from 'classnames';
 
-export default function Avatar({ classNames, src, alt }) {
+export default function Avatar({ className, src, alt }) {
+  const defaultClasses = "rounded-full object-cover align-middle overflow-hidden";
+  const mergedClasses = classNames(defaultClasses, className);
+
   return (
-    <img className={`rounded-full object-cover align-middle overflow-hidden ${classNames}`} src={src} alt={alt} />
+    <img className={mergedClasses} src={src} alt={alt} />
   );
 }
 
-export function UserAvatar({ classNames, src, alt, ...props }) {
+export function UserAvatar({ className, src, alt, ...props }) {
   return (
-    <Avatar classNames={classNames} src={src || defaultUserAvatar} alt={alt} {...props} />
+    <Avatar className={className} src={src || defaultUserAvatar} alt={alt} {...props} />
   );
 }
 
-export function CommunityAvatar({ classNames, src, alt, ...props }) {
+export function CommunityAvatar({ className, src, alt, ...props }) {
   return (
-    <Avatar classNames={classNames} src={src || defaultCommunityAvatar} alt={alt} {...props} />
+    <Avatar className={className} src={src || defaultCommunityAvatar} alt={alt} {...props} />
   );
 }

@@ -6,7 +6,7 @@ import Avatar from '../Avatar';
 describe('Avatar component', () => {
   describe('rendering component', () => {
     it('renders avatar with correct attributes', () => {
-      render(<Avatar classNames="test" src="test" alt="test" />);
+      render(<Avatar className="test" src="test" alt="test" />);
 
       const avatar = screen.getByAltText('test');
   

@@ -13,7 +13,7 @@ function CommentSidebar({ account, toggleCollapse, status }) {
           <UserAvatar alt="account avatar" className="w-[28px] h-[28px]" />
         </div> :
         <Link to={`/profile/${account.username}`} className="my-[6px] min-h-[28px] min-w-[28px]">
-          <UserAvatar src={account.avatar} alt={`avatar for ${account.username}`} classNames="w-[28px] h-[28px]" />
+          <UserAvatar src={account.avatar} alt={`avatar for ${account.username}`} className="w-[28px] h-[28px]" />
         </Link>
       }
       <div onClick={toggleCollapse} className="w-full h-full cursor-pointer bg-gradient-to-t from-canvas to-canvas bg-no-repeat bg-center hover:from-primary-500 hover:to-primary-500" style={{'backgroundSize': '2px 100%'}} />

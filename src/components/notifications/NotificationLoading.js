@@ -8,13 +8,13 @@ function NotificationLoading({ underlined }) {
     <li className={"overflow-hidden list-none " + underlineStyle}>
       <div className="flex p-[16px]">
         <span className="pr-[8px] relative shrink-0">
-          <SkeletonLoader classNames="rounded-full h-[32px] w-[32px]" />
+          <SkeletonLoader className="rounded-full h-[32px] w-[32px]" />
         </span>
         <span className="flex-1">
           <div className="mb-[4px]">
-            <SkeletonLoader classNames="h-[14px] w-[70%]" />
+            <SkeletonLoader className="h-[14px] w-[70%]" />
           </div>
-          <SkeletonLoader classNames="h-[54px] w-[90%]" />
+          <SkeletonLoader className="h-[54px] w-[90%]" />
         </span>
       </div>
     </li>

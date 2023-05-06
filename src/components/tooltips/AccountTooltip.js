@@ -12,7 +12,7 @@ function AccountTooltip({ account }) {
     <TooltipWrapper>
       <div className="p-[12px]">
         <div className="w-full flex mb-[12px]">
-          <UserAvatar src={account.avatar} classNames="h-[32px] w-[32px] mr-[8px] shrink-0" alt={`avatar for ${account.username}`} />
+          <UserAvatar src={account.avatar} className="h-[32px] w-[32px] mr-[8px] shrink-0" alt={`avatar for ${account.username}`} />
           <div>
             <Link className="text-[16px] font-medium leading-[20px] mr-[4px] inline-block" to={`/profile/${account.username}`}>
               {`u/${account.username}`}

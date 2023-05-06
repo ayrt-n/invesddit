@@ -10,7 +10,7 @@ function CommunityTooltip({ community }) {
     <TooltipWrapper>
       <div className="p-[12px]">
         <div className="w-full flex">
-          <CommunityAvatar src={community.avatar} classNames="h-[32px] w-[32px] mr-[8px] shrink-0 bg-canvas-light" alt={`avatar for c/${community.sub_dir}`} />
+          <CommunityAvatar src={community.avatar} className="h-[32px] w-[32px] mr-[8px] shrink-0 bg-canvas-light" alt={`avatar for c/${community.sub_dir}`} />
           <Link to={`/c/${community.sub_dir}`} className="text-[16px] font-medium leading-[20px] items-center flex">
             {`c/${community.sub_dir}`}
           </Link>
