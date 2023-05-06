@@ -46,7 +46,7 @@ exports[`Account Tooltip component renders component correctly renders account i
         </div>
       </div>
       <a
-        class="bg-primary-500 hover:bg-primary-400 active:bg-primary-300 text-white min-h-[32px] flex items-center justify-center font-noto text-[14px] leading-[17px] font-bold py-[4px] px-[16px] rounded-full w-full cursor-pointer inline-block text-center disabled:cursor-not-allowed disabled:grayscale disabled:text-gray-300 whitespace-nowrap undefined"
+        class="min-h-[32px] flex items-center justify-center font-noto text-[14px] leading-[17px] font-bold py-[4px] px-[16px] rounded-full w-full cursor-pointer inline-block text-center disabled:cursor-not-allowed disabled:grayscale disabled:text-gray-300 whitespace-nowrap bg-primary-500 hover:bg-primary-400 active:bg-primary-300 text-white"
         href="/profile/Test123"
       >
         View Profile
