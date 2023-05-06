@@ -31,10 +31,10 @@ function ConfirmationModal({ header, message, actionText, callback, closeModal }
         </p>
       </div>
       <footer className="flex justify-end p-[16px] bg-nav-border">
-        <PillButton onClick={closeModal} variant="inverted" additionalClasses="w-auto">
+        <PillButton onClick={closeModal} variant="inverted" className="w-auto">
           Cancel
         </PillButton>
-        <PillButton onClick={handleConfirm} variant="danger" additionalClasses="w-auto ml-[8px]">
+        <PillButton onClick={handleConfirm} variant="danger" className="w-auto ml-[8px]">
           {actionText}
         </PillButton>
       </footer>

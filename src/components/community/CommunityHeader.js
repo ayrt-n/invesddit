@@ -47,14 +47,14 @@ function CommunityHeader({ title, id, isMember, membershipCount, updateCommunity
                 {isMember ?
                   <PillButton
                     variant="inverted"
-                    additionalClasses="w-[96px]"
+                    className="w-[96px]"
                     onClick={requestLeaveCommunity}
                     onMouseOver={() => setLeaveText('Leave')}
                     onMouseLeave={() => setLeaveText('Joined')}
                   >
                     {leaveText}
                   </PillButton> :
-                  <PillButton as={ProtectedButton} callToAction={callToAction} additionalClasses="w-[96px]" onClick={requestJoinCommunity}>
+                  <PillButton as={ProtectedButton} callToAction={callToAction} className="w-[96px]" onClick={requestJoinCommunity}>
                     Join
                   </PillButton>
                 }

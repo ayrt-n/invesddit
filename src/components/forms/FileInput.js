@@ -40,7 +40,7 @@ function FileInput({ onChange, value, ...props }) {
         <div className="flex justify-center flex-col nowrap min-h-[280px] text-center border-dashed border-[1px] border-nav-border rounded-[4px]">
           <p className="text-primary-500 flex items-center justify-center">
             Drag and drop image or
-            <PillButton type="button" onClick={uploadFile} variant="inverted" additionalClasses="inline-block max-w-[min-content] mx-[8px] my-[10px]">
+            <PillButton type="button" onClick={uploadFile} variant="inverted" className="inline-block max-w-[min-content] mx-[8px] my-[10px]">
               Upload
             </PillButton>
           </p>

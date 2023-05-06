@@ -44,7 +44,7 @@ function CommentForm({ postId, commentId, autoFocus, addComment }) {
               />
               <input type="hidden" {...formik.getFieldProps('commentId')} />
               <div className="flex justify-end py-[4px] px-[8px] w-auto">
-                <PillButton as={ProtectedButton} callToAction={callToAction} additionalClasses="w-[90px] text-[12px] leading-[16px]" disabled={!formik.isValid || !formik.dirty} type="submit" >
+                <PillButton as={ProtectedButton} callToAction={callToAction} className="w-[90px] text-[12px] leading-[16px]" disabled={!formik.isValid || !formik.dirty} type="submit" >
                   {/* If commentId exists, must be a reply */}
                   {commentId ? 'Reply' : 'Comment'}
                 </PillButton>

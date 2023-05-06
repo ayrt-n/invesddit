@@ -42,7 +42,7 @@ function CommunityHomepage() {
               <PillButton
                 as={Link}
                 to="settings"
-                additionalClasses="mb-[16px] flex justify-center items-center"
+                className="mb-[16px] flex justify-center items-center"
               >
                 <svg className="w-[20px] h-[20px] mr-[6px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                   <title>security</title>

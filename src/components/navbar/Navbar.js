@@ -34,10 +34,10 @@ function Navbar() {
             <NavDropdown logOut={auth.logOut} />
           </> :
           <>
-            <PillButton onClick={() => openModal(<OnboardModal closeModal={closeModal} initialState="signup"/>)} variant="inverted" additionalClasses="ml-[4px] text-[14px] whitespace-nowrap">
+            <PillButton onClick={() => openModal(<OnboardModal closeModal={closeModal} initialState="signup"/>)} variant="inverted" className="ml-[4px] text-[14px] whitespace-nowrap">
               Sign up
             </PillButton>
-            <PillButton onClick={() => openModal(<OnboardModal closeModal={closeModal} initialState="login"/>)} additionalClasses="ml-[4px] text-[14px]">
+            <PillButton onClick={() => openModal(<OnboardModal closeModal={closeModal} initialState="login"/>)} className="ml-[4px] text-[14px]">
               Log In
             </PillButton>
           </>

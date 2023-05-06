@@ -38,10 +38,10 @@ function EditPostForm({ postId, content, updatePostContent, closeEdit }) {
               {...formik.getFieldProps('content')}
             />
             <div className="flex justify-end mt-[8px] text-[14px]">
-              <PillButton onClick={closeForm} variant="inverted" additionalClasses="w-auto border-none">
+              <PillButton onClick={closeForm} variant="inverted" className="w-auto border-none">
                 Cancel
               </PillButton>
-              <PillButton type="submit" additionalClasses="ml-[4px] w-auto" disabled={!formik.isValid || !formik.dirty}>
+              <PillButton type="submit" className="ml-[4px] w-auto" disabled={!formik.isValid || !formik.dirty}>
                 Save
               </PillButton>
             </div>
