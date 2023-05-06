@@ -1,8 +1,8 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Navbar from './navbar/Navbar';
+import Navbar from '../navbar/Navbar';
 
-function Layout() {
+function MainLayout() {
   return (
     <div className="bg-canvas min-h-screen font-sans">
       <Navbar />
@@ -13,4 +13,4 @@ function Layout() {
   )
 }
 
-export default Layout;
+export default MainLayout;

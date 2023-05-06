@@ -16,8 +16,8 @@ import VerifyAccount from './components/VerifyAccount';
 import ModalProvider from './contexts/modal/ModalProvider';
 import SearchResults from './components/search/SearchResults';
 import NotificationDashboard from './components/notifications/NotificationDashboard';
-import Layout from './components/Layout';
-import AuthLayout from './components/AuthLayout';
+import MainLayout from './components/layouts/MainLayout';
+import AuthLayout from './components/layouts/AuthLayout';
 import RecoverPassword from './components/RecoverPassword';
 import PublicRoute from './components/common/PublicRoute';
 import PrivateRoute from './components/common/PrivateRoute';
@@ -30,7 +30,7 @@ function App() {
         <ModalProvider>
           <Routes>
             {/* Regular Routes - Includes both public and private routes */}
-            <Route path="/" element={<Layout />}>
+            <Route path="/" element={<MainLayout />}>
               <Route index element={<Homepage />} />
               <Route path="c/:community_id" element={<CommunityDashboard />}>
                 <Route index element={<CommunityFeed />} />

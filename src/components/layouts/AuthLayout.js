@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import banner from '../assets/images/auth-banner.png'
+import banner from '../../assets/images/auth-banner.png'
 
 function AuthLayout() {
   return (
