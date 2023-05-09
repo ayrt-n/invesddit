@@ -1,9 +1,8 @@
 import React from 'react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
-import defaultAvatar from '../../assets/icons/invesddit-logo.svg';
 import { Link } from 'react-router-dom';
 import { readNotification } from '../../services/notificationService';
-import Avatar from '../Avatar';
+import { UserAvatar } from '../Avatar';
 import useCurrentAccount from '../../hooks/useCurrentAccount';
 
 function NotificationListItem({ notification, underlined }) {
@@ -31,11 +30,13 @@ function NotificationListItem({ notification, underlined }) {
     }
   };
 
+  const notificationMessage = `u/${notification.details.username} replied to your ${notification.category === 'comment' ? 'post' : 'comment'} in c/${notification.details.community}`;
+
   return (
     <li className={"overflow-hidden list-none " + bgStyles + " " + underlineStyle} data-testid="notification">
       <Link onClick={handleClick} to={`/c/${notification.details.community}/posts/${notification.details.post_id}`} className="flex p-[16px]">
         <span className="pr-[8px] relative shrink-0">
-          <Avatar className="h-[32px] w-[32px]" src={notification.details.avatar || defaultAvatar} alt="notification avatar" />
+          <UserAvatar className="h-[32px] w-[32px]" src={notification.details.avatar} alt="notification avatar" />
           <span className="bg-canvas-light border-[1px] border-nav-border rounded-full h-[20px] left-[12px] absolute w-[20px] top-[18px] shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
             <svg className="text-primary-400 w-[11px] h-[11px] absolute top-[4px] left-[3px] leading-[12px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <title>comment</title>
@@ -46,7 +47,7 @@ function NotificationListItem({ notification, underlined }) {
         <span className="flex-1">
           <div className="mb-[4px]">
             <span className="text-[14px] leading-[21px]">
-              {notification.message}
+              {notificationMessage}
             </span>
             <span className="mx-[4px] text-[12px] leading-[16px] text-meta-text">
               •
