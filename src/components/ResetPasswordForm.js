@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { resetPassword } from '../services/authService';
-import { ErrorMessage, Formik } from 'formik';
+import { Formik } from 'formik';
+import ErrorMessage from './forms/ErrorMessage';
 import LoginButton from './forms/LoginButton';
 import LoginInput from './forms/LoginInput';
 import SuccessMessage from './SuccessMessage';
@@ -33,10 +34,11 @@ function ResetPasswordForm() {
     let key = searchParams.get('key');
     resetPassword(key, values.password, values.passwordConfirmation)
     .then(response => {
+      console.log(response)
       if (response.ok) {
         setSubmit('success');
       } else {
-        setErrorMessage('Something went wrong! Try logging in or resend the password reset request.')
+        setErrorMessage('Something went wrong! Try logging in or resend the password reset request.');
         setSubmitting(false);
       }
     })
