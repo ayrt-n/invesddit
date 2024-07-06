@@ -60,9 +60,6 @@ function LoginForm() {
     <div className="max-w-[280px] mx-auto">
       <div className="my-[24px]">
         <h1 className="font-medium text-[20px] leading-[24px]">Log in</h1>
-        <p className="mt-[8px] text-[12px] leading-[16px]">
-          By continuing, you agree to setting up an Invesddit account and agree to our <a href="https://www.youtube.com/watch?v=PrajM-aG4tc&ab_channel=deeboi70" target="_blank" rel="noreferrer" className="underline text-primary-500">User Agreement</a> and <a href="https://www.youtube.com/watch?v=WH1rckt8V5w&ab_channel=Michael" rel="noreferrer" target="_blank" className="underline text-primary-500">Privacy Policy.</a>
-        </p>
       </div>
       <Formik
         initialValues={{email: '', password: ''}}
