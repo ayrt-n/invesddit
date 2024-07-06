@@ -78,6 +78,18 @@ function resetPasswordRequest(email) {
   });
 }
 
+function resetPassword(key, password, passwordConfirmation) {
+  return fetch(`${API_URL}/reset-password?key=${key}`, {
+    method: 'POST',
+    mode: 'cors',
+    headers: defaultHeaders(),
+    body: JSON.stringify({
+      'password': password,
+      'password-confirm': passwordConfirmation
+    })
+  });
+}
+
 export {
   isLoggedIn,
   logout,
@@ -85,5 +97,6 @@ export {
   verifyAccount,
   getAccountToken,
   resetPasswordRequest,
+  resetPassword,
   submitLogin
 }
