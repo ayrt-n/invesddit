@@ -22,6 +22,7 @@ import RecoverPassword from './components/RecoverPassword';
 import PublicRoute from './components/common/PublicRoute';
 import PrivateRoute from './components/common/PrivateRoute';
 import AuthProvider from './contexts/authentication/AuthProvider';
+import ResetPassword from './components/ResetPassword';
 
 function App() {
   return (
@@ -111,6 +112,14 @@ function App() {
                 element={
                   <PublicRoute>
                     <VerifyAccount />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="reset-password"
+                element={
+                  <PublicRoute>
+                    <ResetPassword />
                   </PublicRoute>
                 }
               />
